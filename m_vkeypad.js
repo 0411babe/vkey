@@ -1,12 +1,15 @@
 
-alert("js읽어옴");
+
 
 var isTimer = 0;
 	var timerInterval
 
 	$(document).ready(function(){
+		
+		alert("ready함수시작");
 
 		$(".jDefaultText").show();
+		alert($(".jDefaultText").text());
 		$(".jStudentName").hide();
 
 		$('.jAttHelp').bind('touchstart', function(event){
