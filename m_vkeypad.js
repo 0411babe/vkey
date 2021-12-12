@@ -125,37 +125,6 @@ for (var word in mobileKeyWords) {
 		});
 	});
 
-	//2020-10-08 KHAN 방역과리 자가진단 입력
-	var curAttType = "";
-	function selfDiagnosis(pAttType) {
-		curAttType = pAttType
-		var strURLPreventCheck = "./prevent.asp?cmd=checkPrevent&br_code=JE41&mb_no="+$("#studentnum").val();
-		$.ajax({
-		   url:strURLPreventCheck,
-		   type:'post',
-		   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		   dataType:'json',
-		   success:function(obj){
-				if (obj.returnCode == 1 && obj.bIsOpen == "Y"){
-					window.name = "keypad";
-					var strURL = 'http://pfapp.tongtongtong.co.kr/prevent/self_diagnosis.asp?deviceOS=WEB&bcode=JE41&mbno='+$("#studentnum").val();
-					var height = screen.height;
-					var width = screen.width;
-					var leftpos = 0;
-					var toppos = 0;
-					window.open(strURL, "SelfDiagnosis", 'scrollbars=no,status=no,toolbar=no,resizable=1,location=no,menu=no,width='+ width +',height='+ height +',left=' + leftpos + ',top=' + toppos)
-				}else{
-					//console.log(obj.returnMessage);
-					StudentAtt(pAttType);
-				}
-			},
-			error:function(xhr,status,error){
-				console.log(xhr);
-				//alert("에러가 발생했습니다."+error);
-				//StudentAtt(pAttType);
-			}
-		});
-	}
 	function callbackSelfDiagnosis() {
 		StudentAtt(curAttType);
 	}
