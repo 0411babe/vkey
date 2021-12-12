@@ -1,0 +1,154 @@
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
+    <meta name="format-detection" content="telephone=no, address=no, email=no" />
+
+    <title>통통통 모바일 키패드</title>
+
+    <style type="text/css">
+    /*아이폰 자동회전시 글자크기 확대되는것 방지*/
+    * {-webkit-text-size-adjust:none;}
+    * {-webkit-tap-highlight-color:rgba(0,0,0,0);} /*모바일웹에서 터치영역 숨김*/
+    * {margin:0;padding:0;}
+        /*모바일*/
+        html {height:100%;font-size:10px;}
+        .aca_name{padding:0.8rem 0;background-color:#fff;border-bottom:1px solid #e6e6e6;}
+        .aca_name div{text-align:center;font-size:2rem;color:#8eb100;}
+        .number-area {padding:1.2rem 0;}
+        .tx_guide{font-size:2rem;color:#606060;text-align:center;}
+        .tx_name{font-size:2.4rem;color:#000000;text-align:center;letter-spacing:-1px;}
+        .nb_box{text-align:center;margin:1.0rem 0;}
+        .nb_box div{display:inline-block;width:5.5rem;height:5.5rem;margin:0 2%;line-height:5.5rem;font-size:2.7rem;text-align:center;color:#313131;border-radius:50%;background-color:#fff;vertical-align:middle;}
+        .keybox{display:table;float:left;width:33.3%;height:6rem;text-align:center;overflow:hidden;cursor:pointer;}
+        .keybox div{display:table-cell;vertical-align:middle;background-color:#fff;color:#313131;font-size:3rem;border:1px solid #cecbcb;}
+        .keybox div img {vertical-align:0;width:2.8rem;}
+        .keybox_btn{display:table;float:left;width:100%;text-align:center;overflow:hidden;cursor:pointer;}
+        .keybox_btn .btn1{display:table-cell;vertical-align:middle;font-size:2.4rem;color:#fff;text-align:center;padding:1.2rem 0;background-color:#3db31c;border:0.2rem solid #f6f6f6;}
+        .keybox_btn .btn2{display:table-cell;vertical-align:middle;font-size:2.4rem;color:#fff;text-align:center;padding:1.2rem 0;background-color:#48b1f3;border:0.2rem solid #f6f6f6;}
+        .tx_gid{text-align:right;padding:0 1.5rem 1.5rem;font-size:1.5rem;color:#7d7d7d;text-decoration:underline;}
+        .tx_gid img {vertical-align:middle;width:1.8rem;}
+
+        /* 태블릿 */
+        @media all and (min-width:720px) {
+            html {font-size:20px;}
+            .nb_box div {width:4.5rem;height:4.5rem;line-height:4.5rem;}
+            .keybox {height:4.7rem;}
+            .keybox div {font-size:2.5rem;}
+        }
+
+        @media all and (min-width:1024px) {
+            html {font-size:12.5px;}
+            .keybox {height:6.5rem;}
+        }
+
+    </style>
+</head>
+
+
+<body style="background-color:#f6f6f6;height:100%;" onselectstart="return false">
+    <script type="text/javascript" src="http://www2.hakwonsarang.co.kr/h2common/script/select2-4.0.0/docs/vendor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="http://naver.me/xIZoiA2R/m_vkeypad.js"></script>
+
+    <form name="frm" method="post">
+        <input type="hidden" name="sid" id="sid" value="">
+        <input type="hidden" name="studentnum" id="studentnum" value="">
+        <input type="hidden" name="studentname" id="studentname" value="">
+        <input type="hidden" name="keypadnum" id="keypadnum" value="">
+        <input type="hidden" name="attdproctext" id="attdproctext" value="">
+        <input type="hidden" name="strRfCardNum" id="strRfCardNum" value="">
+        <input type="hidden" name="strSfCode" id="strSfCode" value="">
+        <input type="hidden" name="strBrCode" id="strBrCode" value="">
+        <input type="hidden" name="strRfKind" id="strRfKind" value="">
+        <input type="hidden" name="strUserType" id="strUserType" value="">
+        <input type="hidden" name="strTimeType" id="strTimeType" value="">
+        <input type="hidden" name="strLecCountType" id="strLecCountType" value="">
+        <input type="hidden" name="strLecCountAutoYN" id="strLecCountAutoYN" value="">
+        <input type="hidden" name="strAcamTel" id="strAcamTel" value="">
+        <input type="hidden" name="smsallowyn" id="smsallowyn" value="">
+
+    <!-- Mobile-ko_KR -->
+
+        <!--학원명-->
+        <div class="aca_name">  <div>학원사랑 출석처리</div>    </div>
+
+        <!--출결번호 영역-->
+        <div class="number-area">
+            <p class="tx_guide jDefaultText">출결번호 4자리를 선택하세요</p>
+            <p class="tx_name jStudentName" style="display:none;">학생이름</p>  <!-- p class="tx_name">학생이름</p-->
+            <div class="nb_box">         <!-- nb_box -->
+                <div id="keynum1"></div>
+                <div id="keynum2"></div>
+                <div id="keynum3"></div>
+                <div id="keynum4"></div>
+            </div>
+        </div>
+        <div>
+            <p class="tx_gid jAttHelp">
+                <img src="./images/mobile/icon_gid.png"> 출결처리가 안되세요?
+            </p>
+        </div>
+
+        <!--번호판 영역-->
+        <div>
+            <div class="keybox jKeyNum" keynum=1>
+                <div>1</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=2>
+                <div>2</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=3>
+                <div>3</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=4>
+                <div>4</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=5>
+                <div>5</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=6>
+                <div>6</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=7>
+                <div>7</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=8>
+                <div>8</div>
+            </div>
+            <div class="keybox jKeyNum" keynum=9>
+                <div>9</div>
+            </div>
+            <div class="keybox jKeyDelOne">
+                <div><img src="./images/mobile/key_back.png" alt="back"></div>
+            </div>
+            <div class="keybox jKeyNum" keynum=0>
+                <div>0</div>
+            </div>
+            <div class="keybox jKeyDelAll">
+                <div><img src="./images/mobile/key_clear.png" alt="clear"></div>
+            </div>
+
+            <!--등원/하원 버튼-->
+            <div class="keybox_btn">
+                <div class="btn1 jComeIn">등원/귀가 처리</div>
+            </div>
+            <!--div class="keybox_btn">
+                <div class="btn2 jComeOut">하원</div>
+            </div-->
+        </div>
+    </form>
+
+<div id="proc_result" style="display:none"></div>
+
+<!--audio id="myaudio" controls-->
+<audio id="myaudio">
+	<source src="attsound.mp3" type="audio/mpeg" />
+</audio>
+
+</body>
+
+</html>
+
+<iframe name="ifrm" frameborder="0" width="0" height="0"></iframe>
