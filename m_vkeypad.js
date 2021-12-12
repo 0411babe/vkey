@@ -3,7 +3,7 @@ var timerInterval
 
 	$(document).ready(function(){
 
-		$("#aca_name").Text("name");
+		$(".aca_name").Text("name");
 
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
