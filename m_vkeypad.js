@@ -25,7 +25,6 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 			     }
 		});   
 
-
 	$(document).ready(function(){
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
