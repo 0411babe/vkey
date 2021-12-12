@@ -186,7 +186,7 @@ for (var word in mobileKeyWords) {
 				Referer : "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
 				crossOrigin:true,
 				type: "POST",
-				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+				url: "https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
 				dataType: "html",				
 				
