@@ -316,7 +316,7 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 			    header : "http://www2n.hakwonsarang.co.kr",
 			    crossOrigin: true,
  			    url  : strURL,	// - 학원사랑에 처리 페이지
-			    type :"post",
+			    type :"GET",
 			    async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 			    dataType:"html",
 			
