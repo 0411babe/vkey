@@ -181,23 +181,30 @@ $(".jKeyNum").text("키");
 			//document.frm.target = "ifrm";
 			//document.frm.submit();
 
-			var strParam="strBrCode=";					//학원코드
-			strParam=strParam + "&strRfKind=";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
+			var strParam="strBrCode=JE41";					//학원코드
+			strParam=strParam + "&strRfKind=E";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
 			strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
 			strParam=strParam + "&strInDTime=";							//카드읽힌시간:입력하지 않음
-			strParam=strParam + "&strUserType=";		//사용범위(0:원생+직원, 1:원생, 2:직원)
-			strParam=strParam + "&strTimeType=";	//반시간표타입"
-			strParam=strParam + "&strLecCountType=";//회차적용타입
-			strParam=strParam + "&strLecCountAutoYN=";//회차차감의 출석연동여부(Y/N)
-			strParam=strParam + "&smsallowyn=";		//SMS사용료 미납으로 인하여 SMS를 사용할 수 있는지 여부
-			strParam=strParam + "&strAcamTel=";	//학원번호(전송자번호)
+			strParam=strParam + "&strUserType=0";		//사용범위(0:원생+직원, 1:원생, 2:직원)
+			strParam=strParam + "&strTimeType=A";	//반시간표타입"
+			strParam=strParam + "&strLecCountType=3";//회차적용타입
+			strParam=strParam + "&strLecCountAutoYN=Y";//회차차감의 출석연동여부(Y/N)
+			strParam=strParam + "&smsallowyn=Y";		//SMS사용료 미납으로 인하여 SMS를 사용할 수 있는지 여부
+			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
-
+			
 			$.ajax({
+				
+				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
+					   "Access-Control-Allow-Headers": '*'		 					 },
+				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+				crossOrigin:true,
 				type: "POST",
-				url: "",
+				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
 				dataType: "html",
+								
+				
 				success:function(pstrResult){
 					$("#proc_result").html(pstrResult);
 
