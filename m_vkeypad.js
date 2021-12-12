@@ -31,7 +31,7 @@ for (var word in mobileKeyWords) {
 		$('.jAttHelp').click(function(){
 			var strHelpMsg = "원생의 출석처리가 안되는 경우";
 			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
-			alert(strHelpMsg);
+			//alert(strHelpMsg);
 		});
 
 		$('.jKeyNum').click(function(){
@@ -126,7 +126,7 @@ for (var word in mobileKeyWords) {
 	});
 
 	function callbackSelfDiagnosis() {
-		StudentAtt(curAttType);
+	//	StudentAtt(curAttType);
 	}
 
 	function StudentAtt(atype)
@@ -180,7 +180,7 @@ for (var word in mobileKeyWords) {
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
 
 			$.ajax({
-				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage",
+				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
 					   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
 				Origin : "www2n.hakwonsarang.co.kr",
 				Referer : "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
@@ -285,17 +285,12 @@ for (var word in mobileKeyWords) {
 
 		//DB에서 출결번호 존재여부 체크
 		$.ajax({
-			
-			
-			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/",
+			headers: { "Access-Control-Allow-Origin": '*',
 				   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-			Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/",
-						
-			//headers: { 'Access-Control-Allow-Origin': '*' },
-			//header : "http://www2n.hakwonsarang.co.kr",	//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+			Origin : "http://www6.hakwonsarang.co.kr",
 			crossOrigin: true,
 			url  : strURL,	// - 학원사랑에 처리 페이지
-			type :"post",
+			type : "Post",
 			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 			dataType:"html",
 			
