@@ -274,7 +274,8 @@ alert("준비");
 			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 			dataType:"html",
 		
-			error:function(){				 //alert("오류가 발생하였습니다.");			   },
+			error:function(){				 //alert("오류가 발생하였습니다.");	
+            		   },
 		   	success:function(pstrVal) {
 					if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
@@ -384,7 +385,5 @@ alert("준비");
 			}
 		}
 		
-		
-		
+	
 	}
-
