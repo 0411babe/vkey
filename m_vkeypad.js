@@ -195,7 +195,7 @@ for (var word in mobileKeyWords) {
 					  //헤더를 이렇게 바꾸니까 되느 듯
 					 },
 				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-				crossOrigin:true,
+				crossOrigin: true,
 				type: "POST",
 				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
@@ -310,18 +310,15 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
         //alert(strURL);
 
 //DB에서 출결번호 존재여부 체크
-$.ajax({
-            headers: { 'Access-Control-Allow-Origin': '*' },
-            //header :'Allow-Control-Allow-Origin: *',
-            //header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-            header : "http://www2n.hakwonsarang.co.kr",
-    
-            crossOrigin: true,
-            
-			   url  : strURL,	// - 학원사랑에 처리 페이지
-			   type :"post",
-			   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			   dataType:"html",
+		$.ajax({
+			    headers: { 'Access-Control-Allow-Origin': '*' },
+			    //header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+			    header : "http://www2n.hakwonsarang.co.kr",
+			    crossOrigin: true,
+ 			    url  : strURL,	// - 학원사랑에 처리 페이지
+			    type :"post",
+			    async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+			    dataType:"html",
 			
 			   error:function(){
 					 alert("오류가 발생하였습니다.");
