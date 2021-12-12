@@ -1,10 +1,15 @@
+alert("js읽어옴");
 var isTimer = 0;
 var timerInterval
 
 
-	
 
-	$(document).ready(function(){
+
+
+
+
+$(document).ready(function(){
+
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
 
@@ -16,6 +21,7 @@ var timerInterval
 
 		$('.jKeyNum').bind('touchstart', function(event){
 			CheckTimer();
+
 			var clickKeyNum = $(this).attr("keynum");
 
 			var keyNum1 = $("#keynum1").text();
@@ -49,6 +55,7 @@ var timerInterval
 		});
 
 		$('.jKeyDelOne').bind('touchstart', function(event){
+
 			CheckTimer();
 
 			var keyNum1 = $("#keynum1").text();
@@ -75,6 +82,7 @@ var timerInterval
 		});
 
 		$('.jKeyDelAll').bind('touchstart', function(event){
+
 			CheckTimer();
 
 			$("#keynum1").text("");
@@ -105,7 +113,36 @@ var timerInterval
 		$("#myaudio")[0].load();
 	});
 
-
+//2020-10-08 KHAN 방역과리 자가진단 입력
+	var curAttType = "";
+	function selfDiagnosis(pAttType) {
+		curAttType = pAttType
+		var strURLPreventCheck = "./prevent.asp?cmd=checkPrevent&br_code=&mb_no="+$("#studentnum").val();
+		$.ajax({
+		   url:strURLPreventCheck,
+		   type:'post',
+		   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+		   dataType:'json',
+		   success:function(obj){
+				if (obj.returnCode == 1 && obj.bIsOpen == "Y"){
+					window.name = "keypad";
+					var strURL = 'http://pfapp.tongtongtong.co.kr/prevent/self_diagnosis.asp?deviceOS=MOBILE_WEB&bcode=&mbno='+$("#studentnum").val();
+					window.open(strURL, "SelfDiagnosis", "width=800,height=700,scrollbars=yes")
+				}else{
+					//console.log(obj.returnMessage);
+					StudentAtt(pAttType);
+				}
+			},
+			error:function(xhr,status,error){
+				console.log(xhr);
+				//alert("에러가 발생했습니다."+error);
+				//StudentAtt(pAttType);
+			}
+		});
+	}
+	function callbackSelfDiagnosis() {
+		StudentAtt(curAttType);
+	}
 
 	function StudentAtt(atype)
 	{
@@ -120,7 +157,8 @@ var timerInterval
 		//출결키패드 사용학원여부 체크
 		if (strSfCode == "" || strRfKind == "")
 		{
-			alert("로그인 후에 사용 하세요.");		// 학원사랑에 맞게 하세요.
+			// 학원사랑에 맞게 하세요.
+			alert("로그인 후에 사용 하세요.");
 			return false;
 		}
 
@@ -143,28 +181,23 @@ var timerInterval
 			//document.frm.target = "ifrm";
 			//document.frm.submit();
 
-			var strParam="strBrCode=JE41";					//학원코드
-			strParam=strParam + "&strRfKind=E";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
+			var strParam="strBrCode=";					//학원코드
+			strParam=strParam + "&strRfKind=";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
 			strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
 			strParam=strParam + "&strInDTime=";							//카드읽힌시간:입력하지 않음
-			strParam=strParam + "&strUserType=0";		//사용범위(0:원생+직원, 1:원생, 2:직원)
-			strParam=strParam + "&strTimeType=A";	//반시간표타입"
-			strParam=strParam + "&strLecCountType=3";//회차적용타입
-			strParam=strParam + "&strLecCountAutoYN=Y";//회차차감의 출석연동여부(Y/N)
-			strParam=strParam + "&smsallowyn=Y";		//SMS사용료 미납으로 인하여 SMS를 사용할 수 있는지 여부
-			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
+			strParam=strParam + "&strUserType=";		//사용범위(0:원생+직원, 1:원생, 2:직원)
+			strParam=strParam + "&strTimeType=";	//반시간표타입"
+			strParam=strParam + "&strLecCountType=";//회차적용타입
+			strParam=strParam + "&strLecCountAutoYN=";//회차차감의 출석연동여부(Y/N)
+			strParam=strParam + "&smsallowyn=";		//SMS사용료 미납으로 인하여 SMS를 사용할 수 있는지 여부
+			strParam=strParam + "&strAcamTel=";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
-			
+
 			$.ajax({
-				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
-					   "Access-Control-Allow-Headers": '*'		 					 },
-				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-				crossOrigin:true,
 				type: "POST",
-				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+				url: "",
 				data: strParam,
 				dataType: "html",
-				
 				success:function(pstrResult){
 					$("#proc_result").html(pstrResult);
 
@@ -241,21 +274,18 @@ var timerInterval
 		$("#keypadnum").val("");
 		$("#attdproctext").val("");
 
-	        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-
+		var strURL="./getStNameByRfCardNo.asp?strbrcode=&strRfKind=&strRfCardNum="+keypadnum;
+		//http:h2.hakwonsarang.co.kr/mmsc/h2cspage/VirtualKeypad/getStNameByRfCardNo.asp?strbrcode=H202&strRfKind=K&strRfCardNum=2345
+		//DB에서 출결번호 존재여부 체크
 		$.ajax({
-			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp", //헤더를 이렇게 바꾸니까 되느 듯
-				   "Access-Control-Allow-Headers": '*'		 					 },
-			//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-			crossOrigin: true,
-			url  : strURL,	// - 학원사랑에 처리 페이지
-			type :"post",
-			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			dataType:"html",
-		
-			error:function(){				 //alert("오류가 발생하였습니다.");	
-            		   },
-		   	success:function(pstrVal) {
+			   url  : strURL,	// - 학원사랑에 처리 페이지
+			   type :"post",
+			   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+			   dataType:"html",
+			   error:function(){
+					 //alert("오류가 발생하였습니다.");
+			   },
+			   success:function(pstrVal) {
 					if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
@@ -363,6 +393,5 @@ var timerInterval
 				 if(window.console && console.error("Error:" + e));
 			}
 		}
-		
-	
 	}
+
