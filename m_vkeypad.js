@@ -117,11 +117,11 @@ for (var word in mobileKeyWords) {
 		});
 
 		$('.jComeIn').click(function(){
-			selfDiagnosis(1);
+			StudentAtt(1);
 		});
 
 		$('.jComeOut').click(function(){
-			selfDiagnosis(2);
+			StudentAtt(2);
 		});
 	});
 
