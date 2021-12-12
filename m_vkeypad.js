@@ -1,11 +1,7 @@
-
-
-
-var isTimer = 5;
+var isTimer = 0;
 var timerInterval
 
 	$(document).ready(function(){
-	alert	("ready");
 		$(".aca_name").Text(".제주");
 		$("#aca_name").Text("#제주");
 
