@@ -281,7 +281,7 @@ for (var word in mobileKeyWords) {
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 
-		var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+		var strURL="https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
 		//DB에서 출결번호 존재여부 체크
 		$.ajax({
