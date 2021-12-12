@@ -2,7 +2,7 @@ var isTimer = 0;
 var timerInterval
 
 	$(document).ready(function(){
-		$(".aca_name").Text(".제주");
+
 		$("#aca_name").Text("#제주");
 
 		$(".jDefaultText").show();
