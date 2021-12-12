@@ -12,8 +12,8 @@ var url1 = "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&t
 $.ajax({
 	headers: { "Access-Control-Allow-Origin": '*',	//"http://www6.hakwonsarang.co.kr", 
 		   "Access-Control-Allow-Headers": '*'		 		 }, //헤더를 이렇게 바꾸니까 되느 듯
-	Origin : "www2n.hakwonsarang.co.kr",
-	Referer: "https://0411babe.github.io/",
+	Origin : "http://www6.hakwonsarang.co.kr",
+	Referer: "http://www6.hakwonsarang.co.kr",
         crossOrigin: true,
 	url  : url1,
 	type :"post",
