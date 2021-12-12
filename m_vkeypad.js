@@ -11,24 +11,19 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 	
 //로그인하기
 	$.ajax({
-		  headers: { "Access-Control-Allow-Origin": "http://www6.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
-			     "Access-Control-Allow-Headers": '*'		 					 },
-                   crossOrigin: true,
-		   url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!",
-		   type :"post",
-		   async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
-		   dataType: "html",
+		  	headers: { "Access-Control-Allow-Origin": "http://www6.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
+			           "Access-Control-Allow-Headers": '*'		 					 },
+                   	crossOrigin: true,
+		   	url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!",
+		   	type :"post",
+		   	async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
+		   	dataType: "html",
             
-			   error:function(){
-                   	alert("오류...등원생 확인 호출하기 통신 실패");
-			     },
-			   success:function(data){               // |으로 나눠서 
-                   //alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
-				    var refine = $("#aa").html(data).find('tr');
-                  	$("#aa").html(refine);
-
+		   	error:function(){	alert("오류..로그인 실패");	},
+			success:function(data){               
+                   			//alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
 			     }
-			});   
+		});   
 
 
 	$(document).ready(function(){
@@ -147,8 +142,7 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 		//출결키패드 사용학원여부 체크
 		if (strSfCode == "" || strRfKind == "")
 		{
-			// 학원사랑에 맞게 하세요.
-			alert("로그인 후에 사용 하세요.");
+			alert("로그인 후에 사용 하세요.");		// 학원사랑에 맞게 하세요.
 			return false;
 		}
 
@@ -270,10 +264,9 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 		$("#attdproctext").val("");
 
 	        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-		            //http:h2.hakwonsarang.co.kr/mmsc/h2cspage/VirtualKeypad/getStNameByRfCardNo.asp?strbrcode=H202&strRfKind=K&strRfCardNum=2345
-		//DB에서 출결번호 존재여부 체크
+
 		$.ajax({
-			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp", //헤더를 이렇게 바꾸니까 되느 듯
+			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp", //헤더를 이렇게 바꾸니까 되느 듯
 				   "Access-Control-Allow-Headers": '*'		 					 },
 			//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
 			crossOrigin: true,
@@ -282,10 +275,8 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 			dataType:"html",
 		
-			   error:function(){
-					 //alert("오류가 발생하였습니다.");
-			   },
-			   success:function(pstrVal) {
+			error:function(){				 //alert("오류가 발생하였습니다.");			   },
+		   	success:function(pstrVal) {
 					if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
