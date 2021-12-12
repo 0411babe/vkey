@@ -16,7 +16,6 @@ var timerInterval
 		});
 
 		$('.jKeyNum').bind('touchstart', function(event){
-alert("bind시작");
 			CheckTimer();
 			var clickKeyNum = $(this).attr("keynum");
 
@@ -51,7 +50,6 @@ alert("bind시작");
 		});
 
 		$('.jKeyDelOne').bind('touchstart', function(event){
-
 			CheckTimer();
 
 			var keyNum1 = $("#keynum1").text();
@@ -78,7 +76,6 @@ alert("bind시작");
 		});
 
 		$('.jKeyDelAll').bind('touchstart', function(event){
-
 			CheckTimer();
 
 			$("#keynum1").text("");
