@@ -1,4 +1,4 @@
-var isTimer = 1;
+var isTimer = 0;
 var timerInterval
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
@@ -132,37 +132,7 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 		$("#myaudio")[0].load();
 	});
 
-//2020-10-08 KHAN 방역과리 자가진단 입력
-	var curAttType = "";
-	function selfDiagnosis(pAttType) {
-		curAttType = pAttType
-		var strURLPreventCheck = "./prevent.asp?cmd=checkPrevent&br_code=&mb_no="+$("#studentnum").val();
-		$.ajax({
-		   url:strURLPreventCheck,
-		   type:'post',
-		   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		   dataType:'json',
-		   success:function(obj){
-				if (obj.returnCode == 1 && obj.bIsOpen == "Y"){
-					window.name = "keypad";
-					var strURL = 'http://pfapp.tongtongtong.co.kr/prevent/self_diagnosis.asp?deviceOS=MOBILE_WEB&bcode=&mbno='+$("#studentnum").val();
-					window.open(strURL, "SelfDiagnosis", "width=800,height=700,scrollbars=yes")
-				}else{
-					//console.log(obj.returnMessage);
-					StudentAtt(pAttType);
-				}
-			},
-			error:function(xhr,status,error){
-				console.log(xhr);
-				
-				//alert("에러가 발생했습니다."+error);
-				//StudentAtt(pAttType);
-			}
-		});
-	}
-	function callbackSelfDiagnosis() {
-		StudentAtt(curAttType);
-	}
+
 
 	function StudentAtt(atype)
 	{
@@ -214,7 +184,6 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 			strParam=strParam + "&strAcamName=";						//학원명
 			
 			$.ajax({
-				
 				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
 					   "Access-Control-Allow-Headers": '*'		 					 },
 				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
@@ -223,7 +192,6 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
 				dataType: "html",
-								
 				
 				success:function(pstrResult){
 					$("#proc_result").html(pstrResult);
@@ -305,7 +273,7 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 		            //http:h2.hakwonsarang.co.kr/mmsc/h2cspage/VirtualKeypad/getStNameByRfCardNo.asp?strbrcode=H202&strRfKind=K&strRfCardNum=2345
 		//DB에서 출결번호 존재여부 체크
 		$.ajax({
-			headers: { "Access-Control-Allow-Origin": "http://www2n.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
+			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp", //헤더를 이렇게 바꾸니까 되느 듯
 				   "Access-Control-Allow-Headers": '*'		 					 },
 			//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
 			crossOrigin: true,
@@ -425,7 +393,6 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 				 if(window.console && console.error("Error:" + e));
 			}
 		}
-		
 		
 		
 		
