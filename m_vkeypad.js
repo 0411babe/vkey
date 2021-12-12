@@ -297,14 +297,18 @@ for (var word in mobileKeyWords) {
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 
-		var strURL="./getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+		var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
 		//DB에서 출결번호 존재여부 체크
 		$.ajax({
-			   url  : strURL,	// - 학원사랑에 처리 페이지
-			   type :"post",
-			   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			   dataType:"html",
+			headers: { 'Access-Control-Allow-Origin': '*' },
+			header : "http://www2n.hakwonsarang.co.kr",	//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+			crossOrigin: true,
+			url  : strURL,	// - 학원사랑에 처리 페이지
+			type :"post",
+			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+			dataType:"html",
+			
 			   error:function(){
 					 alert("오류가 발생하였습니다.");
 			   },
