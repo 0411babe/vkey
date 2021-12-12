@@ -1,4 +1,4 @@
-var isTimer = 0;
+var isTimer = 1;
 var timerInterval
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
