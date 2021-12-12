@@ -180,15 +180,27 @@ for (var word in mobileKeyWords) {
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
 
 			$.ajax({
-				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-					   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-				Origin : "www2n.hakwonsarang.co.kr",
-				Referer : "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
+// 				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+// 					   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
+// 				Origin : "www2n.hakwonsarang.co.kr",
+// 				Referer : "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
+// 				crossOrigin:true,
+// 				type: "POST",
+// 				url: "https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+// 				data: strParam,
+// 				dataType: "html",				
+				
+				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr",
+					   "Access-Control-Allow-Headers": '*'
+					  //헤더를 이렇게 바꾸니까 되느 듯
+					 },
+				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
 				crossOrigin:true,
 				type: "POST",
-				url: "https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
-				dataType: "html",				
+				dataType: "html",
+				
 				
 				success:function(pstrResult){
 					playAudio();
@@ -281,18 +293,35 @@ for (var word in mobileKeyWords) {
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 
-		var strURL="https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+// 		var strURL="https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
-		//DB에서 출결번호 존재여부 체크
-		$.ajax({
-			headers: { "Access-Control-Allow-Origin": '*',
-				   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-			Origin : "http://www6.hakwonsarang.co.kr",
-			crossOrigin: true,
-			url  : strURL,	// - 학원사랑에 처리 페이지
-			type : "Post",
-			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			dataType:"html",
+// 		//DB에서 출결번호 존재여부 체크
+// 		$.ajax({
+// 			headers: { "Access-Control-Allow-Origin": '*',
+// 				   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
+// 			Origin : "http://www6.hakwonsarang.co.kr",
+// 			crossOrigin: true,
+// 			url  : strURL,	// - 학원사랑에 처리 페이지
+// 			type : "Post",
+// 			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+// 			dataType:"html",
+		
+var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+        //alert(strURL);
+
+//DB에서 출결번호 존재여부 체크
+$.ajax({
+            headers: { 'Access-Control-Allow-Origin': '*' },
+            //header :'Allow-Control-Allow-Origin: *',
+            //header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+            header : "http://www2n.hakwonsarang.co.kr",
+    
+            crossOrigin: true,
+            
+			   url  : strURL,	// - 학원사랑에 처리 페이지
+			   type :"post",
+			   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+			   dataType:"html",
 			
 			   error:function(){
 					 alert("오류가 발생하였습니다.");
