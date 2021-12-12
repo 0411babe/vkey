@@ -7,6 +7,7 @@ var timerInterval
 
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
+$(".jKeyNum").text("키");
 
 		$('.jAttHelp').bind('touchstart', function(event){
 			var strHelpMsg = "원생의 출석처리가 안되는 경우";
