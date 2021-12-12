@@ -11,9 +11,10 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 	
 //로그인하기
 	$.ajax({
-                  headers: { 'Access-Control-Allow-Origin': '*' },
-                  crossOrigin: true,
-		   url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!" ,
+		  headers: { "Access-Control-Allow-Origin": "http://www6.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
+			     "Access-Control-Allow-Headers": '*'		 					 },
+                   crossOrigin: true,
+		   url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!",
 		   type :"post",
 		   async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
 		   dataType: "html",
