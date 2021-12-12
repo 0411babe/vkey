@@ -303,9 +303,9 @@ for (var word in mobileKeyWords) {
 		$.ajax({
 			
 			
-			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage",
+			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/",
 				   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-			Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+			Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/",
 						
 			//headers: { 'Access-Control-Allow-Origin': '*' },
 			//header : "http://www2n.hakwonsarang.co.kr",	//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
