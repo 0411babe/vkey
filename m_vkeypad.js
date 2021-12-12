@@ -8,25 +8,20 @@ for (var word in mobileKeyWords) {
 	}
 };
 
-var url1 = "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!";
-$.ajax({
-	headers: { "Access-Control-Allow-Origin": '*',	//"http://www6.hakwonsarang.co.kr", 
-		   "Access-Control-Allow-Headers": '*'		 		 }, //헤더를 이렇게 바꾸니까 되느 듯
-	Origin : "http://www6.hakwonsarang.co.kr",
-	Referer: "http://www6.hakwonsarang.co.kr",
-        crossOrigin: true,
-	url  : url1,
-	type :"post",
-	async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
-	dataType: "html",
-                    
-	error:function(){
-                   	alert("오류...등원생 확인 호출하기 통신 실패");
-		     },
-	success:function(data){               // |으로 나눠서 
-                   //alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
-			}
-	});   
+// var url1 = "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!";
+// $.ajax({
+// 	headers: { "Access-Control-Allow-Origin": '*',	//"http://www6.hakwonsarang.co.kr", 
+// 		   "Access-Control-Allow-Headers": '*'		 		 }, //헤더를 이렇게 바꾸니까 되느 듯
+// 	Origin : "http://www6.hakwonsarang.co.kr",
+// 	Referer: "http://www6.hakwonsarang.co.kr",
+//         crossOrigin: true,
+// 	url  : url1,
+// 	type :"post",
+// 	async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
+// 	dataType: "html",
+// 	error:function(){                    	alert("오류...등원생 확인 호출하기 통신 실패"); 		     },
+// 	success:function(data){               alert("리스트 접근 완료하지만 한글은 깨짐"); (data);		},
+// 	});   
 
 	$(document).ready(function(){
 
