@@ -1,4 +1,5 @@
 
+alert("js읽어옴");
 
 var isTimer = 0;
 	var timerInterval
