@@ -6,6 +6,9 @@ var timerInterval
 
 	$(document).ready(function(){
 	alert	("ready");
+		$(".aca_name").Text(".제주");
+		$("#aca_name").Text("#제주");
+
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
 
