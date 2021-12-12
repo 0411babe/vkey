@@ -1,11 +1,13 @@
-	var isTimer = 0;
+var isTimer = 0;
+
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
-	for (var word in mobileKeyWords) {
-		if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
-			//location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
-			break;
-		}
+for (var word in mobileKeyWords) {
+	if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+		//location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
+		break;
 	}
+};
+
 
 	$(document).ready(function(){
 
@@ -195,10 +197,19 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
 
 			$.ajax({
+
+				
+				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr",
+					   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
+				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+				crossOrigin:true,
 				type: "POST",
-				url: "../rfpage/rf_page1.asp",
+				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
 				dataType: "html",
+				
+				
+				
 				success:function(pstrResult){
 					playAudio();
 
