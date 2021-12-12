@@ -5,7 +5,7 @@ var isTimer = 5;
 var timerInterval
 
 	$(document).ready(function(){
-		
+	alert	("ready");
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
 
@@ -128,6 +128,7 @@ var timerInterval
 			},
 			error:function(xhr,status,error){
 				console.log(xhr);
+				
 				//alert("에러가 발생했습니다."+error);
 				//StudentAtt(pAttType);
 			}
