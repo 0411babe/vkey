@@ -1,14 +1,4 @@
-alert("js읽어옴");
-var isTimer = 0;
-var timerInterval
-
-
-
-
-
-
-
-$(document).ready(function(){
+	$(document).ready(function(){
 
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
