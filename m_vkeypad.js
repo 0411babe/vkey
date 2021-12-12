@@ -2,28 +2,13 @@ var isTimer = 0;
 var timerInterval
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
-	for (var word in mobileKeyWords) {
-		if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
-			//location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
-			break;
-		}
-	}
+for (var word in mobileKeyWords) {
+    if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+        //location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
+        break;
+    }
+}
 	
-//로그인하기
-	$.ajax({
-		  	headers: { "Access-Control-Allow-Origin": "http://www6.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
-			           "Access-Control-Allow-Headers": '*'		 					 },
-                   	crossOrigin: true,
-		   	url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!",
-		   	type :"post",
-		   	async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
-		   	dataType: "html",
-            
-		   	error:function(){	alert("오류..로그인 실패");	},
-			success:function(data){               
-                   			//alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
-			     }
-		});   
 
 	$(document).ready(function(){
 		$(".jDefaultText").show();
