@@ -13,8 +13,8 @@ $.ajax({
 
 	headers: { "Access-Control-Allow-Origin": "http://www6.hakwonsarang.co.kr", 
 		   "Access-Control-Allow-Headers": '*'		 		 }, //헤더를 이렇게 바꾸니까 되느 듯
-	Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-        crossOrigin: true,
+	//Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+       // crossOrigin: true,
 	url  : url1,
 	type :"post",
 	async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
