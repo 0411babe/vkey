@@ -1,4 +1,11 @@
 	var isTimer = 0;
+var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
+	for (var word in mobileKeyWords) {
+		if (navigator.userAgent.match(mobileKeyWords[word]) != null) {
+			//location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
+			break;
+		}
+	}
 
 	$(document).ready(function(){
 
