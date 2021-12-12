@@ -9,6 +9,27 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 		}
 	}
 	
+//로그인하기
+	$.ajax({
+               headers: { 'Access-Control-Allow-Origin': '*' },
+               crossOrigin: true,
+			   //url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!" 
+			   url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",
+			   type :"post",
+			   async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
+			   dataType: "html",
+            
+			   error:function(){
+                   	alert("오류...등원생 확인 호출하기 통신 실패");
+			     },
+			   success:function(data){               // |으로 나눠서 
+                   //alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
+				    var refine = $("#aa").html(data).find('tr');
+                  	$("#aa").html(refine);
+
+			     }
+			});   
+
 
 	$(document).ready(function(){
 		$(".jDefaultText").show();
@@ -408,26 +429,5 @@ var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windo
 		
 		
 		
-//로그인하기
-	$.ajax({
-               headers: { 'Access-Control-Allow-Origin': '*' },
-               crossOrigin: true,
-			   //url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!" 
-			   url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",
-			   type :"post",
-			   async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
-			   dataType: "html",
-            
-			   error:function(){
-                   	alert("오류...등원생 확인 호출하기 통신 실패");
-			     },
-			   success:function(data){               // |으로 나눠서 
-                   //alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
-				    var refine = $("#aa").html(data).find('tr');
-                  	$("#aa").html(refine);
-
-			     }
-			});   
-
 	}
 
