@@ -199,7 +199,8 @@ for (var word in mobileKeyWords) {
 			$.ajax({
 				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage",
 					   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+				Origin : "www2n.hakwonsarang.co.kr",
+				Host : "www2n.hakwonsarang.co.kr",
 				crossOrigin:true,
 				type: "POST",
 				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
