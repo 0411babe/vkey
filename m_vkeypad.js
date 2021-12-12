@@ -302,7 +302,7 @@ for (var word in mobileKeyWords) {
 // 			Origin : "http://www6.hakwonsarang.co.kr",
 // 			crossOrigin: true,
 // 			url  : strURL,	// - 학원사랑에 처리 페이지
-// 			type : "Post",
+// 			type : "GET",
 // 			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 // 			dataType:"html",
 		
