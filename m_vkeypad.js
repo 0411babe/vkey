@@ -1,15 +1,12 @@
 
 
 
-var isTimer = 0;
-	var timerInterval
+var isTimer = 5;
+var timerInterval
 
 	$(document).ready(function(){
 		
-		alert("ready함수시작");
-
 		$(".jDefaultText").show();
-		alert($(".jDefaultText").text());
 		$(".jStudentName").hide();
 
 		$('.jAttHelp').bind('touchstart', function(event){
@@ -19,9 +16,8 @@ var isTimer = 0;
 		});
 
 		$('.jKeyNum').bind('touchstart', function(event){
-
+alert("bind시작");
 			CheckTimer();
-
 			var clickKeyNum = $(this).attr("keynum");
 
 			var keyNum1 = $("#keynum1").text();
