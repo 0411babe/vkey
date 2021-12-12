@@ -1,3 +1,6 @@
+var isTimer = 0;
+
+
 	$(document).ready(function(){
 
 		$(".jDefaultText").show();
