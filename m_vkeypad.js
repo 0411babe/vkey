@@ -8,13 +8,20 @@ for (var word in mobileKeyWords) {
 	}
 };
 
-	$(document).ready(function(){
+$(document).ready(function(){
+
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
-		$('.jAttHelp').click(function(){	alert("처리가 안되는 경우");		});
+
+		$('.jAttHelp').click(function(){
+			var strHelpMsg = "원생의 출석처리가 안되는 경우";
+			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
+			alert(strHelpMsg);
+		});
 
 		$('.jKeyNum').click(function(){
 			var clickKeyNum = $(this).attr("keynum");
+
 			var keyNum1 = $("#keynum1").text();
 			var keyNum2 = $("#keynum2").text();
 			var keyNum3 = $("#keynum3").text();
@@ -32,7 +39,14 @@ for (var word in mobileKeyWords) {
 
 			//원생체크
 			var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-			if (keyNum.length == 4) {	CheckStudent(keyNum);		}
+			//if (keyNum.length == 3)
+			//{
+				keyNum = keyNum1+keyNum2+keyNum3+keyNum4+clickKeyNum;
+			//}
+
+			if (keyNum.length == 4) {
+				CheckStudent(keyNum);
+			}
 		});
 
 		$('.jKeyDelOne').click(function(){
@@ -57,6 +71,8 @@ for (var word in mobileKeyWords) {
 			$("#studentnum").val('');
 			$("#studentname").val('');
 			$("#keypadnum").val('');
+
+
 			$(".jStudentName").text("");
 			$(".jStudentName").show();
 			$(".jDefaultText").text("출결번호를 선택하세요");
@@ -81,15 +97,16 @@ for (var word in mobileKeyWords) {
 			$(".jStudentName").show();
 			$(".jDefaultText").text("출결번호를 선택하세요");
 			$(".jDefaultText").show();
+
 			$("div").text(title);
 		});
 
 		$('.jComeIn').click(function(){
-			StudentAtt(1);
+			selfDiagnosis(1);
 		});
 
 		$('.jComeOut').click(function(){
-			StudentAtt(2);
+			selfDiagnosis(2);
 		});
 	});
 //여기까지 준비단계 함수//
