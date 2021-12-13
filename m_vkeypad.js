@@ -7,7 +7,6 @@ for (var word in mobileKeyWords) {
 		break;
 	}
 };
-location.href = "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!";
 
 // var url1 = "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!";
 // $.ajax({
