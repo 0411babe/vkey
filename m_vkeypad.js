@@ -206,7 +206,7 @@ $(document).ready(function(){
 	}
      
 
-   function playAudio()
+    function playAudio()
 	{
 		// Check for audio element support.
 		if (window.HTMLAudioElement) {
