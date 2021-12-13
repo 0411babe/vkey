@@ -197,7 +197,7 @@ alert("CheckStudent호출");
             };    
         }
 	alert("xhr열어");
-        xhr.open('GET', strURL, false);
+        xhr.open('GET', strURL, True);
 	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
 	xhr.send();	
