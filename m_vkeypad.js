@@ -165,103 +165,78 @@ for (var word in mobileKeyWords) {
 			strParam=strParam + "&strAcamName=";						//학원명
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
 			
-			$.ajax({
-// 				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-// 					   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-// 				Origin : "www2n.hakwonsarang.co.kr",
-// 				Referer : "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
-// 				crossOrigin:true,
-// 				type: "GET",
-// 				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-// 				data: strParam,
-// 				dataType: "html",				
-				
-				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr",
-					   "Access-Control-Allow-Headers": '*'},	//헤더를 이렇게 바꾸니까 되느 듯
-				Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-				crossOrigin: true,
-				type: "GET",
-				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-				data: strParam,
-				dataType: "html",			
-				
-		var xhr = new XMLHttpRequest();
+		
+        
+    var xhr = new XMLHttpRequest();
 		var url = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?";
-		xhr.onreadystatechange = function() {
-			if (xhr.readyState == 4 && xhr.status === 200) { alert("로그인");	
-								       
-								       
-								       
-								       } 
-			else { console.log(xhr.responseText); }    };
-			xhr.open('GET',url, true);
-			xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc/');
-			xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-	   	        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-			xhr.setRequestHeader('Accept-Language', 'ko')
-			
-			
-				success:function(pstrResult){
-					playAudio();
+		
+        xhr.onreadystatechange = function(XHR.responseText) {
+            if (xhr.readyState == 4 && xhr.status === 200) { 
 
-					$("#proc_result").html(pstrResult);
+                var pstrResult=XHR.responseText
+                alert("로그인");
+                playAudio();
 
-					if (pstrResult.length > 1) {
-						var arrResult=$("#proc_result").text().split("returnval_");
-						if (arrResult.length > 1) {
-							if (arrResult[1] == "0:1") { //출석처리 성공
-								//response.write "returnval_0:1<br>"							'출결처리성공여부
-								//response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
-								//response.write "returnval_2:" & strStName & "<br>"			'원생/직원명
-								//response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
-								//response.write "returnval_4:" & strCurDateTime & "<br>"		'출결일시
-								//response.write "returnval_5:" & "미납" & "<br>"				'미납여부
-								//response.write "returnval_6:" & RegClName & "<br>"			'수강반리스트
-								//response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
-								$(".jDefaultText").text("");
-								$(".jDefaultText").show();
+                        $("#proc_result").html(pstrResult);
 
-								//처리전에 이미 이름을 보여주었다.
-								//$(".jStudentName").text(arrResult[3].substr(2, 20));
-								$(".jStudentName").show();
+                        if (pstrResult.length > 1) {
+                            var arrResult=$("#proc_result").text().split("returnval_");
+                            if (arrResult.length > 1) {
+                                if (arrResult[1] == "0:1") { //출석처리 성공
+                                    //response.write "returnval_0:1<br>"							'출결처리성공여부
+                                    //response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
+                                    //response.write "returnval_2:" & strStName & "<br>"			'원생/직원명
+                                    //response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
+                                    //response.write "returnval_4:" & strCurDateTime & "<br>"		'출결일시
+                                    //response.write "returnval_5:" & "미납" & "<br>"				'미납여부
+                                    //response.write "returnval_6:" & RegClName & "<br>"			'수강반리스트
+                                    //response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
+                                    $(".jDefaultText").text("");
+                                    $(".jDefaultText").show();
 
-								//출석처리후 번호 Clear
-								$("#keynum1").text("");
-								$("#keynum2").text("");
-								$("#keynum3").text("");
-								$("#keynum4").text("");
+                                    //처리전에 이미 이름을 보여주었다.
+                                    //$(".jStudentName").text(arrResult[3].substr(2, 20));
+                                    $(".jStudentName").show();
 
-								var strStData=arrResult[3].substr(2, 20)		//이름
-								strStData=strStData+arrResult[7].substr(2, 20)	//수강반
-								strStData=strStData+arrResult[5].substr(2, 20)	//체크일시
+                                    //출석처리후 번호 Clear
+                                    $("#keynum1").text("");
+                                    $("#keynum2").text("");
+                                    $("#keynum3").text("");
+                                    $("#keynum4").text("");
 
-								var strDttm=arrResult[5].substr(2, 20)
-								var strFmtDttm=strDttm;
-								var strFmtYmd, strFmtHns
-								if (strDttm.length == 14) { //YYYYMMDDHHNNSS
-									strFmtYmd= strDttm.substring(0, 4)+"."+strDttm.substring(4, 6)+"."+strDttm.substring(6, 8);
-									strFmtHns= strDttm.substring(8, 10)+":"+strDttm.substring(10, 12)+":"+strDttm.substring(12, 14);
-									strFmtDttm=strFmtYmd+" "+strFmtHns;
-								}
+                                    var strStData=arrResult[3].substr(2, 20)		//이름
+                                    strStData=strStData+arrResult[7].substr(2, 20)	//수강반
+                                    strStData=strStData+arrResult[5].substr(2, 20)	//체크일시
 
-								//var rslt=document.getElementById("result_list")
-								//rslt.innerHTML="<p>"+strStData+"</p>"+rslt.innerHTML;
+                                    var strDttm=arrResult[5].substr(2, 20)
+                                    var strFmtDttm=strDttm;
+                                    var strFmtYmd, strFmtHns
+                                    if (strDttm.length == 14) { //YYYYMMDDHHNNSS
+                                        strFmtYmd= strDttm.substring(0, 4)+"."+strDttm.substring(4, 6)+"."+strDttm.substring(6, 8);
+                                        strFmtHns= strDttm.substring(8, 10)+":"+strDttm.substring(10, 12)+":"+strDttm.substring(12, 14);
+                                        strFmtDttm=strFmtYmd+" "+strFmtHns;
+                                    }
 
-								var objRsltTbl=document.getElementById("tblList")
-								var curTr=objRsltTbl.insertRow(1);//objRsltTbl.rows.length
+                                    //var rslt=document.getElementById("result_list")
+                                    //rslt.innerHTML="<p>"+strStData+"</p>"+rslt.innerHTML;
 
-								var curTd1=curTr.insertCell(0);
-									curTd1.className="attdlist";
-									curTd1.innerHTML=strFmtDttm; //arrResult[5].substr(2, 20);
-								var curTd2=curTr.insertCell(1);
-									curTd2.className="attdlist";
-									curTd2.innerHTML=arrResult[3].substr(2, 20);
-								var curTd3=curTr.insertCell(2);
-									curTd3.className="attdlist";
-									curTd3.innerHTML=arrResult[7].substr(2, 20);
+                                    var objRsltTbl=document.getElementById("tblList")
+                                    var curTr=objRsltTbl.insertRow(1);//objRsltTbl.rows.length
 
-
-							} else { //if (arrResult[1] == "0:-1") { //출석처리 성공
+                                    var curTd1=curTr.insertCell(0);
+                                        curTd1.className="attdlist";
+                                        curTd1.innerHTML=strFmtDttm; //arrResult[5].substr(2, 20);
+                                    var curTd2=curTr.insertCell(1);
+                                        curTd2.className="attdlist";
+                                        curTd2.innerHTML=arrResult[3].substr(2, 20);
+                                    var curTd3=curTr.insertCell(2);
+                                        curTd3.className="attdlist";
+                                        curTd3.innerHTML=arrResult[7].substr(2, 20);
+                                }
+                            }
+                        }
+                        
+            } else { //if (arrResult[1] == "0:-1") { //출석처리 성공
 								//response.write "returnval_0:-1<br>"
 								//response.write "returnval_E:에러메시지<br>"
 								//alert(arrResult[2].substr(2, 100));
@@ -269,19 +244,10 @@ for (var word in mobileKeyWords) {
 								$(".jDefaultText").show();
 
 								$(".jStudentName").text("");
-								$(".jStudentName").show();
-							}
-						}
-					}
-
-				},
-				//complete: function (pstrResult) {
-				//	alert("complete="+pstrResult)
-				//},
-				error:function(xhr,status,error){alert(error)}
-			});
-
-		}
+								$(".jStudentName").show(); 
+                    }
+        };
+            
 	}
 
 
@@ -319,10 +285,12 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 			    async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 			    dataType:"html",
 			
-			   error:function(){
-					 alert("오류가 발생하였습니다.");
-			   },
-			   success:function(pstrVal) {
+
+
+        var xhr1 = new XMLHttpRequest();
+		xhr1.onreadystatechange = function(XHR1.responseText) {
+            if (xhr1.readyState == 4 && xhr1.status === 200) { 
+                var pstrVal =  XHR1.responseText
 					if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명
 
@@ -345,9 +313,12 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 						$(".jDefaultText").hide();
 						$(".jStudentName").show();
 					}
-
 			   }
-		});
+			   };
+
+               strURL
+			    
+	
 
 	}
 
