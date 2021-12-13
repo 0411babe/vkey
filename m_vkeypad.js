@@ -183,9 +183,24 @@ for (var word in mobileKeyWords) {
 				type: "GET",
 				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
-				dataType: "html",
+				dataType: "html",			
 				
-				
+		var xhr = new XMLHttpRequest();
+		var url = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?";
+		xhr.onreadystatechange = function() {
+			if (xhr.readyState == 4 && xhr.status === 200) { alert("로그인");	
+								       
+								       
+								       
+								       } 
+			else { console.log(xhr.responseText); }    };
+			xhr.open('GET',url, true);
+			xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc/');
+			xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+	   	        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+			xhr.setRequestHeader('Accept-Language', 'ko')
+			
+			
 				success:function(pstrResult){
 					playAudio();
 
