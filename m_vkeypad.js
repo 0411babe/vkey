@@ -111,24 +111,17 @@ for (var word in mobileKeyWords) {
 		});
 	});
 
-	function callbackSelfDiagnosis() {
-	//	StudentAtt(curAttType);
-	}
-
 	function StudentAtt(atype)
 	{
 		var sid = $("#sid").val();
 		var studentnum = $("#studentnum").val();
 		var studentname = $("#studentname").val();
 		var keypadnum = $("#keypadnum").val();
-
 		var strSfCode = $("strSfCode").val();
 		var strRfKind = $("#strRfKind").val();
 
 		//출결키패드 사용학원여부 체크
-		if (strSfCode == "" || strRfKind == "")
-		{
-			// 학원사랑에 맞게 하세요.
+		if (strSfCode == "" || strRfKind == ""){
 			alert("로그인 후에 사용 하세요.");
 			return false;
 		}
@@ -140,18 +133,15 @@ for (var word in mobileKeyWords) {
 
 		var keyNum = "";
 		keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-		if (keyNum.length != 4)
-		{
+		if (keyNum.length != 4)	{
 			alert("출결번호 4자리를 정확히 선택하세요.");
 			return false;
 		} else {
 			$("#strRfCardNum").val(keyNum);
-
 			//DB에 출결처리
 			//document.frm.action = "../rfpage/rf_page1.asp";	// - 학원사랑에 처리 페이지
 			//document.frm.target = "ifrm";
 			//document.frm.submit();
-
 			var strParam="strBrCode=JE41";					//학원코드
 			strParam=strParam + "&strRfKind=E";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
 			strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
@@ -166,18 +156,17 @@ for (var word in mobileKeyWords) {
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
 			
 		
-        
-    var xhr = new XMLHttpRequest();
-		var url = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?";
+            var xhr = new XMLHttpRequest();
+		    var url = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?";
 		
-        xhr.onreadystatechange = function(xhr.responseText) {
-            if (xhr.readyState == 4 && xhr.status === 200) { 
+            xhr.onreadystatechange = function(xhr.responseText) {
+                
+                if (xhr.readyState == 4 && xhr.status === 200) { 
+                    var pstrResult=xhr.responseText
+                    alert("로그인");
+                    playAudio();
 
-                var pstrResult=xhr.responseText
-                alert("로그인");
-                playAudio();
-
-                        $("#proc_result").html(pstrResult);
+                    $("#proc_result").html(pstrResult);
 
                         if (pstrResult.length > 1) {
                             var arrResult=$("#proc_result").text().split("returnval_");
@@ -193,21 +182,17 @@ for (var word in mobileKeyWords) {
                                     //response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
                                     $(".jDefaultText").text("");
                                     $(".jDefaultText").show();
-
                                     //처리전에 이미 이름을 보여주었다.
                                     //$(".jStudentName").text(arrResult[3].substr(2, 20));
                                     $(".jStudentName").show();
-
                                     //출석처리후 번호 Clear
                                     $("#keynum1").text("");
                                     $("#keynum2").text("");
                                     $("#keynum3").text("");
                                     $("#keynum4").text("");
-
                                     var strStData=arrResult[3].substr(2, 20)		//이름
                                     strStData=strStData+arrResult[7].substr(2, 20)	//수강반
                                     strStData=strStData+arrResult[5].substr(2, 20)	//체크일시
-
                                     var strDttm=arrResult[5].substr(2, 20)
                                     var strFmtDttm=strDttm;
                                     var strFmtYmd, strFmtHns
@@ -216,13 +201,10 @@ for (var word in mobileKeyWords) {
                                         strFmtHns= strDttm.substring(8, 10)+":"+strDttm.substring(10, 12)+":"+strDttm.substring(12, 14);
                                         strFmtDttm=strFmtYmd+" "+strFmtHns;
                                     }
-
                                     //var rslt=document.getElementById("result_list")
                                     //rslt.innerHTML="<p>"+strStData+"</p>"+rslt.innerHTML;
-
                                     var objRsltTbl=document.getElementById("tblList")
                                     var curTr=objRsltTbl.insertRow(1);//objRsltTbl.rows.length
-
                                     var curTd1=curTr.insertCell(0);
                                         curTd1.className="attdlist";
                                         curTd1.innerHTML=strFmtDttm; //arrResult[5].substr(2, 20);
@@ -236,26 +218,21 @@ for (var word in mobileKeyWords) {
                             }
                         }
                         
-            } else { //if (arrResult[1] == "0:-1") { //출석처리 성공
-								//response.write "returnval_0:-1<br>"
-								//response.write "returnval_E:에러메시지<br>"
-								//alert(arrResult[2].substr(2, 100));
-								$(".jDefaultText").text(arrResult[2].substr(2, 100));
-								$(".jDefaultText").show();
+                } else { //if (arrResult[1] == "0:-1") { //출석처리 성공
+							$(".jDefaultText").text(arrResult[2].substr(2, 100));
+							$(".jDefaultText").show();
+							$(".jStudentName").text("");
+							$(".jStudentName").show(); 
+                }
+            };
 
-								$(".jStudentName").text("");
-								$(".jStudentName").show(); 
-                    }
-        };
-
-        xhr.open('GET',url, true);
-	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www6.hakwonsarang.co.kr/mmsc/');
-	xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.setRequestHeader('Accept-Language', 'ko')
-    xhr.send();
-            
-	}
+            xhr.open('GET',url, true);
+	        xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www6.hakwonsarang.co.kr/mmsc/');
+	        xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	        xhr.setRequestHeader('Accept-Language', 'ko')
+            xhr.send();
+	};
 
 
 	//출결번호체크
@@ -266,16 +243,16 @@ for (var word in mobileKeyWords) {
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 
-		
-var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-
+        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 //DB에서 출결번호 존재여부 체크
         var xhr1 = new XMLHttpRequest();
 
 		xhr1.onreadystatechange = function(XHR1.responseText) {
+
             if (xhr1.readyState == 4 && xhr1.status === 200) { 
-                var pstrVal =  XHR1.responseText
-					if (pstrVal.length > 0) {
+                    var pstrVal =  XHR1.responseText
+					
+                    if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명
 
 						if (arrVal.length >= 3) {
@@ -297,23 +274,17 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 						$(".jDefaultText").hide();
 						$(".jStudentName").show();
 					}
-			   }
-			   };
-  xhr.open('GET',strURL, true);
-	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc/');
-	xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-	xhr.setRequestHeader('Accept-Language', 'ko')
-    xhr.send();
-            
-               
-			    
-	
-
+			}
+		};
+        xhr1.open('GET',strURL, true);
+        xhr1.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc/');
+        xhr1.setRequestHeader('Access-Control-Allow-Headers', '*');
+        xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+        xhr1.setRequestHeader('Accept-Language', 'ko')
+        xhr1.send();
 	}
 
-
-	function playAudio()
+    function playAudio()
 	{
 		// Check for audio element support.
 		if (window.HTMLAudioElement) {
