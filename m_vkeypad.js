@@ -39,11 +39,6 @@ $(document).ready(function(){
 
 			//원생체크
 			var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-			//if (keyNum.length == 3)
-			//{
-				keyNum = keyNum1+keyNum2+keyNum3+keyNum4+clickKeyNum;
-			//}
-
 			if (keyNum.length == 4) {
 				CheckStudent(keyNum);
 			}
