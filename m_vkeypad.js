@@ -8,20 +8,13 @@ for (var word in mobileKeyWords) {
 	}
 };
 
-$(document).ready(function(){
-
+	$(document).ready(function(){
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
-
-		$('.jAttHelp').click(function(){
-			var strHelpMsg = "원생의 출석처리가 안되는 경우";
-			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
-			alert(strHelpMsg);
-		});
+		$('.jAttHelp').click(function(){	alert("처리가 안되는 경우");		});
 
 		$('.jKeyNum').click(function(){
 			var clickKeyNum = $(this).attr("keynum");
-
 			var keyNum1 = $("#keynum1").text();
 			var keyNum2 = $("#keynum2").text();
 			var keyNum3 = $("#keynum3").text();
@@ -39,9 +32,7 @@ $(document).ready(function(){
 
 			//원생체크
 			var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-			if (keyNum.length == 4) {
-				CheckStudent(keyNum);
-			}
+			if (keyNum.length == 4) {	CheckStudent(keyNum);		}
 		});
 
 		$('.jKeyDelOne').click(function(){
@@ -66,8 +57,6 @@ $(document).ready(function(){
 			$("#studentnum").val('');
 			$("#studentname").val('');
 			$("#keypadnum").val('');
-
-
 			$(".jStudentName").text("");
 			$(".jStudentName").show();
 			$(".jDefaultText").text("출결번호를 선택하세요");
@@ -92,7 +81,6 @@ $(document).ready(function(){
 			$(".jStudentName").show();
 			$(".jDefaultText").text("출결번호를 선택하세요");
 			$(".jDefaultText").show();
-
 			$("div").text(title);
 		});
 
@@ -134,9 +122,6 @@ $(document).ready(function(){
 		} else {
 			$("#strRfCardNum").val(keyNum);
 			//DB에 출결처리
-			//document.frm.action = "../rfpage/rf_page1.asp";	// - 학원사랑에 처리 페이지
-			//document.frm.target = "ifrm";
-			//document.frm.submit();
 			var strParam="strBrCode=JE41";					//학원코드
 			strParam=strParam + "&strRfKind=E";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
 			strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
@@ -148,7 +133,6 @@ $(document).ready(function(){
 			strParam=strParam + "&smsallowyn=Y";		//SMS사용료 미납으로 인하여 SMS를 사용할 수 있는지 여부
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
-			//console.log("../rfpage/rf_page1.asp?"+strParam);
 //여기 아작스
 		}
 	};
@@ -164,7 +148,6 @@ $(document).ready(function(){
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status === 200) { 
-                
                 alert("로그인");	
                 var pstrVal = xhr.responseText;
                 if (pstrVal.length > 0) {
@@ -175,11 +158,9 @@ $(document).ready(function(){
                         $("#studentname").val(arrVal[2]);
                         if (arrVal[0] == "T") {
                             $(".jStudentName").text(arrVal[2]+" 선생님");
-
                             $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
                         } else {
                             $(".jStudentName").text(arrVal[2]+" 학생");
-
                             $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
                         }
                         $("#keypadnum").val(keypadnum);
@@ -198,22 +179,18 @@ $(document).ready(function(){
             } else { 
                 alert("오류가 발생하였습니다.");
                 console.log(xhr.responseText);
-            
             }    
         };
 
-        xhr.open('GET',strURL,  true);
+        xhr.open('GET',strURL,false);
         xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-        xhr.setRequestHeader('Accept-Language', 'ko')
-        
         xhr.send();
                     
     //DB에서 출결번호 존재여부 체크
 
-        
-	}
+       
+}
      
 
     function playAudio()
