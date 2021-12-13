@@ -146,7 +146,8 @@ $(document).ready(function(){
 	//출결번호체크
 
 function CheckStudent(keypadnum){
-alert("CheckStudent호출");		
+alert("CheckStudent호출");
+	alert(keypadnum);
 	$(".jStudentName").text("");
 	$("#studentnum").val("");
 	$("#studentname").val("");
