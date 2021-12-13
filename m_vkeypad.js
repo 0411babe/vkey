@@ -34,8 +34,14 @@ $(document).ready(function(){
 
 			//원생체크
 			var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-			if (keyNum.length == 4) {
+			if (keyNum.length == 3) {
+				keyNum = keyNum1+keyNum2+keyNum3+keyNum4+clickKeyNum;
 				CheckStudent(keyNum);
+			} else {
+				if (keyNum.length < 4) {
+					$(".jStudentName").text("");
+				}
+				$("#attdproctext").val("");
 			}
 		});
 
@@ -194,6 +200,7 @@ alert("CheckStudent호출");
 	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
 	xhr.send();	
+	alert(xhr);
                     
     //DB에서 출결번호 존재여부 체크
       
