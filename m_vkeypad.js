@@ -178,7 +178,6 @@ for (var word in mobileKeyWords) {
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
-location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
 			
 			$.ajax({
 // 				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
@@ -204,7 +203,6 @@ location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_v
 				
 				
 				success:function(pstrResult){
-location.href = "https://0411babe.github.io/vkey/m_vkeypad.html";
 					playAudio();
 
 					$("#proc_result").html(pstrResult);
