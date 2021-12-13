@@ -170,10 +170,10 @@ for (var word in mobileKeyWords) {
     var xhr = new XMLHttpRequest();
 		var url = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?";
 		
-        xhr.onreadystatechange = function(XHR.responseText) {
+        xhr.onreadystatechange = function(xhr.responseText) {
             if (xhr.readyState == 4 && xhr.status === 200) { 
 
-                var pstrResult=XHR.responseText
+                var pstrResult=xhr.responseText
                 alert("로그인");
                 playAudio();
 
@@ -247,6 +247,13 @@ for (var word in mobileKeyWords) {
 								$(".jStudentName").show(); 
                     }
         };
+
+        xhr.open('GET',url, true);
+	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www6.hakwonsarang.co.kr/mmsc/');
+	xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Accept-Language', 'ko')
+    xhr.send();
             
 	}
 
@@ -259,35 +266,12 @@ for (var word in mobileKeyWords) {
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 
-// 		var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-
-// 		//DB에서 출결번호 존재여부 체크
-// 		$.ajax({
-// 			headers: { "Access-Control-Allow-Origin": "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
-// 				   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
-// 			Origin : "http://www6.hakwonsarang.co.kr",
-// 			crossOrigin: true,
-// 			url  : strURL,	// - 학원사랑에 처리 페이지
-// 			type : "GET",
-// 			async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-// 			dataType:"html",
 		
 var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-        //alert(strURL);
 
 //DB에서 출결번호 존재여부 체크
-		$.ajax({
-			    headers: { "Access-Control-Allow-Origin": "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
-				       "Access-Control-Allow-Headers": '*'},	
-			    crossOrigin: true,
- 			    url  : strURL,	// - 학원사랑에 처리 페이지
-			    type :"GET",
-			    async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			    dataType:"html",
-			
-
-
         var xhr1 = new XMLHttpRequest();
+
 		xhr1.onreadystatechange = function(XHR1.responseText) {
             if (xhr1.readyState == 4 && xhr1.status === 200) { 
                 var pstrVal =  XHR1.responseText
@@ -315,8 +299,14 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 					}
 			   }
 			   };
-
-               strURL
+  xhr.open('GET',strURL, true);
+	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc/');
+	xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Accept-Language', 'ko')
+    xhr.send();
+            
+               
 			    
 	
 
