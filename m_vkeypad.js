@@ -311,7 +311,7 @@ var isTimer = 0;
 			}    
 		};
         
-		xhr.('GET',strURL, true);
+		xhr.open('GET',strURL, true);
 		xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www6.hakwonsarang.co.kr/mmsc/');
 		xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
 		xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
