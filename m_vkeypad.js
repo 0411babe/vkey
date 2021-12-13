@@ -97,11 +97,11 @@ alert("누르는중");
 		});
 
 		$('.jComeIn').click(function(){
-			selfDiagnosis(1);
+			StudentAtt(1);
 		});
 
 		$('.jComeOut').click(function(){
-			selfDiagnosis(2);
+			StudentAtt(2);
 		});
 	});
 //여기까지 준비단계 함수//
@@ -149,13 +149,14 @@ alert("누르는중");
 		}
 	};
 	//출결번호체크
-	function CheckStudent(keypadnum)
-	{
-		$(".jStudentName").text("");
-		$("#studentnum").val("");
-		$("#studentname").val("");
-		$("#keypadnum").val("");
+
+function CheckStudent(keypadnum){
 		
+	$(".jStudentName").text("");
+	$("#studentnum").val("");
+	$("#studentname").val("");
+	$("#keypadnum").val("");
+	        xhr.send();	
         var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
@@ -197,7 +198,7 @@ alert("누르는중");
         xhr.open('GET',strURL,false);
         xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-        xhr.send();
+
                     
     //DB에서 출결번호 존재여부 체크
 
