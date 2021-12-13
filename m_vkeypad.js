@@ -10,7 +10,6 @@ for (var word in mobileKeyWords) {
 
 // var url1 = "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!";
 // $.ajax({
-	location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
 // 	headers: { "Access-Control-Allow-Origin": '*',	//"http://www6.hakwonsarang.co.kr", 
 // 		   "Access-Control-Allow-Headers": '*'		 		 }, //헤더를 이렇게 바꾸니까 되느 듯
 // 	Origin : "http://www6.hakwonsarang.co.kr",
@@ -179,7 +178,7 @@ for (var word in mobileKeyWords) {
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
-
+location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
 			
 			$.ajax({
 // 				headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
@@ -205,6 +204,7 @@ for (var word in mobileKeyWords) {
 				
 				
 				success:function(pstrResult){
+location.href = "https://0411babe.github.io/vkey/m_vkeypad.html";
 					playAudio();
 
 					$("#proc_result").html(pstrResult);
@@ -276,6 +276,7 @@ for (var word in mobileKeyWords) {
 							}
 						}
 					}
+
 				},
 				//complete: function (pstrResult) {
 				//	alert("complete="+pstrResult)
