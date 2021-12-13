@@ -13,11 +13,7 @@ $(document).ready(function(){
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
 
-		$('.jAttHelp').click(function(){
-			var strHelpMsg = "원생의 출석처리가 안되는 경우";
-			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
-			alert(strHelpMsg);
-		});
+		$('.jAttHelp').click(function(){});
 
 		$('.jKeyNum').click(function(){
 			var clickKeyNum = $(this).attr("keynum");
@@ -156,7 +152,7 @@ alert("CheckStudent호출");
 	$("#studentname").val("");
 	$("#keypadnum").val("");
 	        
-        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum=" + keypadnum;
+        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status === 200) { 
