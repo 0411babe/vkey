@@ -21,7 +21,7 @@ $(document).ready(function(){
 
 		$('.jKeyNum').click(function(){
 			var clickKeyNum = $(this).attr("keynum");
-
+alert("누르는중");
 			var keyNum1 = $("#keynum1").text();
 			var keyNum2 = $("#keynum2").text();
 			var keyNum3 = $("#keynum3").text();
@@ -39,11 +39,6 @@ $(document).ready(function(){
 
 			//원생체크
 			var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-			//if (keyNum.length == 3)
-			//{
-				keyNum = keyNum1+keyNum2+keyNum3+keyNum4+clickKeyNum;
-			//}
-
 			if (keyNum.length == 4) {
 				CheckStudent(keyNum);
 			}
