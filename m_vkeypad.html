@@ -50,9 +50,8 @@
 	
 
 <!-- 폼 target -->
-
 <!-- 자바스크립트를 사용해 폼을 동적으로 생성하고 보냄-->
-<form target="iframe" method="POST" action="http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41"></form>
+<iframe name="ajax" frameborder="10" width="100" height="100" >
     <form name="frm" method="post" action="http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41">
         <input type="hidden" name="sid" id="sid" value="">
         <input type="hidden" name="studentnum" id="studentnum" value="">
@@ -69,8 +68,7 @@
 	<input type="hidden" name="strLecCountAutoYN" id="strLecCountAutoYN" value="Y">
 	<input type="hidden" name="strAcamTel" id="strAcamTel" value="01098406638">
 	<input type="hidden" name="smsallowyn" id="smsallowyn" value="Y">
-
-	    <iframe name="ajax" frameborder="10" width="100" height="100" >
+    
     <!-- Mobile-ko_KR -->
 
         <!--학원명-->
@@ -141,7 +139,8 @@
             </div-->
         </div>
     </form>
-
+</iframe>
+	
 <div id="proc_result" style="display:none"></div>
 
 <!--audio id="myaudio" controls-->
@@ -158,7 +157,7 @@
 	<!-- cors로 추가 -->
 	<!--script type="text/javascript" src="http://code.jquery.com/jquery-latest.min.js"></script-->
   	<!--script type="text/javascript" src="https://0411babe.github.io/vkey/jquery.ajax-cross-origin.min.js"></script-->
-</iframe>	
+	
 </body>
 
 </html>
