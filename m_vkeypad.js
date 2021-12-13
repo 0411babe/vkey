@@ -6,7 +6,7 @@ for (var word in mobileKeyWords) {
 		location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
 		break;
 	}
-}; 
+};
 
 $(document).ready(function(){
 
