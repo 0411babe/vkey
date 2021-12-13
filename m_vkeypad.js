@@ -192,8 +192,7 @@ function CheckStudent(keypadnum){
                 alert("오류가 발생하였습니다.");
                 console.log(xhr.responseText);
             }    
-        };
-
+        }
         xhr.open('GET', strURL, false);
 	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
