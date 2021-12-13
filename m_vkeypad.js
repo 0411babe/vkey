@@ -194,13 +194,14 @@ alert("CheckStudent호출");
             } else { 
                 alert("오류가 발생하였습니다.");
                 console.log(xhr.responseText);
-            }    
+            };    
         }
+	alert("xhr열어");
         xhr.open('GET', strURL, false);
 	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
 	xhr.send();	
-	alert(xhr);
+	
                     
     //DB에서 출결번호 존재여부 체크
       
