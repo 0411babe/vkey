@@ -185,7 +185,7 @@ for (var word in mobileKeyWords) {
 // 				Origin : "www2n.hakwonsarang.co.kr",
 // 				Referer : "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
 // 				crossOrigin:true,
-// 				type: "POST",
+// 				type: "GET",
 // 				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 // 				data: strParam,
 // 				dataType: "html",				
@@ -294,11 +294,11 @@ for (var word in mobileKeyWords) {
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 
-// 		var strURL="https://cors-anywhere.herokuapp.com/http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+// 		var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
 // 		//DB에서 출결번호 존재여부 체크
 // 		$.ajax({
-// 			headers: { "Access-Control-Allow-Origin": '*',
+// 			headers: { "Access-Control-Allow-Origin": "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
 // 				   "Access-Control-Allow-Headers": '*'},		//헤더를 이렇게 바꾸니까 되느 듯
 // 			Origin : "http://www6.hakwonsarang.co.kr",
 // 			crossOrigin: true,
@@ -312,9 +312,8 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 
 //DB에서 출결번호 존재여부 체크
 		$.ajax({
-			    headers: { 'Access-Control-Allow-Origin': '*' },
-			    //header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-			    header : "http://www2n.hakwonsarang.co.kr",
+			    headers: { "Access-Control-Allow-Origin": "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41",
+				       "Access-Control-Allow-Headers": '*'},	
 			    crossOrigin: true,
  			    url  : strURL,	// - 학원사랑에 처리 페이지
 			    type :"GET",
