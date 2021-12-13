@@ -155,7 +155,7 @@ function CheckStudent(keypadnum){
 	$("#studentnum").val("");
 	$("#studentname").val("");
 	$("#keypadnum").val("");
-	        xhr.send();	
+	        
         var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
@@ -195,6 +195,7 @@ function CheckStudent(keypadnum){
         };
 
         xhr.open('GET',strURL,false);
+	xhr.send();	
         xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
 
