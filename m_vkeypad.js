@@ -149,7 +149,9 @@ $(document).ready(function(){
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
-
+//여기 아작스
+		}
+	};
 	//출결번호체크
 	function CheckStudent(keypadnum)
 	{
@@ -158,7 +160,7 @@ $(document).ready(function(){
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 		
-      
+      //여기 
                     
         
 	}
