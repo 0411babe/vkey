@@ -154,10 +154,6 @@ $(document).ready(function(){
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
-	//여기에 아작스 들어감	
-		}
-	};
-
 
 	//출결번호체크
 	function CheckStudent(keypadnum)
@@ -167,7 +163,51 @@ $(document).ready(function(){
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 		
-		//여기에 아작스들어감
+        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+
+        var xhr = new XMLHttpRequest();
+        xhr.onreadystatechange = function() {
+        
+            if (xhr.readyState == 4 && xhr.status === 200) { 
+                var pstrVal = xhr.responseText
+                if (pstrVal.length > 0) {
+                    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명
+                    if (arrVal.length >= 3) {
+                        $("#studentnum").val(arrVal[1]);
+                        $("#studentname").val(arrVal[2]);
+                        if (arrVal[0] == "T") {
+                            $(".jStudentName").text(arrVal[2]+" 선생님");
+                        } else {
+                            $(".jStudentName").text(arrVal[2]+" 학생");
+                        }
+                        $("#keypadnum").val(keypadnum);
+                    }
+                    $(".jDefaultText").hide();
+                    $(".jStudentName").show();
+                } else {
+                    $(".jStudentName").text("존재하지 않은 출결번호");
+                    $(".jDefaultText").hide();
+                    $(".jStudentName").show();
+                }
+                alert("로그인");	
+
+            } else {
+                alert("오류가 발생하였습니다.");
+                console.log(xhr.responseText);
+
+                 }    
+        };
+        
+	xhr.open('GET',strURL, true);
+	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc/');
+	xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
+    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+	xhr.setRequestHeader('Accept-Language', 'ko')
+    xhr.send();
+
+       //DB에서 출결번호 존재여부 체크
+                    
+        
 	}
      
 
