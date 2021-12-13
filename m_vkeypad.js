@@ -160,7 +160,7 @@ $(document).ready(function(){
 		$("#studentname").val("");
 		$("#keypadnum").val("");
 		
-        var strURL="./getStNameByRfCardNo.asp?strbrcode=&strRfKind=&strRfCardNum="+keypadnum;
+        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=&strRfCardNum="+keypadnum;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status === 200) { 
