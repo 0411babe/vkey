@@ -156,7 +156,7 @@ function CheckStudent(keypadnum){
 	$("#studentname").val("");
 	$("#keypadnum").val("");
 	        
-        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum=" + keypadnum;
         var xhr = new XMLHttpRequest();
         xhr.onreadystatechange = function() {
             if (xhr.readyState == 4 && xhr.status === 200) { 
@@ -194,15 +194,13 @@ function CheckStudent(keypadnum){
             }    
         };
 
-        xhr.open('GET',strURL,false);
-	xhr.send();	
-        xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
+        xhr.open('GET', strURL, false);
+	xhr.setRequestHeader('Access-Control-Allow-Origin', 'http://www2.hakwonsarang.co.kr/mmsc');
         xhr.setRequestHeader('Access-Control-Allow-Headers', '*');
-
+	xhr.send();	
                     
     //DB에서 출결번호 존재여부 체크
-
-       
+      
 }
      
 
