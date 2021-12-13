@@ -4,15 +4,15 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0, user-scalable=no, target-densitydpi=medium-dpi">
     <meta name="format-detection" content="telephone=no, address=no, email=no" />
-    <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"> <!-- 검색 추가-->
 
-<title>통통통 모바일 키패드</title>
+    <title>통통통 키패드</title>
+
     <style type="text/css">
-    * {-webkit-text-size-adjust:none;}	/*아이폰 자동회전시 글자크기 확대되는것 방지*/	
-    * {-webkit-tap-highlight-color:rgba(0,0,0,3);} /*모바일웹에서 터치영역 숨김*/    
+    /*아이폰 자동회전시 글자크기 확대되는것 방지*/
+    * {-webkit-text-size-adjust:none;}
+    * {-webkit-tap-highlight-color:rgba(0,0,0,0);} /*모바일웹에서 터치영역 숨김*/
     * {margin:0;padding:0;}
-
-	/*모바일*/
+        /*모바일*/
         html {height:100%;font-size:10px;}
         .aca_name{padding:0.8rem 0;background-color:#fff;border-bottom:1px solid #e6e6e6;}
         .aca_name div{text-align:center;font-size:2rem;color:#8eb100;}
@@ -37,39 +37,41 @@
             .keybox {height:4.7rem;}
             .keybox div {font-size:2.5rem;}
         }
+
         @media all and (min-width:1024px) {
             html {font-size:12.5px;}
             .keybox {height:6.5rem;}
         }
+
     </style>
 </head>
 
+
 <body style="background-color:#f6f6f6;height:100%;" onselectstart="return false">
-
-<!-- 폼 target -->
-<!-- 자바스크립트를 사용해 폼을 동적으로 생성하고 보냄-->
-
-    <form name="frm" method="post" action="http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/vkeypad.asp?acamcode=JE41">
+    <script type="text/javascript" src="http://www2.hakwonsarang.co.kr/h2common/script/select2-4.0.0/docs/vendor/js/jquery.min.js"></script>
+    <script type="text/javascript" src="https://0411babe.github.io/vkey/m_vkeypad.js"></script>
+	
+    <form name="frm" method="post">
         <input type="hidden" name="sid" id="sid" value="">
         <input type="hidden" name="studentnum" id="studentnum" value="">
         <input type="hidden" name="studentname" id="studentname" value="">
         <input type="hidden" name="keypadnum" id="keypadnum" value="">
         <input type="hidden" name="strRfCardNum" id="strRfCardNum" value="">
-	<input type="hidden" name="attdproctext" id="attdproctext" value="">
+    	<input type="hidden" name="attdproctext" id="attdproctext" value="">
     	<input type="hidden" name="strSfCode" id="strSfCode" value="20015">
-	<input type="hidden" name="strBrCode" id="strBrCode" value="JE41">
-	<input type="hidden" name="strRfKind" id="strRfKind" value="E">
-	<input type="hidden" name="strUserType" id="strUserType" value="0">
-	<input type="hidden" name="strTimeType" id="strTimeType" value="A">
-	<input type="hidden" name="strLecCountType" id="strLecCountType" value="3">
-	<input type="hidden" name="strLecCountAutoYN" id="strLecCountAutoYN" value="Y">
-	<input type="hidden" name="strAcamTel" id="strAcamTel" value="01098406638">
-	<input type="hidden" name="smsallowyn" id="smsallowyn" value="Y">
-    
+        <input type="hidden" name="strBrCode" id="strBrCode" value="JE41">
+        <input type="hidden" name="strRfKind" id="strRfKind" value="E">
+        <input type="hidden" name="strUserType" id="strUserType" value="0">
+        <input type="hidden" name="strTimeType" id="strTimeType" value="A">
+        <input type="hidden" name="strLecCountType" id="strLecCountType" value="3">
+        <input type="hidden" name="strLecCountAutoYN" id="strLecCountAutoYN" value="Y">
+        <input type="hidden" name="strAcamTel" id="strAcamTel" value="01098406638">
+        <input type="hidden" name="smsallowyn" id="smsallowyn" value="Y">
+        
     <!-- Mobile-ko_KR -->
 
         <!--학원명-->
-        <div class="aca_name">  <div>제주 출석처리</div>    </div>
+        <div class="aca_name">  <div>제주 블루 출석처리</div>    </div>
 
         <!--출결번호 영역-->
         <div class="number-area">
@@ -84,60 +86,59 @@
         </div>
         <div>
             <p class="tx_gid jAttHelp">
-                <!-- img src="./images/mobile/icon_gid.png"> 출결처리가 안되세요? -->
+                <!--img src="./images/mobile/icon_gid.png"> 출결처리가 안되세요? -->
             </p>
         </div>
 
-        <!--번호판 영역-->
-        <div>
-            <div class="keybox jKeyNum" keynum=1>
-                <div>1</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=2>
-                <div>2</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=3>
-                <div>3</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=4>
-                <div>4</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=5>
-                <div>5</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=6>
-                <div>6</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=7>
-                <div>7</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=8>
-                <div>8</div>
-            </div>
-            <div class="keybox jKeyNum" keynum=9>
-                <div>9</div>
-            </div>
-            <div class="keybox jKeyDelOne">
-                <div><img src="https://0411babe.github.io/vkey/key_back.png" alt="back"></div>
-            </div>
-            <div class="keybox jKeyNum" keynum=0>
-                <div>0</div>
-            </div>
-            <div class="keybox jKeyDelAll">
-                <div><img src="https://0411babe.github.io/vkey/key_clear.png" alt="clear"></div>
-            </div>
+ <!--번호판 영역-->
+ <div>
+    <div class="keybox jKeyNum" keynum=1>
+        <div>1</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=2>
+        <div>2</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=3>
+        <div>3</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=4>
+        <div>4</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=5>
+        <div>5</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=6>
+        <div>6</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=7>
+        <div>7</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=8>
+        <div>8</div>
+    </div>
+    <div class="keybox jKeyNum" keynum=9>
+        <div>9</div>
+    </div>
+    <div class="keybox jKeyDelOne">
+        <div><img src="https://0411babe.github.io/vkey/key_back.png" alt="back"></div>
+    </div>
+    <div class="keybox jKeyNum" keynum=0>
+        <div>0</div>
+    </div>
+    <div class="keybox jKeyDelAll">
+        <div><img src="https://0411babe.github.io/vkey/key_clear.png" alt="clear"></div>
+    </div>
 
-            <!--등원/하원 버튼-->
-            <div class="keybox_btn">
-                <div class="btn1 jComeIn">등원/귀가 처리</div>
-            </div>
-            <!--div class="keybox_btn">
-                <div class="btn2 jComeOut">하원</div>
-            </div-->
-        </div>
-    </form>
+    <!--등원/하원 버튼-->
+    <div class="keybox_btn">
+        <div class="btn1 jComeIn">등원/귀가 처리</div>
+    </div>
+    <!--div class="keybox_btn">
+        <div class="btn2 jComeOut">하원</div>
+    </div-->
+</div>
+</form>
 
-	
 <div id="proc_result" style="display:none"></div>
 
 <!--audio id="myaudio" controls-->
@@ -158,4 +159,4 @@
 
 </html>
 
-<iframe name="ifrm" frameborder="10" width="10" height="10">ifrm </iframe>
+<iframe name="ifrm" frameborder="0" width="0" height="0"></iframe>
