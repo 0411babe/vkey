@@ -167,7 +167,7 @@ for (var word in mobileKeyWords) {
 		$("#studentnum").val("");
 		$("#studentname").val("");
 		$("#keypadnum").val("");
-
+	}
      
 
     function playAudio()
