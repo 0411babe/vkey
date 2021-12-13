@@ -159,7 +159,7 @@ for (var word in mobileKeyWords) {
             var xhr = new XMLHttpRequest();
 		    var url = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?";
 		
-            xhr.onreadystatechange = function(xhr.responseText) {
+            xhr.onreadystatechange = function() {
                 
                 if (xhr.readyState == 4 && xhr.status === 200) { 
                     var pstrResult=xhr.responseText
@@ -247,10 +247,10 @@ for (var word in mobileKeyWords) {
 //DB에서 출결번호 존재여부 체크
         var xhr1 = new XMLHttpRequest();
 
-		xhr1.onreadystatechange = function(XHR1.responseText) {
+		xhr1.onreadystatechange = function() {
 
             if (xhr1.readyState == 4 && xhr1.status === 200) { 
-                    var pstrVal =  XHR1.responseText
+                    var pstrVal =  xhr1.responseText
 					
                     if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명
