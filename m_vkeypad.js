@@ -21,7 +21,6 @@ $(document).ready(function(){
 
 		$('.jKeyNum').click(function(){
 			var clickKeyNum = $(this).attr("keynum");
-alert("누르는중");
 			var keyNum1 = $("#keynum1").text();
 			var keyNum2 = $("#keynum2").text();
 			var keyNum3 = $("#keynum3").text();
