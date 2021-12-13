@@ -102,11 +102,11 @@ $(document).ready(function(){
 		});
 
 		$('.jComeIn').click(function(){
-			selfDiagnosis(1);
+			StudentAtt(1);
 		});
 
 		$('.jComeOut').click(function(){
-			selfDiagnosis(2);
+			StudentAtt(2);
 		});
 	});
 //여기까지 준비단계 함수//
