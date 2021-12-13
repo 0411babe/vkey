@@ -8,8 +8,7 @@ for (var word in mobileKeyWords) {
 	}
 };
 
-
-	$(document).ready(function(){
+$(document).ready(function(){
 
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
@@ -17,7 +16,7 @@ for (var word in mobileKeyWords) {
 		$('.jAttHelp').click(function(){
 			var strHelpMsg = "원생의 출석처리가 안되는 경우";
 			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
-			//alert(strHelpMsg);
+			alert(strHelpMsg);
 		});
 
 		$('.jKeyNum').click(function(){
@@ -103,13 +102,14 @@ for (var word in mobileKeyWords) {
 		});
 
 		$('.jComeIn').click(function(){
-			StudentAtt(1);
+			selfDiagnosis(1);
 		});
 
 		$('.jComeOut').click(function(){
-			StudentAtt(2);
+			selfDiagnosis(2);
 		});
 	});
+//여기까지 준비단계 함수//
 
 	function StudentAtt(atype)
 	{
@@ -154,9 +154,8 @@ for (var word in mobileKeyWords) {
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 			//console.log("../rfpage/rf_page1.asp?"+strParam);
-			
-		
-           
+	//여기에 아작스 들어감	
+		}
 	};
 
 
@@ -167,10 +166,12 @@ for (var word in mobileKeyWords) {
 		$("#studentnum").val("");
 		$("#studentname").val("");
 		$("#keypadnum").val("");
+		
+		//여기에 아작스들어감
 	}
      
 
-    function playAudio()
+   function playAudio()
 	{
 		// Check for audio element support.
 		if (window.HTMLAudioElement) {
