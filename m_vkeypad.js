@@ -150,7 +150,7 @@ $(document).ready(function(){
 	//출결번호체크
 
 function CheckStudent(keypadnum){
-		
+alert("CheckStudent호출");		
 	$(".jStudentName").text("");
 	$("#studentnum").val("");
 	$("#studentname").val("");
