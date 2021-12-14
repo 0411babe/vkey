@@ -181,11 +181,11 @@ $(document).ready(function(){
                 }
             },
 
-		complete: function (pstrResult) {
-            //	alert("complete="+pstrResult)
-            //},
+	complete: function (pstrResult) {
+        	alert("complete="+pstrResult)
+        },
+		
             error:function(pstrResult){
-                
                 //2017-11-08:arrowroot	//alert(pstrResult)
                 if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {	alert("선생님의 출근시간 입력상태를\n확인하십시요.");
                 } else {
@@ -204,7 +204,7 @@ $(document).ready(function(){
 						alert(xhr.responseText)
 					}
 				}	
-	//}
+	}
 };
 
 
