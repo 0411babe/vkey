@@ -147,6 +147,84 @@ $(document).ready(function(){
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 //여기 아작스
+			
+			
+			
+	$.ajax({
+            type: "GET",
+            url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+            data: strParam,
+            dataType: "html",
+            success:function(pstrResult){
+                $("#proc_result").html(pstrResult);
+
+                if (pstrResult.length > 1) {
+                    playAudio(1);
+                    var arrResult=$("#proc_result").text().split("returnval_");
+                    if (arrResult.length > 1) {
+                        if (arrResult[1] == "0:1") { //출석처리 성공
+                            //response.write "returnval_0:1<br>"							'출결처리성공여부
+                            //response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
+                            //response.write "returnval_2:" & strStName & "<br>"			'원생/직원명
+                            //response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
+                            //response.write "returnval_4:" & strCurDateTime & "<br>"		'출결일시
+                            //response.write "returnval_5:" & "미납" & "<br>"				'미납여부
+                            //response.write "returnval_6:" & RegClName & "<br>"			'수강반리스트
+                            //response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
+                            if (11 > 2 ) {
+                                doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
+                            } else {
+                                //처리전에 이미 이름을 보여주었다.
+                                //$(".jStudentName").text(arrResult[3].substr(2, 20));
+                                $(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
+                                $(".jStudentName").show();
+
+                                //출석처리후 번호 Clear
+                                $("#keynum4").text("");
+                                $("#keynum3").text("");
+                                $("#keynum2").text("");
+                                $("#keynum1").text("");
+
+                                $("#attdproctext").val("");
+                            }
+                        } else { //if (arrResult[1] == "0:-1") { //출석처리 성공
+                            //response.write "returnval_0:-1<br>"
+                            //response.write "returnval_E:에러메시지<br>"
+                            //alert(arrResult[2].substr(2, 100));
+                            if (1 == 1) {
+                                doingtimer(arrResult[2].substr(2, 100))
+                            } else {
+                                $(".jDefaultText").text(arrResult[2].substr(2, 100));
+                                $(".jDefaultText").show();
+
+                                $(".jStudentName").text("");
+                                $(".jStudentName").show();
+                            }
+                        }
+                    }
+                }
+            },
+            //complete: function (pstrResult) {
+            //	alert("complete="+pstrResult)
+            //},
+            error:function(xhr,status,error){
+                //alert(xhr.responseText)
+                //2017-11-08:arrowroot
+                if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {
+                    alert("선생님의 출근시간 입력상태를\n확인하십시요.");
+                } else {
+                    alert(xhr.responseText)
+                }
+            }
+        });
+			
+			
+			
+			
+			
+			
+			
+			
 		}
 	};
 //출결번호체크
