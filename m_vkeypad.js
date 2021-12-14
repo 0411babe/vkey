@@ -279,13 +279,13 @@ alert(arrVal[3]);
                  alert("CheckStudent함수 오류 발생");
            },
            success:function(result) {
-		 
 		   alert(result);
 		   //var re = $().html(result).find("td")
+
 		   var re = html(result).find("tr");
-		   alert(re);
+		   console.log(re);
 		   var re1 = jsonp(result).find("tr");
-		   alert(re1);
+		   console.log(re1);
                 }
     	   });	
 	
