@@ -216,6 +216,7 @@ alert("CheckStudent호출");
                  //alert("오류가 발생하였습니다.");
            },
            success:function(pstrVal) {
+		   alert(pstrVal);
                 if (pstrVal.length > 0) {
                     var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
