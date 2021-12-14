@@ -214,8 +214,6 @@ $(document).ready(function(){
 //출결번호체크
 
 function CheckStudent(keypadnum){
-alert("CheckStudent호출");
-	alert(keypadnum);
 	$(".jStudentName").text("");
 	$("#studentnum").val("");
 	$("#studentname").val("");
@@ -236,10 +234,12 @@ alert("CheckStudent호출");
                  alert("CheckStudent함수 오류 발생");
            },
            success:function(pstrVal) {
-		   alert(pstrVal);
+alert(pstrVal);
                 if (pstrVal.length > 0) {
                     var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-alert(arrVal[3]+"~이름");
+                    
+                    alert(arrVal[2]);
+                    alert(arrVal[3]);
 
                     if (arrVal.length >= 4) {
                         $("#studentnum").val(arrVal[1]);
