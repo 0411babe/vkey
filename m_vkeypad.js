@@ -280,9 +280,9 @@ alert(arrVal[3]);
 		 
 		   alert(result);
 		   //var re = $().html(result).find("td")
-		   var re = html(result).find("td");
+		   var re = html(result).find("tr");
 		   alert(re);
-		   var re1 = jsonp(result).find("td");
+		   var re1 = jsonp(result).find("tr");
 		   alert(re1);
                 }
     	   });	
