@@ -230,7 +230,8 @@ function CheckStudent(keypadnum){
            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
            //dataType:"html",
 	   dataType:"jsonp",
-           error:function(){
+
+	    error:function(){
                  alert("CheckStudent함수 오류 발생");
            },
            success:function(pstrVal) {
@@ -268,7 +269,21 @@ alert(pstrVal);
     });
 	
 	
-	
+$.ajax({
+           url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",	// - 학원사랑에 처리 페이지
+           type :"GET",
+           async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+	   dataType:"jsonp",
+
+	    error:function(){
+                 alert("CheckStudent함수 오류 발생");
+           },
+           success:function(pstrVal) {
+		 alert(pstrVal);
+                }
+
+           }
+    });	
 	
                     
 //DB에서 출결번호 존재여부 체크
