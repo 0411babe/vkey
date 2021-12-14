@@ -273,7 +273,7 @@ alert(arrVal[3]);
            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	   dataType:"jsonp",
 	//   contentType:"application/x-javascript; charset:EUC-KR",
-	contentType: 'application/x-www-form-urlencoded; charset=euc-kr'
+	contentType: 'application/x-www-form-urlencoded; charset=euc-kr',
 	
 	    error:function(){
                  alert("CheckStudent함수 오류 발생");
