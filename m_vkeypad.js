@@ -142,13 +142,15 @@ $(document).ready(function(){
 
                 if (pstrResult.length > 1) {
                     playAudio(1);
-                    var arrResult=$("#proc_result").text().split("returnval_");
+                    var arrResult=$("#proc_result").text().split("returnval_");		//등원생 정보를 arrResult배열에 넣기
                     if (arrResult.length > 1) {
                         if (arrResult[1] == "0:1") { //출석처리 성공
-                            //response.write "returnval_0:1<br>"			'출결처리성공여부   //response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
-                            //response.write "returnval_2:" & strStName & "<br>"	'원생/직원명       //response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
-                            //response.write "returnval_4:" & strCurDateTime & "<br>"	'출결일시          //response.write "returnval_5:" & "미납" & "<br>"				'미납여부
-                            //response.write "returnval_6:" & RegClName & "<br>"	'수강반리스트      //response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
+//returnval_0:1<br>		'출결처리성공여부			//returnval_1:0110017<br>	'원생/직원코드
+//returnval_2:박서준<br>		'원생/직원명				//returnval_3:<br>		'원생/직원사진
+//returnval_4:20211214225342<br>   '출결일시 [0:7] -> 연월일 	[8:13] -> 시분초		//returnval_5:<br>	'미납여부
+//returnval_6:영어C_12달(-432천원장기할인)(잔여회차:104)(종료예정일:11/30),*영어E_3개월_M4-1 12,영어A_추가3회_사본(잔여회차:-1)(종료예정일:11/30)<br>	'수강반리스트
+//returnval_7:0<br>	'원생의 현재 포인트
+//returnval_8:하원하였습니다<br>
                             if (11 > 2 ) {
                                 doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
                             } else {
@@ -211,7 +213,7 @@ function CheckStudent(keypadnum){
            type :"GET",
            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
            //dataType:"html",
-	   dataType:"jsonp",
+	   dataType:"XML",
 
 		error:function(){	alert("CheckStudent함수 오류 발생");		},
 		success:function(pstrVal) {
