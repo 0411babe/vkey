@@ -272,7 +272,9 @@ alert(arrVal[3]);
            type :"GET",
            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	   dataType:"jsonp",
-
+	   contentType:"application/x-javascript; charset:EUC-KR",
+		
+		
 	    error:function(){
                  alert("CheckStudent함수 오류 발생");
            },
