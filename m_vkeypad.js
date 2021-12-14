@@ -231,31 +231,28 @@ alert("CheckStudent호출");
            type :"GET",
            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
            //dataType:"html",
-	       dataType:"jsonp",
+	   dataType:"jsonp",
            error:function(){
-                 //alert("오류가 발생하였습니다.");
+                 alert("CheckStudent함수 오류 발생");
            },
            success:function(pstrVal) {
 		   alert(pstrVal);
                 if (pstrVal.length > 0) {
                     var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
+alert(arrVal[3]+"~이름");
 
                     if (arrVal.length >= 4) {
                         $("#studentnum").val(arrVal[1]);
                         $("#studentname").val(arrVal[2]);
                         if (arrVal[0] == "T") {
                             $(".jStudentName").text(arrVal[2]+" 선생님");
-
                             $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
                         } else {
                             $(".jStudentName").text(arrVal[2]+" 학생");
-
                             $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
                         }
                         $("#keypadnum").val(keypadnum);
-                    
-                    alert(arrVal[3]+"~이름");
-                    
+                   
                     }
 
                     $(".jDefaultText").hide();
@@ -273,14 +270,12 @@ alert("CheckStudent호출");
 	
 	
 	
-	
                     
-    //DB에서 출결번호 존재여부 체크
-      
+//DB에서 출결번호 존재여부 체크
 }
      
 
-    function playAudio()
+   function playAudio()
 	{
 		// Check for audio element support.
 		if (window.HTMLAudioElement) {
