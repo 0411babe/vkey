@@ -147,15 +147,12 @@ $(document).ready(function(){
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 //여기 아작스
-			
-			
-			
 	$.ajax({
-            type: "GET",
-            url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-            data: strParam,
-            dataType: "html",
-            success:function(pstrResult){
+            	type: "GET",
+            	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+            	data: strParam,
+            	dataType: "Jsonp",
+            	success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
                 if (pstrResult.length > 1) {
