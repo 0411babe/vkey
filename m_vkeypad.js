@@ -238,10 +238,8 @@ function CheckStudent(keypadnum){
 alert(pstrVal);
                 if (pstrVal.length > 0) {
                     var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-                    
-                    alert(arrVal[2]);
-                    alert(arrVal[3]);
-
+alert(arrVal[2]);
+alert(arrVal[3]);
                     if (arrVal.length >= 4) {
                         $("#studentnum").val(arrVal[1]);
                         $("#studentname").val(arrVal[2]);
@@ -278,8 +276,14 @@ alert(pstrVal);
 	    error:function(){
                  alert("CheckStudent함수 오류 발생");
            },
-           success:function(pstrVal) {
-		 alert(pstrVal);
+           success:function(result) {
+		 
+		   alert(result);
+		   //var re = $().html(result).find("td")
+		   var re = html(result).find("td");
+		   alert(re);
+		   var re1 = jsonp(result).find("td");
+		   alert(re1);
                 }
     	   });	
 	
