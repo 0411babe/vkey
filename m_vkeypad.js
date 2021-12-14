@@ -20,14 +20,10 @@ $(document).ready(function(){
 			var keyNum3 = $("#keynum3").text();
 			var keyNum4 = $("#keynum4").text();
 
-			if (keyNum1 == "") {
-				$("#keynum1").text(clickKeyNum);
-			} else if (keyNum2 == "") {
-				$("#keynum2").text(clickKeyNum);
-			} else if (keyNum3 == "") {
-				$("#keynum3").text(clickKeyNum);
-			} else if (keyNum4 == "")	{
-				$("#keynum4").text(clickKeyNum);
+			if (keyNum1 == "") {		$("#keynum1").text(clickKeyNum);
+			} else if (keyNum2 == "") {	$("#keynum2").text(clickKeyNum);
+			} else if (keyNum3 == "") {	$("#keynum3").text(clickKeyNum);
+			} else if (keyNum4 == "") {	$("#keynum4").text(clickKeyNum);
 			}
 
 			//원생체크
@@ -47,10 +43,10 @@ $(document).ready(function(){
 			var keyNum3 = $("#keynum3").text();
 			var keyNum4 = $("#keynum4").text();
 
-			if (keyNum4 != "")        {		$("#keynum4").text("");			
-            } else if (keyNum3 != "") {		$("#keynum3").text("");
-			} else if (keyNum2 != "") {		$("#keynum2").text("");
-			} else if (keyNum1 != "") {		$("#keynum1").text("");
+			if (keyNum4 != "")        {	$("#keynum4").text("");			
+            		} else if (keyNum3 != "") {	$("#keynum3").text("");
+			} else if (keyNum2 != "") {	$("#keynum2").text("");
+			} else if (keyNum1 != "") {	$("#keynum1").text("");
 			}
 
 			$(".jDefaultText").show();
@@ -60,13 +56,13 @@ $(document).ready(function(){
 			$("#studentname").val('');
 			$("#keypadnum").val('');
 
-
 			$(".jStudentName").text("");
 			$(".jStudentName").show();
 			$(".jDefaultText").text("출결번호를 선택하세요");
 			$(".jDefaultText").show();
 		});
 
+	
 		$('.jKeyDelAll').click(function(){
 
 			$("#keynum1").text("");
@@ -89,13 +85,9 @@ $(document).ready(function(){
 			$("div").text(title);
 		});
 
-		$('.jComeIn').click(function(){
-			StudentAtt(1);
-		});
+		$('.jComeIn').click(function(){		StudentAtt(1);		});
 
-		$('.jComeOut').click(function(){
-			StudentAtt(2);
-		});
+		$('.jComeOut').click(function(){	StudentAtt(2);		});
 	});
 //여기까지 준비단계 함수//
 
@@ -138,12 +130,14 @@ $(document).ready(function(){
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 //여기 아작스
+//등원 귀가처리 눌렀을 때 
 	$.ajax({
             	type: "GET",
             	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
             	data: strParam,
             	dataType: "Jsonp",      //
-            	success:function(pstrResult){
+
+		success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
                 if (pstrResult.length > 1) {
@@ -151,15 +145,14 @@ $(document).ready(function(){
                     var arrResult=$("#proc_result").text().split("returnval_");
                     if (arrResult.length > 1) {
                         if (arrResult[1] == "0:1") { //출석처리 성공
-                            //response.write "returnval_0:1<br>"							'출결처리성공여부   //response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
-                            //response.write "returnval_2:" & strStName & "<br>"			'원생/직원명        //response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
-                            //response.write "returnval_4:" & strCurDateTime & "<br>"		'출결일시           //response.write "returnval_5:" & "미납" & "<br>"				'미납여부
-                            //response.write "returnval_6:" & RegClName & "<br>"			'수강반리스트       //response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
+                            //response.write "returnval_0:1<br>"			'출결처리성공여부   //response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
+                            //response.write "returnval_2:" & strStName & "<br>"	'원생/직원명       //response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
+                            //response.write "returnval_4:" & strCurDateTime & "<br>"	'출결일시          //response.write "returnval_5:" & "미납" & "<br>"				'미납여부
+                            //response.write "returnval_6:" & RegClName & "<br>"	'수강반리스트      //response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
                             if (11 > 2 ) {
                                 doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
                             } else {
-                                //처리전에 이미 이름을 보여주었다.
-                                //$(".jStudentName").text(arrResult[3].substr(2, 20));
+				//$(".jStudentName").text(arrResult[3].substr(2, 20));	//처리전에 이미 이름을 보여주었다.
                                 $(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
                                 $(".jStudentName").show();
 
@@ -180,7 +173,6 @@ $(document).ready(function(){
                             } else {
                                 $(".jDefaultText").text(arrResult[2].substr(2, 100));
                                 $(".jDefaultText").show();
-
                                 $(".jStudentName").text("");
                                 $(".jStudentName").show();
                             }
@@ -202,26 +194,18 @@ $(document).ready(function(){
             }
         });
 			
-			
-			
-			
-			
-			
-			
-			
-		}
-	};
-//출결번호체크
+	}
+};
 
+
+//출결번호체크
 function CheckStudent(keypadnum){
 	$(".jStudentName").text("");
 	$("#studentnum").val("");
 	$("#studentname").val("");
 	$("#keypadnum").val("");
-	        
 
-
-    var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
     //DB에서 출결번호 존재여부 체크
     $.ajax({
@@ -231,33 +215,32 @@ function CheckStudent(keypadnum){
            //dataType:"html",
 	   dataType:"jsonp",
 
-	    error:function(){
-                 alert("CheckStudent함수 오류 발생");
-           },
-           success:function(pstrVal) {
-alert(pstrVal);
-                if (pstrVal.length > 0) {
-                    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-alert(arrVal[2]);
-alert(arrVal[3]);
-                    if (arrVal.length >= 4) {
-                        $("#studentnum").val(arrVal[1]);
-                        $("#studentname").val(arrVal[2]);
-                        if (arrVal[0] == "T") {
-                            $(".jStudentName").text(arrVal[2]+" 선생님");
-                            $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
-                        } else {
-                            $(".jStudentName").text(arrVal[2]+" 학생");
-                            $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
-                        }
-                        $("#keypadnum").val(keypadnum);
-                   
-                    }
+		error:function(){	alert("CheckStudent함수 오류 발생");		},
+		success:function(pstrVal) {
+			
+			alert(pstrVal);
+                
+		if (pstrVal.length > 0) {
+			var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
+				
+			alert(arrVal[3]);
+		    if (arrVal.length >= 4) {
+			$("#studentnum").val(arrVal[1]);
+			$("#studentname").val(arrVal[2]);
+			if (arrVal[0] == "T") {
+			    $(".jStudentName").text(arrVal[2]+" 선생님");
+			    $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
+			} else {
+			    $(".jStudentName").text(arrVal[2]+" 학생");
+			    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
+			}
+			$("#keypadnum").val(keypadnum);
+		    }
 
-                    $(".jDefaultText").hide();
-                    $(".jStudentName").show();
+		    $(".jDefaultText").hide();
+		    $(".jStudentName").show();
 
-                } else {
+		} else {
                     $(".jStudentName").text("존재하지 않은 출결번호");
                     $(".jDefaultText").hide();
                     $(".jStudentName").show();
@@ -272,22 +255,22 @@ alert(arrVal[3]);
            type :"GET",
            async : false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	   dataType : "jsonp",
-	//   contentType:"application/x-javascript; charset:EUC-KR",
-	   contentType: "application/x-www-form-urlencoded; charset=euc-kr",
+	   contentType:"application/x-javascript; charset:EUC-KR",
+	   //contentType: "application/x-www-form-urlencoded; charset=euc-kr",
 	
-	    error:function(){
-                 alert("CheckStudent함수 오류 발생");
-           },
-
-		success:function(result) {
+	error:function(){	alert("CheckStudent함수 오류 발생");	},
+	success:function(result) {
 		   alert(result);
 		   //var re = $().html(result).find("td")
 		   var re = $("tr").text();
+			alert(re);
 		   console.log(re);
 		   var re1 = jsonp(result).find("tr");
 		   console.log(re1);
                 }
-    	   });	
+    	});	
+	
+	
 	
                     
 //DB에서 출결번호 존재여부 체크
