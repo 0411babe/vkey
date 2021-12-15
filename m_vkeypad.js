@@ -213,21 +213,21 @@ function CheckStudent(keypadnum){
 
     //DB에서 출결번호 존재여부 체크
     $.ajax({
-	    url: strURL,	// - 학원사랑에 처리 페이지
-            type :"GET",
+	    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
+            type : "GET",
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
       	    //dataType:"JSONP",
-	    //dataType:"JSON",
-	    dataType:"html",
-		//crossDomain: true,
-	    	contentType:"application/json",
+	    dataType:"JSON",
+	    //dataType:"html",
+		crossDomain: true,
+	    //	contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
 	    	error:function(pstr){	
 
 		   	alert(pstr);			
 			console.log(pstr);		
-//			console.log(JSON.parse(pstr));
+			console.log(JSON.parse(pstr));
 			
 			alert("CheckStudent 함수 오류");	
 				
@@ -264,7 +264,7 @@ function CheckStudent(keypadnum){
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
-			    if (arrVal.length >= 4) {
+			    if (arrVal.length >= 4) {	//arrVal.length가 4이상이라는 것은 S|원생코드|원생명|등원 익
 				    $("#studentnum").val(arrVal[1]);
 				    $("#studentname").val(arrVal[2]);
 				    if (arrVal[0] == "T") {
