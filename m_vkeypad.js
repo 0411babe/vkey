@@ -41,7 +41,7 @@ function CheckStudent(keypadnum){
 			
 	    success : function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
-		    	alert(pstrVal);
+		    		    alert(toJSON(pstrVal));
 			console.log(pstrVal);
 		    	console.log(pstrVal.html());
 		    var a = pstrVal.html();
