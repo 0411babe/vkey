@@ -217,14 +217,15 @@ function CheckStudent(keypadnum){
             type :"GET",
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
       	    dataType:"JSONP",
-		crossDomain: true,
+		//crossDomain: true,
 	    	//contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
-	    	error:function(pstrVal){	
+	    	error:function(pstr){	
 
-		   	alert(pstr);
-			alert(JSON.PARSE(pstr));
+		   	alert(pstr);			alert(JSON.parse(pstr));
+			console.log(pstr);		console.log(JSON.parse(pstr));
+			
 			alert("CheckStudent 함수 오류");	
 				
 		    if (pstr.length > 0) {
