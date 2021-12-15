@@ -221,7 +221,40 @@ function CheckStudent(keypadnum){
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
 
-	    error:function(){	alert("CheckStudent 함수 오류");		},
+	    error:function(pstrVal){	alert("CheckStudent 함수 오류");	
+				   
+				   alert(pstrVal);
+				alert(JSON.PARSE(pstrVal));
+		    if (pstrVal.length > 0) {
+			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
+
+			    if (arrVal.length >= 4) {
+				    $("#studentnum").val(arrVal[1]);
+				    $("#studentname").val(arrVal[2]);
+				    if (arrVal[0] == "T") {
+					    $(".jStudentName").text(arrVal[2]+" 선생님");
+					    $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
+				    } else {
+					    $(".jStudentName").text(arrVal[2]+" 학생");
+					    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
+				    }
+			   	    $("#keypadnum").val(keypadnum);
+			    }
+
+		    $(".jDefaultText").hide();
+		    $(".jStudentName").show();
+			    
+	//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
+		    if (G.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
+		    if (B.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
+		    if (O.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
+		    if (W.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
+
+		    } else {
+                    $(".jStudentName").text("존재하지 않은 출결번호");
+                    $(".jDefaultText").hide();
+                    $(".jStudentName").show();
+                	}},
 			
 	    success:function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
