@@ -277,8 +277,6 @@ function CheckStudent(keypadnum){
 		    if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
 			
 		    alert("성공하는 경우는 뭐지");
-		    	alert(toJSON(pstrVal));
-			console.log(pstrVal);
 		    	console.log(pstrVal.html());
 
 		    console.log(xhr.responseText);
