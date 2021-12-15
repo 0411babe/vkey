@@ -207,13 +207,14 @@ function CheckStudent(keypadnum){
     //DB에서 출결번호 존재여부 체크
     $.ajax({
             type :"GET",
-			url  : strURL,	// - 학원사랑에 처리 페이지
+	    url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			dataType:"JSONP",
+	    dataType:"JSONP",
+	    contentType:"application/json",
 
-			error:function(){	alert("CheckStudent함수 오류 발생");		},
+	    error:function(){	alert("CheckStudent함수 오류 발생");		},
 			
-			success:function(pstrVal) {
+	    success:function(pstrVal) {
 					alert(pstrVal);
             
 					if (pstrVal.length > 0) {
