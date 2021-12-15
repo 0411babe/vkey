@@ -212,8 +212,8 @@ function CheckStudent(keypadnum){
 	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
     //DB에서 출결번호 존재여부 체크
-doAjax = function() {
-    $.ajax({
+
+	$.ajax({
 	    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
             type : "GET",
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
@@ -222,37 +222,11 @@ doAjax = function() {
 	    //contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
-	    	error:function(pstr){	
-
-		   	alert(pstr);			
-			console.log(pstr);		
+	    	error:function(){	
+		   	alert(error);			
+			console.log(error);		
 			alert("이름만띄우는함수 오류");	
-				
-		    if (pstr.length > 0) {
-			    var arr=pstr.split("|"); ///'''S|원생코드|원생명|등원
-
-			    if (arr.length >= 4) {
-				    $("#studentnum").val(arr[1]);
-				    $("#studentname").val(arr[2]);
-				    if (arr[0] != "T") {
-					    $(".jStudentName").text(arr[2]+" 학생");//홍길동 학생이 등원 하였습니다.
-					    $("#attdproctext").val("학생이 "+arr[3] + " 하였습니다."); 
-				    }
-			   	    $("#keypadnum").val(keypadnum);
-			}
-		    $(".jDefaultText").hide();
-		    $(".jStudentName").show();
-			    
-	//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
-		    if (G.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
-		    if (B.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
-		    if (O.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
-		    if (W.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
-		    } else {
-                    $(".jStudentName").text("존재하지 않은 출결번호");
-                    $(".jDefaultText").hide();
-                    $(".jStudentName").show();
-                	}},
+                	},
 			
 	    success : function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
@@ -292,8 +266,6 @@ doAjax = function() {
                 	}
            }
     });
-	
-}	
 	
 //DB에서 출결번호 존재여부 체크
 }
