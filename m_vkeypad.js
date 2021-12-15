@@ -261,7 +261,10 @@ function getTodayLabel() {
     return todayLabel;
 }
 
+
 console.log(getTodayLabel());
+console.log(week[2]);
+
 alert(getTodayLabel());
 //자바스크립트 요일구하기|작성자 하이
 
