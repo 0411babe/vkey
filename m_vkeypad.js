@@ -1,3 +1,32 @@
+Skip to content
+Search or jump to…
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@0411babe 
+0411babe
+/
+vkey
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+vkey/m_vkeypad.js /
+@0411babe
+0411babe Update m_vkeypad.js
+Latest commit 90778f2 now
+ History
+ 1 contributor
+302 lines (253 sloc)  12.2 KB
+   
 var isTimer = 0;
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
@@ -214,17 +243,18 @@ function CheckStudent(keypadnum){
     //DB에서 출결번호 존재여부 체크
     $.ajax({
             type :"GET",
-	    url  : strURL,	// - 학원사랑에 처리 페이지
+			url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-	    dataType:"JSONP",
-	    contentType:"application/json",
-	    headers: { 'Access-Control-Allow-Origin': '*' },
+	    	dataType:"JSONP",
+	    	contentType:"application/json",
+	    	headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
 
-	    error:function(){	alert("CheckStudent함수 오류 발생");		},
+	    error:function(){	alert("CheckStudent 함수 오류");		},
 			
 	    success:function(pstrVal) {
-
+				console.LOG(pstrVal);
+				console.LOG(pstrVal.PARSE);
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
@@ -300,3 +330,15 @@ console.log(getTodayLabel());
 			}
 		}
 	}
+© 2021 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
