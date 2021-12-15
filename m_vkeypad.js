@@ -40,14 +40,20 @@ function CheckStudent(keypadnum){
 		   	alert(data);			
 			console.log(data);		
 			alert("이름만띄우는함수 오류");	
+			console.log(xhr.responseText);
+			alert(xhr.responseText);
                 	},
 			
 	    success : function(pstrVal) {
 		    if(xhr.status == 200)	    	 {	alert("200이자나");	    	 };
 			alert("성공하는 경우는 뭐지");
-		    		    alert(toJSON(pstrVal));
+		    	alert(toJSON(pstrVal));
 			console.log(pstrVal);
 		    	console.log(pstrVal.html());
+
+		    console.log(xhr.responseText);
+			alert(xhr.responseText);
+		    
 		    var a = pstrVal.html();
 		    console.log(a);
 		    
