@@ -28,8 +28,9 @@ function CheckStudent(keypadnum){
 	    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
             type : "GET",
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-      	    dataType:"JSONP",
-		//crossDomain: true,
+      	    //dataType:"JSONP",
+		dataType:"html",
+		crossDomain: true,
 	    //contentType:"application/json",
 	    headers: { 'Access-Control-Allow-Origin': '*' },
 
