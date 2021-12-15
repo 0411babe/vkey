@@ -266,24 +266,19 @@ function CheckStudent(keypadnum){
 	    	strURL: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
            	type : "GET",
             	async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-      	    	//dataType:"JSONP",
-		dataType:"text",
+      	    	dataType:"JSONP",
+		//dataType:"text",
 		crossDomain: true,
 		contentType: 'application/text; charset=utf-8',
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
 	 	success : function(xhr, pstrVal) {
+			alert("success");
 		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
-		    if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
+		if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
 			
-		    alert("성공하는 경우는 뭐지");
-		    	console.log(pstrVal.html());
-
+	    
 		    console.log(xhr.responseText);
-			alert(xhr.responseText);
-		    
-		    var a = pstrVal.html();
-		    console.log(a);
 		    
 		    $("div").text("되는데");	
 		    
