@@ -224,8 +224,8 @@ function CheckStudent(keypadnum){
 	    error:function(){	alert("CheckStudent 함수 오류");		},
 			
 	    success:function(pstrVal) {
-				console.LOG(pstrVal);
-				console.LOG(JSON.PARSE(pstrVal));
+				alert(pstrVal);
+				alert(JSON.PARSE(pstrVal));
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
@@ -266,15 +266,14 @@ function CheckStudent(keypadnum){
 
 
 //자바스크립트 요일구하기|작성자 하이	//new Date().getDay()  일=0, 월=1, 화=2, 수=3, 목=4, 금=5, 토=6
-function getTodayLabel() {
-    var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
-    var today = new Date().getDay();	// switch today=1 월요일값 가져와서 색바꿔주기
-    var todayLabel = week[today];
-	console.log(today);
-    return todayLabel;
-}
-
-console.log(getTodayLabel());
+//function getTodayLabel() {
+//    var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+//    var today = new Date().getDay();	// switch today=1 월요일값 가져와서 색바꿔주기
+//    var todayLabel = week[today];
+//	console.log(today);
+//    return todayLabel;
+//}
+//console.log(getTodayLabel());
 //자바스크립트 요일구하기|작성자 하이
 
 
