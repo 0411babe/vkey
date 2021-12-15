@@ -262,15 +262,22 @@ function CheckStudent(keypadnum){
 
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
 
+// 	$.ajax({
+// 	    	strURL: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
+//            	type : "GET",
+//             	async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+//       	    	dataType:"JSONP",
+// 		//dataType:"text",
+// 		crossDomain: true,
+// 		contentType: 'application/text; charset=utf-8',
+// 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 	$.ajax({
-	    	strURL: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
-           	type : "GET",
-            	async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-      	    	dataType:"JSONP",
-		//dataType:"text",
-		crossDomain: true,
-		contentType: 'application/text; charset=utf-8',
-	    	headers: { 'Access-Control-Allow-Origin': '*' },
+		url  : strURL,	// - 학원사랑에 처리 페이지
+		type :"post",
+		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+		dataType:"html",
+		crossOrigin: true,
+		headers: { 'Access-Control-Allow-Origin': '*' },
 
 	 	success : function(xhr, pstrVal) {
 			alert("success");
