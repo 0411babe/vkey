@@ -1,32 +1,3 @@
-Skip to content
-Search or jump to…
-Pull requests
-Issues
-Marketplace
-Explore
- 
-@0411babe 
-0411babe
-/
-vkey
-Public
-Code
-Issues
-Pull requests
-Actions
-Projects
-Wiki
-Security
-Insights
-Settings
-vkey/m_vkeypad.js /
-@0411babe
-0411babe Update m_vkeypad.js
-Latest commit 90778f2 now
- History
- 1 contributor
-302 lines (253 sloc)  12.2 KB
-   
 var isTimer = 0;
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
@@ -330,15 +301,3 @@ console.log(getTodayLabel());
 			}
 		}
 	}
-© 2021 GitHub, Inc.
-Terms
-Privacy
-Security
-Status
-Docs
-Contact GitHub
-Pricing
-API
-Training
-Blog
-About
