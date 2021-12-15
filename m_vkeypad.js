@@ -218,22 +218,22 @@ function CheckStudent(keypadnum){
             type : "GET",
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
       	    dataType:"JSONP",
-		crossDomain: true,
+		//crossDomain: true,
 	    //contentType:"application/json",
-	    	headers: { 'Access-Control-Allow-Origin': '*' },
+	    	//headers: { 'Access-Control-Allow-Origin': '*' },
 
-	    	error:function(data){	
-		   	alert(data);			
-			console.log(data);		
-			alert("이름만띄우는함수 오류");	
-                	},
+// 	    	error:function(data){	
+// 		   	alert(data);			
+// 			console.log(data);		
+// 			alert("이름만띄우는함수 오류");	
+//                 	},
 			
 	    success : function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
-			var dd = pstrVal
-		    alert(pstrVal);
+		    	alert(pstrVal);
 		    	alert(pstrVal.html());
-			alert(JSON.paser(pstrVal));
+			//alert(JSON.paser(pstrVal));
+		    	
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
