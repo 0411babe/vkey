@@ -217,13 +217,14 @@ function CheckStudent(keypadnum){
 			url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	    	dataType:"JSONP",
-	    	contentType:"application/json",
+	    	//contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
 
 	    error:function(){	alert("CheckStudent 함수 오류");		},
 			
 	    success:function(pstrVal) {
+			alert("성공하는 경우는 뭐지");
 				alert(pstrVal);
 				alert(JSON.PARSE(pstrVal));
 		    if (pstrVal.length > 0) {
