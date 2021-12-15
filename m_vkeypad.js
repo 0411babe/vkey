@@ -136,8 +136,10 @@ $(document).ready(function(){
             url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
             data: strParam,
             dataType: "Jsonp",      //
-
-			success:function(pstrResult){
+	    headers: { 'Access-Control-Allow-Origin': '*' },
+            crossDomain: true,
+		
+	    success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
                 if (pstrResult.length > 1) {
@@ -211,6 +213,8 @@ function CheckStudent(keypadnum){
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	    dataType:"JSONP",
 	    contentType:"application/json",
+	    headers: { 'Access-Control-Allow-Origin': '*' },
+            crossDomain: true,
 
 	    error:function(){	alert("CheckStudent함수 오류 발생");		},
 			
