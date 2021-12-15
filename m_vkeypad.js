@@ -36,7 +36,8 @@ function CheckStudent(keypadnum){
 		
 		
 	    	error:function(xhr, ajaxOptions, data){	
-			 if(xhr.status == 404)	    	 {	    		   alert(data);	    	 };
+
+			if(xhr.status == 404)	    	 {	    		   alert(data);	    	 };
 
 		   	alert(data);			
 			console.log(data);		
