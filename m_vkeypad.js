@@ -222,9 +222,9 @@ function CheckStudent(keypadnum){
 	    //contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
-	    	error:function(){	
-		   	alert(error);			
-			console.log(error);		
+	    	error:function(data){	
+		   	alert(data);			
+			console.log(data);		
 			alert("이름만띄우는함수 오류");	
                 	},
 			
