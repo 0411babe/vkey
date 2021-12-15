@@ -143,7 +143,7 @@ $(document).ready(function(){
             dataType: "JSONP",      //
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
-		
+		jsonp : "callback",
 	    	success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
