@@ -269,11 +269,17 @@ function CheckStudent(keypadnum){
 		url  : strURL,	// - 학원사랑에 처리 페이지
 		type :"post",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"html",
+		dataType:"Jsonp",
 		crossOrigin: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 
 	 	success : function(xhr, pstrVal) {
+			var jsonStr = JSON.stringify(pstrVal);
+			alert(jsonStr);
+			
+			var jsonStr = JSON.stringify(xhr.responseText);
+			alert(jsonStr);
+			
 			alert("success");
 		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
 		if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
@@ -315,6 +321,14 @@ function CheckStudent(keypadnum){
                 	}
            },
 		error:function(xhr, data){	
+			
+				var jsonStr = JSON.stringify(data);
+			alert(jsonStr);
+			
+			var jsonStr = JSON.stringify(xhr.responseText);
+			alert(jsonStr);
+			
+			
 			if(xhr.status != 200)	{	alert(data);	};
 			console.log(data);		
 			alert("이름만띄우는함수 오류");	
