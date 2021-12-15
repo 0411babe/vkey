@@ -268,9 +268,8 @@ function CheckStudent(keypadnum){
             	async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
       	    	//dataType:"JSONP",
 		dataType:"text",
-		data:"text",
 		crossDomain: true,
-		contentType: 'application/json; charset=utf-8',
+		contentType: 'application/text; charset=utf-8',
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
 	 	success : function(xhr, pstrVal) {
