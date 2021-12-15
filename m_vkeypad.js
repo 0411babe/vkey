@@ -34,19 +34,16 @@ function CheckStudent(keypadnum){
 	    headers: { 'Access-Control-Allow-Origin': '*' },
 
 	    	error:function(xhr, data){	
-
-			if(xhr.status == 404)	    	 {	    		   alert(data);	    	 };
-
-		   	alert(data);			
+			if(xhr.status != 200)	{	alert(data);	};
 			console.log(data);		
 			alert("이름만띄우는함수 오류");	
-			console.log(xhr.responseText);
-			alert(xhr.responseText);
                 	},
 			
-	    success : function(pstrVal) {
-		    if(xhr.status == 200)	    	 {	alert("200이자나");	    	 };
-			alert("성공하는 경우는 뭐지");
+	    success : function(xhr, pstrVal) {
+		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
+		    if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
+			
+		    alert("성공하는 경우는 뭐지");
 		    	alert(toJSON(pstrVal));
 			console.log(pstrVal);
 		    	console.log(pstrVal.html());
