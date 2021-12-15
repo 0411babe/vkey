@@ -140,11 +140,11 @@ $(document).ready(function(){
             type: "GET",
             url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
             data: strParam,
-            dataType: "Jsonp",      //
-	    headers: { 'Access-Control-Allow-Origin': '*' },
+            dataType: "JSONP",      //
+	    	headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
 		
-	    success:function(pstrResult){
+	    	success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
                 if (pstrResult.length > 1) {
@@ -214,33 +214,31 @@ function CheckStudent(keypadnum){
     //DB에서 출결번호 존재여부 체크
     $.ajax({
             type :"GET",
-	url  : strURL,	// - 학원사랑에 처리 페이지
+			url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	    	dataType:"JSONP",
+			crossDomain: true,
 	    	//contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
-	    error:function(pstrVal){	
+	    	error:function(pstrVal){	
 
-		   alert(pstrVal);
-		alert(JSON.PARSE(pstrVal));
-	alert("CheckStudent 함수 오류");	
+		   	alert(pstrVal);
+			alert(JSON.PARSE(pstrVal));
+			alert("CheckStudent 함수 오류");	
+				
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
 			    if (arrVal.length >= 4) {
 				    $("#studentnum").val(arrVal[1]);
 				    $("#studentname").val(arrVal[2]);
-				    if (arrVal[0] == "T") {
-					    $(".jStudentName").text(arrVal[2]+" 선생님");
-					    $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
-				    } else {
-					    $(".jStudentName").text(arrVal[2]+" 학생");
-					    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
+				    if (arrVal[0] != "T") {
+					    $(".jStudentName").text(arrVal[2]+" 학생");//홍길동 학생이 등원 하였습니다.
+					    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); 
 				    }
 			   	    $("#keypadnum").val(keypadnum);
-			    }
-
+			}
 		    $(".jDefaultText").hide();
 		    $(".jStudentName").show();
 			    
