@@ -225,8 +225,10 @@ function CheckStudent(keypadnum){
 
 	    	error:function(pstr){	
 
-		   	alert(pstr);			alert(JSON.parse(pstr));
-			console.log(pstr);		console.log(JSON.parse(pstr));
+		   	alert(pstr);			
+			alert(JSON.parse(pstr));
+			console.log(pstr);		
+			console.log(JSON.parse(pstr));
 			
 			alert("CheckStudent 함수 오류");	
 				
