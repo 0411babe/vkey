@@ -212,6 +212,7 @@ function CheckStudent(keypadnum){
 	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
     //DB에서 출결번호 존재여부 체크
+doAjax = function() {
     $.ajax({
 	    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
             type : "GET",
@@ -253,11 +254,12 @@ function CheckStudent(keypadnum){
                     $(".jStudentName").show();
                 	}},
 			
-	    success:function(pstrVal) {
+	    success : function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
-			alert(pstrVal);
+			var dd = pstrVal
+		    alert(pstrVal);
 		    	alert(pstrVal.html());
-				//alert(JSON.PARSE(pstrVal));
+			alert(JSON.paser(pstrVal));
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
@@ -291,7 +293,7 @@ function CheckStudent(keypadnum){
            }
     });
 	
-	
+}	
 	
 //DB에서 출결번호 존재여부 체크
 }
