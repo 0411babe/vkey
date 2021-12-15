@@ -262,10 +262,10 @@ function CheckStudent(keypadnum){
 	success:function(result) {
 		   alert(result);
 		   //var re = $().html(result).find("td")
-		   var re = $("tr").text();
+		   var re = decodeURIComponent ($("tr").text());
 			alert(re);
 		   console.log(re);
-		   var re1 = jsonp(result).find("tr");
+		   var re1 = decodeURI(jsonp(result).find("tr"));
 		   console.log(re1);
                 }
     	});	
