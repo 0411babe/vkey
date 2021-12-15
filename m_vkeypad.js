@@ -231,8 +231,10 @@ function CheckStudent(keypadnum){
 	    success : function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
 		    	alert(pstrVal);
-		    	alert(pstrVal.html());
-			//alert(JSON.paser(pstrVal));
+			console.log(pstrVal);
+		    	console.log(pstrVal.html());
+		    var a = pstrVal.html();
+		    console.log(a);
 		    	
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
