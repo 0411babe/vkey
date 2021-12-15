@@ -218,9 +218,9 @@ function CheckStudent(keypadnum){
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
       	    //dataType:"JSONP",
 	    //dataType:"JSON",
-	    dataType:"text",
+	    dataType:"html",
 		//crossDomain: true,
-	    	//contentType:"application/json",
+	    	contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
 	    	error:function(pstr){	
