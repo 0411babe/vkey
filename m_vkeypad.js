@@ -203,6 +203,53 @@ $(document).ready(function(){
 	}
 };
 
+
+//자바스크립트 요일구하기|작성자 하이	//new Date().getDay()  일=0, 월=1, 화=2, 수=3, 목=4, 금=5, 토=6
+//function getTodayLabel() {
+//    var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
+//    var today = new Date().getDay();	// switch today=1 월요일값 가져와서 색바꿔주기
+//    var todayLabel = week[today];
+//	console.log(today);
+//    return todayLabel;
+//}
+//console.log(getTodayLabel());
+//자바스크립트 요일구하기|작성자 하이
+
+
+
+
+   function playAudio()
+	{
+		// Check for audio element support.
+		if (window.HTMLAudioElement) {
+			try {
+				var oAudio = document.getElementById("myaudio");
+
+				// Tests the paused attribute and set state.
+				if (oAudio.paused) {
+					oAudio.play();
+				}
+				else {
+					oAudio.pause();
+				}
+			}
+			catch (e) {
+				// Fail silently but show in F12 developer tools console
+				 if(window.console && console.error("Error:" + e));
+			}
+		}
+	}
+
+
+
+
+
+
+
+
+
+
+
 //출결번호체크
 function CheckStudent(keypadnum){
 	$(".jStudentName").text("");
@@ -212,25 +259,20 @@ function CheckStudent(keypadnum){
 
 	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
-    //DB에서 출결번호 존재여부 체크
+
+//여기부터 아작스  //DB에서 출결번호 존재여부 체크
 
 	$.ajax({
-	    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
-            type : "GET",
-            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-      	    //dataType:"JSONP",
-		dataType:"html",
+	    	strURL: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
+           	type : "GET",
+            	async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+      	    	//dataType:"JSONP",
+		dataType:"text",
 		crossDomain: true,
 	    //contentType:"application/json",
-	    headers: { 'Access-Control-Allow-Origin': '*' },
+	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
-	    	error:function(xhr, data){	
-			if(xhr.status != 200)	{	alert(data);	};
-			console.log(data);		
-			alert("이름만띄우는함수 오류");	
-                	},
-			
-	    success : function(xhr, pstrVal) {
+	 	success : function(xhr, pstrVal) {
 		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
 		    if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
 			
@@ -277,44 +319,13 @@ function CheckStudent(keypadnum){
                     $(".jDefaultText").hide();
                     $(".jStudentName").show();
                 	}
-           }
+           },
+		error:function(xhr, data){	
+			if(xhr.status != 200)	{	alert(data);	};
+			console.log(data);		
+			alert("이름만띄우는함수 오류");	
+                	}
     });
 	
 //DB에서 출결번호 존재여부 체크
 }
-
-//자바스크립트 요일구하기|작성자 하이	//new Date().getDay()  일=0, 월=1, 화=2, 수=3, 목=4, 금=5, 토=6
-//function getTodayLabel() {
-//    var week = new Array('일요일', '월요일', '화요일', '수요일', '목요일', '금요일', '토요일');
-//    var today = new Date().getDay();	// switch today=1 월요일값 가져와서 색바꿔주기
-//    var todayLabel = week[today];
-//	console.log(today);
-//    return todayLabel;
-//}
-//console.log(getTodayLabel());
-//자바스크립트 요일구하기|작성자 하이
-
-
-
-
-   function playAudio()
-	{
-		// Check for audio element support.
-		if (window.HTMLAudioElement) {
-			try {
-				var oAudio = document.getElementById("myaudio");
-
-				// Tests the paused attribute and set state.
-				if (oAudio.paused) {
-					oAudio.play();
-				}
-				else {
-					oAudio.pause();
-				}
-			}
-			catch (e) {
-				// Fail silently but show in F12 developer tools console
-				 if(window.console && console.error("Error:" + e));
-			}
-		}
-	}
