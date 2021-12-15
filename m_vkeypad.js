@@ -50,8 +50,8 @@ $(document).ready(function(){
 			var keyNum3 = $("#keynum3").text();
 			var keyNum4 = $("#keynum4").text();
 
-			if (keyNum4 != "")        {	$("#keynum4").text("");			
-         		} else if (keyNum3 != "") {	$("#keynum3").text("");
+			if (keyNum4 != "")    {	$("#keynum4").text("");
+			} else if (keyNum3 != "") {	$("#keynum3").text("");
 			} else if (keyNum2 != "") {	$("#keynum2").text("");
 			} else if (keyNum1 != "") {	$("#keynum1").text("");
 			}
@@ -107,12 +107,6 @@ $(document).ready(function(){
 		var strSfCode = $("strSfCode").val();
 		var strRfKind = $("#strRfKind").val();
 
-		//출결키패드 사용학원여부 체크
-		if (strSfCode == "" || strRfKind == ""){
-			alert("로그인 후에 사용 하세요.");
-			return false;
-		}
-
 		var keyNum1 = $("#keynum1").text();
 		var keyNum2 = $("#keynum2").text();
 		var keyNum3 = $("#keynum3").text();
@@ -145,7 +139,6 @@ $(document).ready(function(){
             dataType: "JSONP",      //
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
             crossDomain: true,
-		jsonp : "callback",
 	    	success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
@@ -192,13 +185,14 @@ $(document).ready(function(){
                 }
             },
 
-		complete: function (pstrResult) {        	alert("complete="+pstrResult)        },
         error:function(pstrResult){	 //2017-11-08:arrowroot	//alert(pstrResult)
                 if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {	alert("선생님의 출근시간 입력상태를\n확인하십시요.");
                 } else {
                     alert(pstrResult)
                 }
-            }
+            },
+
+		complete: function (pstrResult) {        	alert("complete="+pstrResult)        }
         });
 	}
 };
