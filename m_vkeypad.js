@@ -31,11 +31,9 @@ function CheckStudent(keypadnum){
       	    dataType:"JSONP",
 		//crossDomain: true,
 	    //contentType:"application/json",
-	    	//headers: { 'Access-Control-Allow-Origin': '*' },
+	    headers: { 'Access-Control-Allow-Origin': '*' },
 
-		
-		
-	    	error:function(xhr, ajaxOptions, data){	
+	    	error:function(xhr, data){	
 
 			if(xhr.status == 404)	    	 {	    		   alert(data);	    	 };
 
