@@ -44,7 +44,7 @@ $(document).ready(function(){
 			var keyNum4 = $("#keynum4").text();
 
 			if (keyNum4 != "")        {	$("#keynum4").text("");			
-            		} else if (keyNum3 != "") {	$("#keynum3").text("");
+            } else if (keyNum3 != "") {	$("#keynum3").text("");
 			} else if (keyNum2 != "") {	$("#keynum2").text("");
 			} else if (keyNum1 != "") {	$("#keynum1").text("");
 			}
@@ -126,18 +126,18 @@ $(document).ready(function(){
 			strParam=strParam + "&strTimeType=A";	//반시간표타입"
 			strParam=strParam + "&strLecCountType=3";//회차적용타입
 			strParam=strParam + "&strLecCountAutoYN=Y";//회차차감의 출석연동여부(Y/N)
-			strParam=strParam + "&smsallowyn=Y";		//SMS사용료 미납으로 인하여 SMS를 사용할 수 있는지 여부
+			strParam=strParam + "&smsallowyn=Y";		//SMS 미납으로 SMS 사용할 수 있는지 여부
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 //여기 아작스
 //등원 귀가처리 눌렀을 때 
 	$.ajax({
-            	type: "GET",
-            	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-            	data: strParam,
-            	dataType: "Jsonp",      //
+            type: "GET",
+            url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+            data: strParam,
+            dataType: "Jsonp",      //
 
-		success:function(pstrResult){
+			success:function(pstrResult){
                 $("#proc_result").html(pstrResult);
 
                 if (pstrResult.length > 1) {
@@ -145,16 +145,16 @@ $(document).ready(function(){
                     var arrResult=$("#proc_result").text().split("returnval_");		//등원생 정보를 arrResult배열에 넣기
                     if (arrResult.length > 1) {
                         if (arrResult[1] == "0:1") { //출석처리 성공
-//returnval_0:1<br>		'출결처리성공여부			//returnval_1:0110017<br>	'원생/직원코드
-//returnval_2:박서준<br>		'원생/직원명				//returnval_3:<br>		'원생/직원사진
-//returnval_4:20211214225342<br>   '출결일시 [0:7] -> 연월일 	[8:13] -> 시분초		//returnval_5:<br>	'미납여부
+//returnval_0:1<br>		'출결처리성공여부	//returnval_1:0110017<br>	'원생/직원코드
+//returnval_2:박서준<br> '원생/직원명		//returnval_3:<br>		'원생/직원사진
+//returnval_4:20211214225342<br> '출결일시 [0:7]->연월일 [8:13]->시분초	//returnval_5:<br>'미납여부
 //returnval_6:영어C_12달(-432천원장기할인)(잔여회차:104)(종료예정일:11/30),*영어E_3개월_M4-1 12,영어A_추가3회_사본(잔여회차:-1)(종료예정일:11/30)<br>	'수강반리스트
 //returnval_7:0<br>	'원생의 현재 포인트
 //returnval_8:하원하였습니다<br>
                             if (11 > 2 ) {
                                 doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
                             } else {
-				//$(".jStudentName").text(arrResult[3].substr(2, 20));	//처리전에 이미 이름을 보여주었다.
+				//$(".jStudentName").text(arrResult[3].substr(2, 20));	//처리전에 이미 이름을 보여줌
                                 $(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
                                 $(".jStudentName").show();
 
@@ -183,17 +183,14 @@ $(document).ready(function(){
                 }
             },
 
-	complete: function (pstrResult) {        	alert("complete="+pstrResult)        },
-            error:function(pstrResult){
-                //2017-11-08:arrowroot	//alert(pstrResult)
+		complete: function (pstrResult) {        	alert("complete="+pstrResult)        },
+        error:function(pstrResult){	 //2017-11-08:arrowroot	//alert(pstrResult)
                 if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {	alert("선생님의 출근시간 입력상태를\n확인하십시요.");
                 } else {
                     alert(pstrResult)
                 }
             }
-		
         });
-
 	}
 };
 
@@ -209,70 +206,64 @@ function CheckStudent(keypadnum){
 
     //DB에서 출결번호 존재여부 체크
     $.ajax({
-           url  : strURL,	// - 학원사랑에 처리 페이지
-           type :"GET",
-           async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-           //dataType:"html",
-	   dataType:"JSONP",
+            type :"GET",
+			url  : strURL,	// - 학원사랑에 처리 페이지
+            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+			dataType:"JSONP",
 
-		error:function(){	alert("CheckStudent함수 오류 발생");		},
-		success:function(pstrVal) {
+			error:function(){	alert("CheckStudent함수 오류 발생");		},
 			
-			alert(pstrVal);
-                
-		if (pstrVal.length > 0) {
-			var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-				
-			alert(arrVal[3]);
-		    if (arrVal.length >= 4) {
-			$("#studentnum").val(arrVal[1]);
-			$("#studentname").val(arrVal[2]);
-			if (arrVal[0] == "T") {
-			    $(".jStudentName").text(arrVal[2]+" 선생님");
-			    $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
-			} else {
-			    $(".jStudentName").text(arrVal[2]+" 학생");
-			    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
-			}
-			$("#keypadnum").val(keypadnum);
-		    }
+			success:function(pstrVal) {
+					alert(pstrVal);
+            
+					if (pstrVal.length > 0) {
+						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
+			
+						if (arrVal.length >= 4) {
+							$("#studentnum").val(arrVal[1]);
+							$("#studentname").val(arrVal[2]);
+							if (arrVal[0] == "T") {
+								$(".jStudentName").text(arrVal[2]+" 선생님");
+								$("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
+							} else {
+								$(".jStudentName").text(arrVal[2]+" 학생");
+								$("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
+							}
+							$("#keypadnum").val(keypadnum);
+						}
 
-		    $(".jDefaultText").hide();
-		    $(".jStudentName").show();
+					$(".jDefaultText").hide();
+					$(".jStudentName").show();
 
-		} else {
+					} else {
                     $(".jStudentName").text("존재하지 않은 출결번호");
                     $(".jDefaultText").hide();
                     $(".jStudentName").show();
-                }
-
+                	}
            }
     });
 	
 	
 	$.ajax({
-           url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",	// - 학원사랑에 처리 페이지
-           type :"GET",
-           async : false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-	   dataType : "jsonp",
-	   contentType:"application/x-javascript; charset:EUC-KR",
-	   //contentType: "application/x-www-form-urlencoded; charset=euc-kr",
+            url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",	//학원사랑에 처리 페이지
+            type :"GET",
+            async : false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+	   		dataType : "jsonp",
+	   		contentType:"application/x-javascript; charset:EUC-KR",
+	   		//contentType: "application/x-www-form-urlencoded; charset=euc-kr",
 	
-	error:function(){	alert("CheckStudent함수 오류 발생");	},
-	success:function(result) {
-		   alert(result);
-		   //var re = $().html(result).find("td")
-		   var re = decodeURIComponent ($("tr").text(result));
-			alert(re);
-		   console.log(re);
-		   var re1 = (decodeURI(result).find("tr"));
-		   console.log(re1);
-                }
-    	});	
+			error:function(){	alert("CheckStudent함수 오류 발생");	},
+			success:function(result) {
+				   alert(result);
+				   //var re = $().html(result).find("td")
+				   var re = $("tr").text(decodeURIComponent (result));
+					alert(re);
+				   console.log(re);
+				   var re1 = (decodeURI(result).find("tr"));
+				   console.log(re1);
+			}
+	});	
 	
-	
-	
-                    
 //DB에서 출결번호 존재여부 체크
 }
      
