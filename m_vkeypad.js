@@ -32,7 +32,9 @@ function CheckStudent(keypadnum){
 		//crossDomain: true,
 	    //contentType:"application/json",
 	    	//headers: { 'Access-Control-Allow-Origin': '*' },
-if(xhr.status == 200)	    	 {	alert("200이자나");	    	 };
+
+		
+		
 	    	error:function(xhr, ajaxOptions, data){	
 			 if(xhr.status == 404)	    	 {	    		   alert(data);	    	 };
 
@@ -42,6 +44,7 @@ if(xhr.status == 200)	    	 {	alert("200이자나");	    	 };
                 	},
 			
 	    success : function(pstrVal) {
+		    if(xhr.status == 200)	    	 {	alert("200이자나");	    	 };
 			alert("성공하는 경우는 뭐지");
 		    		    alert(toJSON(pstrVal));
 			console.log(pstrVal);
