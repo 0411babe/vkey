@@ -225,7 +225,7 @@ function CheckStudent(keypadnum){
 			
 	    success:function(pstrVal) {
 				console.LOG(pstrVal);
-				console.LOG(pstrVal.PARSE);
+				console.LOG(JSON.PARSE(pstrVal));
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
