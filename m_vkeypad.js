@@ -214,17 +214,17 @@ function CheckStudent(keypadnum){
     //DB에서 출결번호 존재여부 체크
     $.ajax({
             type :"GET",
-			url  : strURL,	// - 학원사랑에 처리 페이지
+	url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 	    	dataType:"JSONP",
 	    	//contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
-            crossDomain: true,
 
-	    error:function(pstrVal){	alert("CheckStudent 함수 오류");	
-				   
-				   alert(pstrVal);
-				alert(JSON.PARSE(pstrVal));
+	    error:function(pstrVal){	
+
+		   alert(pstrVal);
+		alert(JSON.PARSE(pstrVal));
+	alert("CheckStudent 함수 오류");	
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
