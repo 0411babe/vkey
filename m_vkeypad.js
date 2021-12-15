@@ -32,12 +32,14 @@ function CheckStudent(keypadnum){
 		//crossDomain: true,
 	    //contentType:"application/json",
 	    	//headers: { 'Access-Control-Allow-Origin': '*' },
+if(xhr.status == 200)	    	 {	alert("200이자나");	    	 };
+	    	error:function(xhr, ajaxOptions, data){	
+			 if(xhr.status == 404)	    	 {	    		   alert(data);	    	 };
 
-// 	    	error:function(data){	
-// 		   	alert(data);			
-// 			console.log(data);		
-// 			alert("이름만띄우는함수 오류");	
-//                 	},
+		   	alert(data);			
+			console.log(data);		
+			alert("이름만띄우는함수 오류");	
+                	},
 			
 	    success : function(pstrVal) {
 			alert("성공하는 경우는 뭐지");
