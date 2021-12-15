@@ -49,7 +49,7 @@ $(document).ready(function(){
 			var keyNum4 = $("#keynum4").text();
 
 			if (keyNum4 != "")        {	$("#keynum4").text("");			
-            } else if (keyNum3 != "") {	$("#keynum3").text("");
+         		} else if (keyNum3 != "") {	$("#keynum3").text("");
 			} else if (keyNum2 != "") {	$("#keynum2").text("");
 			} else if (keyNum1 != "") {	$("#keynum1").text("");
 			}
@@ -235,7 +235,9 @@ function CheckStudent(keypadnum){
 		    	console.log(pstrVal.html());
 		    var a = pstrVal.html();
 		    console.log(a);
-		    	
+		    
+		    $("div").text("되는데");	
+		    
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
