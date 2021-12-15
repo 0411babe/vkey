@@ -216,7 +216,8 @@ function CheckStudent(keypadnum){
 	    url: strURL,	// - 학원사랑에 처리 페이지
             type :"GET",
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-      	    dataType:"JSONP",
+      	    //dataType:"JSONP",
+	    dataType:"JSON",
 		//crossDomain: true,
 	    	//contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
