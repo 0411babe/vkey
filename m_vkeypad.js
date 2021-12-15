@@ -213,29 +213,29 @@ function CheckStudent(keypadnum){
 
     //DB에서 출결번호 존재여부 체크
     $.ajax({
+	    url: strURL,	// - 학원사랑에 처리 페이지
             type :"GET",
-			url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-	    	dataType:"JSONP",
-			crossDomain: true,
+      	    dataType:"JSONP",
+		crossDomain: true,
 	    	//contentType:"application/json",
 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 
 	    	error:function(pstrVal){	
 
-		   	alert(pstrVal);
-			alert(JSON.PARSE(pstrVal));
+		   	alert(pstr);
+			alert(JSON.PARSE(pstr));
 			alert("CheckStudent 함수 오류");	
 				
-		    if (pstrVal.length > 0) {
-			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
+		    if (pstr.length > 0) {
+			    var arr=pstr.split("|"); ///'''S|원생코드|원생명|등원
 
-			    if (arrVal.length >= 4) {
-				    $("#studentnum").val(arrVal[1]);
-				    $("#studentname").val(arrVal[2]);
-				    if (arrVal[0] != "T") {
-					    $(".jStudentName").text(arrVal[2]+" 학생");//홍길동 학생이 등원 하였습니다.
-					    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); 
+			    if (arr.length >= 4) {
+				    $("#studentnum").val(arr[1]);
+				    $("#studentname").val(arr[2]);
+				    if (arr[0] != "T") {
+					    $(".jStudentName").text(arr[2]+" 학생");//홍길동 학생이 등원 하였습니다.
+					    $("#attdproctext").val("학생이 "+arr[3] + " 하였습니다."); 
 				    }
 			   	    $("#keypadnum").val(keypadnum);
 			}
@@ -243,11 +243,10 @@ function CheckStudent(keypadnum){
 		    $(".jStudentName").show();
 			    
 	//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
-		    if (G.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
-		    if (B.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
-		    if (O.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
-		    if (W.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
-
+		    if (G.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
+		    if (B.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
+		    if (O.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
+		    if (W.indexOf(arr[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
 		    } else {
                     $(".jStudentName").text("존재하지 않은 출결번호");
                     $(".jDefaultText").hide();
