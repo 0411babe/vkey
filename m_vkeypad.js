@@ -331,8 +331,8 @@ function CheckStudent(keypadnum){
            },
 		error:function(xhr, data){	
 			var jStr = data.text;
-			alert( jStr);
-			 console.log(jStr);
+			alert("jStr"+jStr);
+			 console.log("jStr"+jStr);
 			
 		
 			alert(jsonStr);
