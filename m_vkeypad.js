@@ -253,7 +253,6 @@ function CheckStudent(keypadnum){
 
 	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
-
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
 
 // 	$.ajax({
@@ -267,7 +266,7 @@ function CheckStudent(keypadnum){
 // 	    	headers: { 'Access-Control-Allow-Origin': '*' },
 	$.ajax({
 		url  : strURL,	// - 학원사랑에 처리 페이지
-		type :"post",
+		type :"GET",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 		dataType:"text",
 		crossOrigin: true,
@@ -281,20 +280,15 @@ function CheckStudent(keypadnum){
 			
 			
 			alert("success");
-		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
+			if(xhr.status == 200)	    	 {	alert("200이자나");	};
+			if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
 			
-			
-			
-		if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
-			
-	    
-		    console.log(xhr.responseText);
+			    console.log(xhr.responseText);
 		    
 		    $("div").text("되는데");	
 		    
 		    if (pstrVal.length > 0) {
 			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-
 			    if (arrVal.length >= 4) {	//arrVal.length가 4이상이라는 것은 S|원생코드|원생명|등원 익
 				    $("#studentnum").val(arrVal[1]);
 				    $("#studentname").val(arrVal[2]);
@@ -323,17 +317,13 @@ function CheckStudent(keypadnum){
                     $(".jStudentName").show();
                 	}
            },
+
 		error:function(xhr, data){	
 			var jStr = data.text;
 			alert("jStr"+jStr);
 			 console.log("jStr"+jStr);
 			
-		
 			alert(xhr.responseText);
-			
-			var jsonStr = JSON.stringify(xhr.responseText);
-			alert(jsonStr);
-			
 			
 			if(xhr.status != 200)	{	alert(data);	};
 			console.log(data);		
