@@ -172,7 +172,7 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 	   
 		error:function(){
 			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");	
-			alert(xhr.responsetext);
+			alert(XMLHttpRequest.responsetext);
 		},
 		
    		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
