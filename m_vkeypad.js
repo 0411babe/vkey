@@ -1,134 +1,3 @@
-d3.csv("1.csv", function(data)  { // table binding 
-	if (error) throw error;
-	console.log(data);
-	alert(data);
-	columns = ['name','age'] // 컬럼명을 지정해서 넣어준다. 
-	tabulate(data,columns) // tabulate 라는 함수에 data와 columns를 넣는다. 
-	}) ;
-	tabulate = function (data,columns) { // tabulate를 정의하는 부분이다. 
-								table = d3.select('body').append('table') // d3를 통해 body를 가져오고 table태그를 append를 통해 추가
-								thead = table.append('thead') // table에 thead를 추가한 값을 thead라는 변수명에 저장한다. 
-								tbody = table.append('tbody') // tr이 담겨있는 body형태의 tbody를 tbody라는 변수명에 저장한다. 
-								thead.append('tr') // thead를 만드는 부분으로 tr태그를 append 한다. 
-									.selectAll('th') // 모든 th를 가져온다. .data(columns) // 데이터 바인딩은 columns로 사용한다. 
-									.enter() // 데이터의 개수만큼 진행하는데 
-									.append('th') //columns 만큼 th를 만든다. 
-						.text(function (d) { return d }) // th에 text를 넣는데 text의 값은 data의 값을 넣는다. 
-					rows = tbody.selectAll('tr') // row를 만드는 부분으로 모든 tr태그를 가져오는데 
-						.data(data) // 데이터 바인딩에 data 값을 넣어준다. 
-						.enter() // data의 개수만 큼 진행하는데 .append('tr') // tr태그를 data의 개수만큼 추가한다. 
-					cells = rows.selectAll('td') // cells를 만드는 부분으로 모든 td값을 가져오는데 
-						.data(function(row) { // 데이터 바인딩을 하는데 있어서 그 값을 function(row)의 반환값으로 한다. 
-						return columns.map(function (column) { // columns.map을 리턴하는데 columns.map안에 들어가는 값이 function(column)으로 
-							return { column: column, value: row[column] } //column : column, value: row[column]로 key value 형식으로 들어가는 것 같다. 
-			})
-		}) 
-			.enter() //데이터 바인딩 한 값 만큼 진행하는데 
-			.append('td') //td를 데이터 개수만큼 추가한다. 
-			.text(function (d) { return d.value }) //text 값을 추가하는데 그 값은 윗 부분의 data의 value 값을 넣어준다. 
-		
-		return table; //table 을 리턴한다. 
-} </script>
-
-
-	<div style="width:100%;height:100%;padding-top:4%;margin:0 auto;">
-		<div class="key_box" style="display:table-cell;float:left">
-			<!--학원명-->
-			<div class="d_tb aca_name">
-				<div>블루플래닛 제주</div>
-			</div>
-
-			<!--출결번호 영역-->
-			<div style="width:100%;height:28%;" class="d_tb">
-				<div class="d_tc" style="padding-top:10px;">
-					<p class="tx_20 jDefaultText" style="display:none;">출결번호를 선택하세요</p>
-					<p class="tx_24 jStudentName">학생이름</p>
-					<div class="nb_box">
-						<div id="keynum1"></div>
-						<div id="keynum2"></div>
-						<div id="keynum3"></div>
-						<div id="keynum4"></div>
-					</div>
-				</div>
-			</div>
-
-<!--
-			<div style="width:100%;height:5%;">
-				<p class="tx_gid jAttHelp">
-					<img src="./images/pcweb/icon_gid.png" width="18" style="position:relative;top:4px;cursor:pointer;"> <span style="cursor:pointer;">출결처리가 안되세요?</span>
-				</p>
-			</div>
--->
-
-			<!--번호판 영역-->
-			<div style="width:98%;height:54%;margin:0 auto;">
-				<div class="keybox jKeyNum" keynum=1>
-					<div>1</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=2>
-					<div>2</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=3>
-					<div>3</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=4>
-					<div>4</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=5>
-					<div>5</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=6>
-					<div>6</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=7>
-					<div>7</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=8>
-					<div>8</div>
-				</div>
-				<div class="keybox jKeyNum" keynum=9>
-					<div>9</div>
-				</div>
-				<div class="keybox jKeyDelOne">
-					<div><img src="./images/pcweb//key_back.png" width="28" alt="back"></div>
-				</div>
-				<div class="keybox jKeyNum" keynum=0>
-					<div>0</div>
-				</div>
-				<div class="keybox jKeyDelAll">
-					<div><img src="./images/pcweb//key_clear.png" width="28" alt="clear"></div>
-				</div>
-
-				<!--등원/하원 버튼-->
-				<div class="keybox_btn jComeIn">
-					<div class="btn1">등원/귀가 처리</div>
-				</div>
-				<!--div class="keybox_btn jComeOut">
-					<div class="btn2">하원</div>
-				</div-->
-			</div>
-		</div>
-
-<!--출석처리 내역 보여주는 테이블 출석처리 내역 보여주는 테이블-->
-		<div class="key_box" style="display:table-cell;float:left">
-			<div class="d_tb aca_name">
-				<div>출석처리 내역</div>
-			</div>
-
-			<div class="tx_list" id="result_list">
-				<table width="100%" border="0" cellpadding="1" cellspacing="1" bgcolor="#dcdcdc" id="tblList">
-					<tr bgcolor="#f5f5f5">
-						<td align="center" width="30%">체크일시</td>
-						<td align="center" width="20%">이름</td>
-						<td align="center" width="50%">반명</td>			//여기에 출석내용 들어감
-					</tr>
-				</table>
-			</div>
-		</div>
-	</div>
-</form>
-
-<script type="text/javascript">
 
 var arr_M0 = new Array("박하준", "박서준")
 var arr_M1 = new Array("박하준")
@@ -153,6 +22,101 @@ var arr_S2 = new Array("박서준", "박하준", "이이이", "김서하", "이�
 var isTimer = 10;
 
 	$(document).ready(function(){      //준비단계. 키패드 누르기
+		$(".jDefaultText").hide();    
+		$(".jStudentName").hide();
+		$('.jAttHelp').click(function(){	//출석처리 안되는 경우
+			var strHelpMsg = "원생의 출석처리가 안되는 경우";
+			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
+			alert(strHelpMsg);		});
+
+		$('.jKeyNum').click(function(){		//번호누르면 입력되도록
+			var clickKeyNum = $(this).attr("keynum");
+
+			var keyNum1 = $("#keynum1").text();
+			var keyNum2 = $("#keynum2").text();
+			var keyNum3 = $("#keynum3").text();
+			var keyNum4 = $("#keynum4").text();
+
+				   if (keyNum1 == "") {			$("#keynum1").text(clickKeyNum);
+			} else if (keyNum2 == "") {			$("#keynum2").text(clickKeyNum);
+			} else if (keyNum3 == "") {			$("#keynum3").text(clickKeyNum);
+			} else if (keyNum4 == "") {			$("#keynum4").text(clickKeyNum);
+			}
+
+		//원생체크
+			var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
+			
+			if (keyNum.length == 3)	{
+			    keyNum = keyNum1+keyNum2+keyNum3+keyNum4+clickKeyNum;
+			}
+
+			if (keyNum.length == 4) {
+				CheckStudent(keyNum);		//ajax로 출석번호가 학원에 있는지 호출한다		
+				alert($("#studentname").val());
+				alert($(".jStudentName").val());
+				alert($(".jStudentName").text());
+			}
+		});
+
+		$('.jKeyDelOne').click(function(){
+			var keyNum1 = $("#keynum1").text();
+			var keyNum2 = $("#keynum2").text();
+			var keyNum3 = $("#keynum3").text();
+			var keyNum4 = $("#keynum4").text();
+
+				   if (keyNum4 != "") {		$("#keynum4").text("");
+			} else if (keyNum3 != "") {		$("#keynum3").text("");
+			} else if (keyNum2 != "") {		$("#keynum2").text("");
+			} else if (keyNum1 != "") {		$("#keynum1").text("");
+			}
+
+			$(".jDefaultText").show();
+			$(".jStudentName").text('');
+			$(".jStudentName").hide();
+			$("#studentnum").val('');
+			$("#studentname").val('');
+			$("#keypadnum").val('');
+
+
+			$(".jStudentName").text("");
+			$(".jStudentName").show();
+			$(".jDefaultText").text("출결번호를 누르세요");
+			$(".jDefaultText").show();
+		});
+
+		$('.jKeyDelAll').click(function(){
+
+			$("#keynum1").text("");
+			$("#keynum2").text("");
+			$("#keynum3").text("");
+			$("#keynum4").text("");
+
+			$(".jDefaultText").show();
+			$(".jStudentName").text('');
+			$(".jStudentName").hide();
+			$("#studentnum").val('');
+			$("#studentname").val('');
+			$("#keypadnum").val('');
+
+			$(".jStudentName").text("");
+			$(".jStudentName").show();
+			$(".jDefaultText").text("출결번호를 선택하세요");
+			$(".jDefaultText").show();
+
+			$("div").text(title);
+		});
+
+		$('.jComeIn').click(function(){		//등원시 처리
+			//selfDiagnosis(1);
+            StudentAtt(1);
+            alert(keynum);
+		});
+
+		$('.jComeOut').click(function(){	//하원시 처리
+			//selfDiagnosis(2);
+            StudentAtt(2);
+		});
+	});
     
    /*   //2020-10-08 KHAN 방역관리 자가진단 입력
 
