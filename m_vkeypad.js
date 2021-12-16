@@ -1,4 +1,3 @@
-
 var isTimer = 0;
 var timerInterval
 
@@ -8,27 +7,36 @@ $(document).ready(function(){
 	$(".jStudentName").hide();
 
 	$('.jKeyNum').bind('touchstart', function(event){
+
 		CheckTimer();
+
 		var clickKeyNum = $(this).attr("keynum");
+
 		var keyNum1 = $("#keynum1").text();
 		var keyNum2 = $("#keynum2").text();
 		var keyNum3 = $("#keynum3").text();
 		var keyNum4 = $("#keynum4").text();
 
-		if (keyNum1 == "") {		$("#keynum1").text(clickKeyNum);	
-		} else if (keyNum2 == "") {	$("#keynum2").text(clickKeyNum);
-		} else if (keyNum3 == "") {	$("#keynum3").text(clickKeyNum);
-		} else if (keyNum4 == "") {	$("#keynum4").text(clickKeyNum);
+		if (keyNum1 == "") {
+			$("#keynum1").text(clickKeyNum);
+		} else if (keyNum2 == "") {
+			$("#keynum2").text(clickKeyNum);
+		} else if (keyNum3 == "") {
+			$("#keynum3").text(clickKeyNum);
+		} else if (keyNum4 == "")	{
+			$("#keynum4").text(clickKeyNum);
 		}
 
 		//원생체크
 		var keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-
 		if (keyNum.length == 3) {
 			keyNum = keyNum1+keyNum2+keyNum3+keyNum4+clickKeyNum;
+
 			CheckStudent(keyNum);
 		} else {
-			if (keyNum.length < 4) {	$(".jStudentName").text("");	}
+			if (keyNum.length < 4) {
+				$(".jStudentName").text("");
+			}
 			$("#attdproctext").val("");
 		}
 
@@ -43,10 +51,14 @@ $(document).ready(function(){
 		var keyNum3 = $("#keynum3").text();
 		var keyNum4 = $("#keynum4").text();
 
-		if (keyNum4 != "") {		$("#keynum4").text("");
-	   	} else if (keyNum3 != "") {	$("#keynum3").text("");
-		} else if (keyNum2 != "") {	$("#keynum2").text("");
-		} else if (keyNum1 != "") {	$("#keynum1").text("");
+		if (keyNum4 != "") {
+			$("#keynum4").text("");
+		} else if (keyNum3 != "") {
+			$("#keynum3").text("");
+		} else if (keyNum2 != "") {
+			$("#keynum2").text("");
+		} else if (keyNum1 != "")	{
+			$("#keynum1").text("");
 		}
 
 		$(".jDefaultText").show();
@@ -58,6 +70,7 @@ $(document).ready(function(){
 	});
 
 	$('.jKeyDelAll').bind('touchstart', function(event){
+
 		CheckTimer();
 
 		$("#keynum1").text("");
@@ -76,16 +89,49 @@ $(document).ready(function(){
 
 	$('.jComeIn').click(function(){
 		CheckTimer();
-		StudentAtt(1);
+		selfDiagnosis(1);
 	});
 
 	$('.jComeOut').click(function(){
 		CheckTimer();
-		StudentAtt(2);
+		selfDiagnosis(2);
 	});
 
+	//document.getElementById("myaudio").load();
 	$("#myaudio")[0].load();
 });
+
+//2020-10-08 KHAN 방역과리 자가진단 입력
+var curAttType = "";
+function selfDiagnosis(pAttType) {
+	curAttType = pAttType
+	var strURLPreventCheck = "./prevent.asp?cmd=checkPrevent&br_code=&mb_no="+$("#studentnum").val();
+	$.ajax({
+	   url:strURLPreventCheck,
+	   type:'post',
+	   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+	   dataType:'json',
+	   success:function(obj){
+			if (obj.returnCode == 1 && obj.bIsOpen == "Y"){
+				window.name = "keypad";
+				var strURL = 'http://pfapp.tongtongtong.co.kr/prevent/self_diagnosis.asp?deviceOS=MOBILE_WEB&bcode=&mbno='+$("#studentnum").val();
+				window.open(strURL, "SelfDiagnosis", "width=800,height=700,scrollbars=yes")
+			}else{
+				//console.log(obj.returnMessage);
+				StudentAtt(pAttType);
+			}
+		},
+		error:function(xhr,status,error){
+			console.log(xhr);
+			//alert("에러가 발생했습니다."+error);
+			//StudentAtt(pAttType);
+		}
+	});
+}
+function callbackSelfDiagnosis() {
+	StudentAtt(curAttType);
+}
+
 function StudentAtt(atype)
 {
 	var sid = $("#sid").val();
@@ -118,6 +164,11 @@ function StudentAtt(atype)
 	} else {
 		$("#strRfCardNum").val(keyNum);
 
+		//DB에 출결처리
+		//document.frm.action = "";	// - 학원사랑에 처리 페이지
+		//document.frm.target = "ifrm";
+		//document.frm.submit();
+
 		var strParam="strBrCode=";					//학원코드
 		strParam=strParam + "&strRfKind=";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
 		strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
@@ -132,7 +183,7 @@ function StudentAtt(atype)
 
 		$.ajax({
 			type: "POST",
-			url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+			url: "",
 			data: strParam,
 			dataType: "html",
 			success:function(pstrResult){
@@ -144,10 +195,19 @@ function StudentAtt(atype)
 					var arrResult=$("#proc_result").text().split("returnval_");
 					if (arrResult.length > 1) {
 						if (arrResult[1] == "0:1") { //출석처리 성공
-
+							//response.write "returnval_0:1<br>"							'출결처리성공여부
+							//response.write "returnval_1:" & strStCode & "<br>"			'원생/직원코드
+							//response.write "returnval_2:" & strStName & "<br>"			'원생/직원명
+							//response.write "returnval_3:" & strStPhoto & "<br>"			'원생/직원사진
+							//response.write "returnval_4:" & strCurDateTime & "<br>"		'출결일시
+							//response.write "returnval_5:" & "미납" & "<br>"				'미납여부
+							//response.write "returnval_6:" & RegClName & "<br>"			'수강반리스트
+							//response.write "returnval_7:" & strMyPoint & "<br>"			'원생의 현재 포인트
 							if (11 > 2 ) {
 								doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
-							} else {	//처리전에 이미 이름을 보여주었다.
+							} else {
+								//처리전에 이미 이름을 보여주었다.
+								//$(".jStudentName").text(arrResult[3].substr(2, 20));
 								$(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
 								$(".jStudentName").show();
 
@@ -205,10 +265,9 @@ function CheckStudent(keypadnum)
 	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=&strRfCardNum="+keypadnum;
 
 	var xhr = new XMLHttpRequest();
-	xhr.onreadystatechange = function() {
+xhr.onreadystatechange = function() {
 		if (xhr.readyState == 4 && xhr.status === 200) {
 			var pstrVal = xhr.responseText;
-			
 			if (pstrVal.length > 0) {
 				var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
 
