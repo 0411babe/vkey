@@ -1,3 +1,4 @@
+
 var isTimer = 0;
 var timerInterval
 
@@ -5,6 +6,12 @@ $(document).ready(function(){
 
 	$(".jDefaultText").show();
 	$(".jStudentName").hide();
+
+	$('.jAttHelp').bind('touchstart', function(event){
+		var strHelpMsg = "원생의 출석처리가 안되는 경우";
+		strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
+		alert(strHelpMsg);
+	});
 
 	$('.jKeyNum').bind('touchstart', function(event){
 
