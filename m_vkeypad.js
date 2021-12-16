@@ -1,7 +1,3 @@
-const cors = require('cors');
-const router = express.Router();
-router.use(cors());
-
 
 var isTimer = 0;
 
