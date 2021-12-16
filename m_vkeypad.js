@@ -320,10 +320,9 @@ function CheckStudent(keypadnum){
 
 		error:function(xhr, data){	
 			var jStr = data.text;
-			alert("jStr"+jStr);
-			 console.log("jStr"+jStr);
-			
-			alert(xhr.responseText);
+			alert("jStr  "+jStr);
+			console.log("jStr"+jStr);
+			alert("xhr  "+xhr.responseText);
 			
 			if(xhr.status != 200)	{	alert(data);	};
 			console.log(data);		
