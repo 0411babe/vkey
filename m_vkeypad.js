@@ -269,7 +269,7 @@ function CheckStudent(keypadnum){
 		url  : strURL,	// - 학원사랑에 처리 페이지
 		type :"post",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"Jsonp",
+		dataType:"text",
 		crossOrigin: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		
@@ -279,12 +279,6 @@ function CheckStudent(keypadnum){
 			alert( jStr);
 			 console.log(jStr);
 			
-			
-			var jsonStr = JSON.stringify(pstrVal);
-			alert(jsonStr);
-			
-			var jsonStr = JSON.stringify(xhr.responseText);
-			alert(jsonStr);
 			
 			alert("success");
 		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
