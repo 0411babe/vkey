@@ -335,7 +335,7 @@ function CheckStudent(keypadnum){
 			 console.log("jStr"+jStr);
 			
 		
-			alert(jsonStr);
+			alert(xhr.responseText);
 			
 			var jsonStr = JSON.stringify(xhr.responseText);
 			alert(jsonStr);
