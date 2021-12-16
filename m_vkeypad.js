@@ -330,8 +330,11 @@ function CheckStudent(keypadnum){
                 	}
            },
 		error:function(xhr, data){	
+			var jStr = data.text;
+			alert( jStr);
+			 console.log(jStr);
 			
-				var jsonStr = JSON.stringify(data);
+		
 			alert(jsonStr);
 			
 			var jsonStr = JSON.stringify(xhr.responseText);
