@@ -272,8 +272,14 @@ function CheckStudent(keypadnum){
 		dataType:"Jsonp",
 		crossOrigin: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
-
-	 	success : function(xhr, pstrVal) {
+		
+		success : function(xhr, pstrVal) {
+			
+			var jStr = pstrVal.text;
+			alert( jStr);
+			 console.log(jStr);
+			
+			
 			var jsonStr = JSON.stringify(pstrVal);
 			alert(jsonStr);
 			
@@ -282,6 +288,9 @@ function CheckStudent(keypadnum){
 			
 			alert("success");
 		    if(xhr.status == 200)	    	 {	alert("200이자나");	};
+			
+			
+			
 		if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
 			
 	    
