@@ -163,86 +163,13 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 //등원생 확인 팝업창 열기
  
 //출석-귀가 버튼 눌렀을 때 동작
-	$.ajax({
-			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr",
-				  "Access-Control-Allow-Headers": '*'		 		}, //헤더를 이렇게 바꾸니까 되느 듯
-			Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
-			crossOrigin:true,
-			type: "POST",
-			url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-			data: strParam,
-			dataType: "html",
-			
-            success:function(pstrResult){
-                   //출석시 띵동소리내기		playAudio();
-	               $("#proc_result").html(pstrResult);
-            
-					if (pstrResult.length > 1) {
-						var arrResult=$("#proc_result").text().split("returnval_");
-                        //alert(arrResult);
-						if (arrResult.length > 1) {
-							if (arrResult[1] == "0:1") {
-								$(".jDefaultText").text("");
-								$(".jDefaultText").show();
-
-								//처리전에 이미 이름을 보여주었다.
-								$(".jStudentName").text(arrResult[3].substr(2, 20));
-								$(".jStudentName").show();
-
-								//출석처리후 번호 Clear
-								$("#keynum1").text("");
-								$("#keynum2").text("");
-								$("#keynum3").text("");
-								$("#keynum4").text("");
-
-								var strStData=arrResult[3].substr(2, 20)		//이름
-								strStData=strStData+arrResult[7].substr(2, 20)	//수강반
-								strStData=strStData+arrResult[5].substr(2, 20)	//체크일시
-
-								var strDttm=arrResult[5].substr(2, 20)
-								var strFmtDttm=strDttm;
-								var strFmtYmd, strFmtHns
-								if (strDttm.length == 14) { //YYYYMMDDHHNNSS
-									strFmtYmd= strDttm.substring(0, 4)+"."+strDttm.substring(4, 6)+"."+strDttm.substring(6, 8);
-									strFmtHns= strDttm.substring(8, 10)+":"+strDttm.substring(10, 12)+":"+strDttm.substring(12, 14);
-									strFmtDttm=strFmtYmd+" "+strFmtHns;
-								}
-
-								var objRsltTbl=document.getElementById("tblList")
-								var curTr=objRsltTbl.insertRow(1);
-
-								var curTd1=curTr.insertCell(0);
-									curTd1.className="attdlist";
-									curTd1.innerHTML=strFmtDttm;
-								var curTd2=curTr.insertCell(1);
-									curTd2.className="attdlist";
-									curTd2.innerHTML=arrResult[3].substr(2, 20);
-								var curTd3=curTr.insertCell(2);
-									curTd3.className="attdlist";
-									curTd3.innerHTML=arrResult[7].substr(2, 20);
-//출석처리 성공 시
-							} else { 
-								$(".jDefaultText").text(arrResult[2].substr(2, 100));
-								$(".jDefaultText").show();
-								$(".jStudentName").text("");
-								$(".jStudentName").show();							
-							}
-						}
-					}
-				},
-				
-			error:function(xhr,status,error){
-				alert("출석실패");
-			console.log("code:"+xhr.status+"\n"+"message:"+xhr.response+"\n"+"error:"+error);
-			}
-			});
 
 		}
 	}
 
 
 //출결번호체크
-function CheckStudent(keypadnum){   
+function CheckStudent(keypadnum){
 
 $(".jStudentName").text("");
 $("#studentnum").val("");
