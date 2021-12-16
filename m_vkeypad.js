@@ -117,9 +117,10 @@ var isTimer = 10;
 		});
 	});
     
-   /*   //2020-10-08 KHAN 방역관리 자가진단 입력
 
-// eemd
+
+
+
 function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 	{
 		var sid = $("#sid").val();
@@ -170,20 +171,6 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 			strParam=strParam + "&strAcamName=";						//학원명
 				
-			console.log(strParam);
-			alert(strParam);
-			/* 'http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?
-				strBrCode=JE41&
-				strRfKind=E&
-				strRfCardNum=7917&
-				strUserType=0&
-				strTimeType=A&
-			 strLecCountType=3&
-			 strLecCountAutoYN=Y&
-			 smsallowyn=Y&
-			 strAcamTel=01098406638 		*/
-            //등원생 확인 팝업창 열기
- 
 //출석-귀가 버튼 눌렀을 때 동작
 	$.ajax({
 			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
@@ -195,7 +182,6 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 			data: strParam,
 			dataType: "html",
 			
-
             success:function(pstrResult){
                    //출석시 띵동소리내기		playAudio();
 	               $("#proc_result").html(pstrResult);
@@ -327,86 +313,3 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 		
 	}
 
-
-	//로그인하기
-	$.ajax({
-               headers: { 'Access-Control-Allow-Origin': '*' },
-               crossOrigin: true,
-			   //url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!" 
-			   url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",
-			   type :"post",
-			   async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
-			   dataType: "html",
-               contentType: 'application/x-www-form-urlencoded; charset=utf-8',
-            
-			   error:function(){
-                   	alert("오류...등원생 확인 호출하기 통신 실패");
-			     },
-			   success:function(data){               // |으로 나눠서 
-                   //alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
-				    var refine = $("#aa").html(data).find('tr');
-                  	$("#aa").html(refine);
-
-			     }
-			});   
-
-
-
-function readTextFile(file)			//csv파일 읽기
-{
-    var rawFile = new XMLHttpRequest();
-    rawFile.open("GET", file, false);
-    rawFile.onreadystatechange = function ()
-    {
-        if(rawFile.readyState === 4)
-        {
-            if(rawFile.status === 200 || rawFile.status == 0)
-            {
-                var allText = rawFile.responseText;
-                alert(allText);
-				console.log(allText);
-            }
-        }
-    }
-    rawFile.send();
-}
-readTextFile("file:///C:/Users/Dustin/Documents/tong/1.txt");
-	
-		
-
-	$(function(){			//csv파일 읽기
-		var fileName = "file:///C:/Users/Dustin/Documents/tong/1.txt";	//로컬파일 읽어야 하는데
-		//var fileName = "https://drive.google.com/file/d/1pGEGOu8AQCJt3BLM-rXkgheD_6_rbjjT/view?usp=sharing/1.txt";	
-
-		$('#btn1').click(function(){
-			//텍스트 파일 읽어오기	//지금은 서버에서 데이터를 생성해서 리턴을 못하기 때문에 파일을 만들어서 읽지만 나중에는 파일 이름을 적지 않고 URL을 기재해서 데이터를 읽어올 것이다.
-			$('#disp').load(fileName);
-		});
-		$('#btn2').click(function(){
-			// html 파일 가져오기
-			$('#disp').load("https://drive.google.com/file/d/1pGEGOu8AQCJt3BLM-rXkgheD_6_rbjjT/view?usp=sharing/1.txt");
-		});
-	});
-
-
-	$.ajax({
-    		url: "C:/Users/Dustin/Documents/tong/1.txt",
-      		success: function(data) {
-				  alert(data);
-        				var array1 = data.split(",");
-        				var array2 = new Array();
-				    
-						for (var i = 0; i < array1.length; i++) {
-            				array2.push(array1[i].split(","));
-            					for (var j = 0; j < array2[i].length; j++) {
-                					$('ul').append('<li>'+array2[i][j]+'</li>');
-            }               
-            $('ul').append('<li><hr></li>');
-        		}
-      		},
-			  error:function(data){
-                   	alert("오류...csv호출하기 통신 실패");
-			     }
-
-    });
-	
