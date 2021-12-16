@@ -204,7 +204,7 @@ function CheckStudent(keypadnum){
 		type :"GET",
 		url  : strURL,	// - 학원사랑에 처리 페이지
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"JSONP",
+		dataType:"",
 
 		error:function(pstrVal){	
 			var tt = pstrVal.text();
