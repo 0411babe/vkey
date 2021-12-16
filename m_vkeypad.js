@@ -129,73 +129,10 @@ function StudentAtt(atype){		//등원버튼 눌렀을 때 처리함수
 		strParam=strParam + "&smsallowyn=Y";		//SMS 미납으로 SMS 사용할 수 있는지 여부
 		strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
 		strParam=strParam + "&strAcamName=";						//학원명
-//여기 아작스
-//등원 귀가처리 눌렀을 때 
-		$.ajax({
-			/crossDomain: true,
-		    	type: "GET",
-		    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-		    	data: strParam,
-		    	dataType: "JSONP",
-			headers: { 'Access-Control-Allow-Origin': '*' },
-		    	
-			
-			success:function(pstrResult){
-				$("#proc_result").html(pstrResult);
+//여기 아작스 //등원 귀가처리 눌렀을 때
 
-				if (pstrResult.length > 1) {
-				    playAudio(1);
-				    var arrResult=$("#proc_result").text().split("returnval_");		//등원생 정보를 arrResult배열에 넣기
-				    if (arrResult.length > 1) {
-					if (arrResult[1] == "0:1") { //출석처리 성공
-//returnval_0:1<br>		'출결처리성공여부	//returnval_1:0110017<br>	'원생/직원코드
-//returnval_2:박서준<br> '원생/직원명		//returnval_3:<br>		'원생/직원사진
-//returnval_4:20211214225342<br> '출결일시 [0:7]->연월일 [8:13]->시분초	//returnval_5:<br>'미납여부
-//returnval_6:영어C_12달(-432천원장기할인)(잔여회차:104)(종료예정일:11/30),*영어E_3개월_M4-1 12,영어A_추가3회_사본(잔여회차:-1)(종료예정일:11/30)<br>	'수강반리스트
-//returnval_7:0<br>	'원생의 현재 포인트
-//returnval_8:하원하였습니다<br>
-					    if (11 > 2 ) {
-						doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
-					    } else {
-						//$(".jStudentName").text(arrResult[3].substr(2, 20));	//처리전에 이미 이름을 보여줌
-						$(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
-						$(".jStudentName").show();
-
-						//출석처리후 번호 Clear
-						$("#keynum4").text("");
-						$("#keynum3").text("");
-						$("#keynum2").text("");
-						$("#keynum1").text("");
-
-						$("#attdproctext").val("");
-					    }
-
-					} else { //if (arrResult[1] == "0:-1") { //출석처리 성공
-					    //response.write "returnval_0:-1<br>"
-					    //response.write "returnval_E:에러메시지<br>"
-					    //alert(arrResult[2].substr(2, 100));
-					    if (1 == 1) {
-						doingtimer(arrResult[2].substr(2, 100))
-					    } else {
-						$(".jDefaultText").text(arrResult[2].substr(2, 100));
-						$(".jDefaultText").show();
-						$(".jStudentName").text("");
-						$(".jStudentName").show();
-					    }
-					}
-				    }
-				}
-		    	},	// success:function(pstrResult 끝
-
-			error:function(pstrResult){	 //2017-11-08:arrowroot	//alert(pstrResult)
-				if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {	alert("선생님의 출근시간 입력상태를\n확인하십시요.");
-				} else {
-				    alert(pstrResult)
-				}
-			},
-
-			complete: function (pstrResult) {        	alert("complete="+pstrResult)        }
-        	});	//AJAX 끝
+		
+//AJAX 끝
 	}	//키번호 네자리가 맞을 때
 };	//출석처리 버튼 기능 끝
 
@@ -236,47 +173,6 @@ function CheckStudent(keypadnum){
 
 var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
-	$.ajax({
-		/header : "http://www2.hakwonsarang.co.kr",
-		headers: { 'Access-Control-Allow-Origin': '*' },
-		crossOrigin: true,
-		url : strURL,		
-			// - 학원사랑에 처리 페이지
-		type :"post",
-		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"html",
-			   
-		error:function(){												
-			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
-	    	},
-		
-		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
-
-		if (pstrVal.length > 0) {
-
-				var arrVal=pstrVal.split("|"); ///S|원생코드|원생명|등원-귀가
-						if (arrVal.length >= 3) { 
-							$("#studentnum").val(arrVal[1]);   // #studentnum에 학생코드
-							$("#studentname").val(arrVal[2]);  // #studentname에 이름
-
-							if (arrVal[0] == "T") {			$(".jStudentName").text(arrVal[2]+" 선생님");
-							} else {						$(".jStudentName").text(arrVal[2]+" 학생");  }
-							$("#keypadnum").val(keypadnum);  
-						}
-
-					$(".jDefaultText").hide();
-					$(".jStudentName").show();
-
-	//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
-				if (arr_M0.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
-				if (arr_M1.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
-				if (arr_M2.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
-
-					} else {
-				$(".jStudentName").text("존재하지 않은 출결번호");
-				$(".jDefaultText").hide();
-				$(".jStudentName").show();
-			}
-		}
-	});		// AJAX 끝
+	
+// AJAX 끝
 }	//CHECKnUM함수 끝
