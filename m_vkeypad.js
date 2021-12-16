@@ -273,9 +273,8 @@ $.ajax({
 			   dataType:"html",
 			   
 			error:function(){												
-					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
-				    alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
-                    alert(error);
+			    alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
+	                    alert(error);
 			   },
 	
 		   success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를
