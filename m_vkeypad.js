@@ -264,7 +264,7 @@ $.ajax({
 			   
 		error:function(){												
 			alert("오류가 발생하였습니다. ajax 하긴하고 에러왔냐");
-		}
+		},
 	
 		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를 |으로 나눠서 
                    alert("접속성공!!ㅁ");
