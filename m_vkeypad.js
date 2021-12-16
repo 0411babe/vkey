@@ -173,6 +173,51 @@ function CheckStudent(keypadnum){
 
 var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
-	
+			$.ajax({
+headers: { 'Access-Control-Allow-Origin': '*' },
+header : "http://www2n.hakwonsarang.co.kr",
+//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+crossOrigin: true,
+url  : strURL,	// - 학원사랑에 처리 페이지
+type :"post",
+async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+dataType:"html",
+			   
+error:function(){												
+alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
+},
+success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
+				
+if (pstrVal.length > 0) {
+					
+var arrVal=pstrVal.split("|"); ///S|원생코드|원생명|등원-귀가
+if (arrVal.length >= 3) { 
+$("#studentnum").val(arrVal[1]);   // #studentnum에 학생코드
+$("#studentname").val(arrVal[2]);  // #studentname에 이름
+									
+if (arrVal[0] == "T") {			$(".jStudentName").text(arrVal[2]+" 선생님");
+} else {
+										
+if (arr_M0.indexOf(arrVal[2])>= 0)	{$(".jStudentName").text(arrVal[2]+" A 자리") }; //이거 내가 쓴거						
+if (arr_M1.indexOf(arrVal[2])>= 0)	{$(".jStudentName").text(arrVal[2]+" B 자리") }; //이거 내가 쓴거};		
+if (arr_M2.indexOf(arrVal[2])>= 0)	{$(".jStudentName").text(arrVal[2]+" C 자리") }; //이거 내가 쓴거};
+//$(".jStudentName").text(arrVal[2]+" 학생");  }
+}
+$("#keypadnum").val(keypadnum);  
+}
+$(".jDefaultText").hide();
+$(".jStudentName").show();
+//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
+if (arr_M0.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
+if (arr_M1.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
+if (arr_M2.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
+} else {
+$(".jStudentName").text("존재하지 않은 출결번호");
+$(".jDefaultText").hide();
+$(".jStudentName").show();
+}
+}
+		});
 // AJAX 끝
 }	//CHECKnUM함수 끝
