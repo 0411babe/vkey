@@ -245,15 +245,34 @@ function CheckStudent(keypadnum){
 // 		crossDomain: true,
 // 		contentType: 'application/text; charset=utf-8',
 // 	    	headers: { 'Access-Control-Allow-Origin': '*' },
-	$.ajax({
-		url  : strURL,	// - 학원사랑에 처리 페이지
-		type :"GET",
-		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType: "HTML",
-		crossOrigin: true,
-		headers: { 'Access-Control-Allow-Origin': '*' },
+	
+	
+// 	$.ajax({
+// 		url  : strURL,	// - 학원사랑에 처리 페이지
+// 		type :"GET",
+// 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+// 		dataType: "HTML",
+// 		crossOrigin: true,
+// 		headers: { 'Access-Control-Allow-Origin': '*' },
 		
-		success : function(xhr, pstrVal) {
+// 		success : function(xhr, pstrVal) {
+	$.ajax({
+		headers: { 'Access-Control-Allow-Origin': '*' },
+		header : "http://www2n.hakwonsarang.co.kr",
+		//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+		crossOrigin: true,
+		url  : strURL,	// - 학원사랑에 처리 페이지
+		type :"post",
+		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+		dataType:"html",
+		
+		error:function(){												
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+    			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
+		},
+
+		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
+	
 				var jStr = pstrVal.text;
 				alert( jStr);
 				console.log(jStr);
