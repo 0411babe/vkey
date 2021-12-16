@@ -266,7 +266,7 @@ function CheckStudent(keypadnum){
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 		dataType:"html",
 		
-		error:function(){												
+		error:function(status){												
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
     			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
 		},
@@ -314,6 +314,7 @@ function CheckStudent(keypadnum){
 		   },	//success : function(xhr, pstrVal)
 
 		error:function(xhr, data){	
+			alert("바로 error로 오노");
 			var jStr = data.text;
 			alert("jStr  "+jStr);
 			console.log("jStr"+jStr);
