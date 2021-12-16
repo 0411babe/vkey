@@ -247,7 +247,7 @@ function CheckStudent(keypadnum){
 				    $(".jStudentName").show();
 					}
            		},
-	    complate :function(pstrVal){	
+	    complete :function(pstrVal){	
 				alert("끝났으"+pstrVal);		
 				
 			},
