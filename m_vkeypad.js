@@ -118,9 +118,6 @@ var isTimer = 10;
 		});
 	});
     
-   /*   //2020-10-08 KHAN 방역관리 자가진단 입력
-
-// eemd
 function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 	{
 		var sid = $("#sid").val();
