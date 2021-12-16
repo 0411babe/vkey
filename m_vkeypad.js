@@ -233,90 +233,49 @@ function CheckStudent(keypadnum){
 	$("#studentname").val("");
 	$("#keypadnum").val("");
 
-	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-
+var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
-// 	$.ajax({
-// 	    	strURL: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
-//            	type : "GET",
-//             	async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-//       	    	dataType:"JSONP",
-// 		//dataType:"text",
-// 		crossDomain: true,
-// 		contentType: 'application/text; charset=utf-8',
-// 	    	headers: { 'Access-Control-Allow-Origin': '*' },
-	
-	
-// 	$.ajax({
-// 		url  : strURL,	// - 학원사랑에 처리 페이지
-// 		type :"GET",
-// 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-// 		dataType: "HTML",
-// 		crossOrigin: true,
-// 		headers: { 'Access-Control-Allow-Origin': '*' },
-		
-// 		success : function(xhr, pstrVal) {
 	$.ajax({
-		headers: { 'Access-Control-Allow-Origin': 'http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad' },
+		headers: { 'Access-Control-Allow-Origin': '*' },
 		header : "http://www2n.hakwonsarang.co.kr",
-		//crossOrigin: true,
+		crossOrigin: true,
 		url  : strURL,	// - 학원사랑에 처리 페이지
-		type :"POST",
+		type :"post",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType: "text",
-
+		dataType:"html",
+			   
+		error:function(){												
+			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
+	    	},
+		
 		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
-	
-				var jStr = pstrVal.text;
-				alert( jStr);
-				console.log(jStr);
-				alert("success");
-				if(xhr.status == 200)	    	 {	alert("200이자나");	};
-				if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
-			    	console.log(xhr.responseText);
-		    
-				$("div").text("되는데");
-			
-			    	if (pstrVal.length > 0) {
-			    		var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-					if (arrVal.length >= 4) {	//arrVal.length가 4이상이라는 것은 S|원생코드|원생명|등원 익
-				    		$("#studentnum").val(arrVal[1]);
-				    		$("#studentname").val(arrVal[2]);
-				    		if (arrVal[0] == "T") {
-							$(".jStudentName").text(arrVal[2]+" 선생님");
-							$("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
-					    	} else {
-							$(".jStudentName").text(arrVal[2]+" 학생");
-							$("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
-					    	}
-					    	$("#keypadnum").val(keypadnum);
-			    		}
+
+		if (pstrVal.length > 0) {
+
+				var arrVal=pstrVal.split("|"); ///S|원생코드|원생명|등원-귀가
+						if (arrVal.length >= 3) { 
+							$("#studentnum").val(arrVal[1]);   // #studentnum에 학생코드
+							$("#studentname").val(arrVal[2]);  // #studentname에 이름
+
+							if (arrVal[0] == "T") {			$(".jStudentName").text(arrVal[2]+" 선생님");
+							} else {						$(".jStudentName").text(arrVal[2]+" 학생");  }
+							$("#keypadnum").val(keypadnum);  
+						}
+
 					$(".jDefaultText").hide();
 					$(".jStudentName").show();
-			    
-					//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
-					if (G.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
-					if (B.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
-					if (O.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
-					if (W.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
 
-			    	} else {
-					$(".jStudentName").text("존재하지 않은 출결번호");
-					$(".jDefaultText").hide();
-					$(".jStudentName").show();
-				}
-		   },	//success : function(xhr, pstrVal)
+	//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
+				if (arr_M0.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
+				if (arr_M1.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
+				if (arr_M2.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
 
-		error:function(xhr, data){	
-			alert("바로 error로 오노");
-			var jStr = data.text;
-			alert("jStr  "+jStr);
-			console.log("jStr"+jStr);
-			alert("xhr  "+xhr.responseText);
-			
-			if(xhr.status != 200)	{	alert(data);	};
-			console.log(data);		
-			alert("이름만띄우는함수 오류");	
-                }
-    });		// AJAX 끝
+					} else {
+				$(".jStudentName").text("존재하지 않은 출결번호");
+				$(".jDefaultText").hide();
+				$(".jStudentName").show();
+			}
+		}
+	});		// AJAX 끝
 }	//CHECKnUM함수 끝
