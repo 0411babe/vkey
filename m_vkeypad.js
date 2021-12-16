@@ -132,12 +132,13 @@ function StudentAtt(atype){		//등원버튼 눌렀을 때 처리함수
 //여기 아작스
 //등원 귀가처리 눌렀을 때 
 		$.ajax({
+			/crossDomain: true,
 		    	type: "GET",
 		    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 		    	data: strParam,
-		    	dataType: "JSONP",      //
+		    	dataType: "JSONP",
 			headers: { 'Access-Control-Allow-Origin': '*' },
-		    	crossDomain: true,
+		    	
 			
 			success:function(pstrResult){
 				$("#proc_result").html(pstrResult);
@@ -236,10 +237,11 @@ function CheckStudent(keypadnum){
 var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
 	$.ajax({
+		/header : "http://www2.hakwonsarang.co.kr",
 		headers: { 'Access-Control-Allow-Origin': '*' },
-		header : "http://www2n.hakwonsarang.co.kr",
 		crossOrigin: true,
-		url  : strURL,	// - 학원사랑에 처리 페이지
+		url : strURL,		
+			// - 학원사랑에 처리 페이지
 		type :"post",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 		dataType:"html",
