@@ -20,7 +20,8 @@ $(document).ready(function(){
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
 		$('.jAttHelp').click(function(){});
-		$('.jKeyNum').click(function(){
+
+		$('.jKeyNum').click(function(){		//키패드 숫자 눌렀을 때 동작
 			var clickKeyNum = $(this).attr("keynum");
 			var keyNum1 = $("#keynum1").text();
 			var keyNum2 = $("#keynum2").text();
@@ -44,7 +45,7 @@ $(document).ready(function(){
 			}
 		});
 
-		$('.jKeyDelOne').click(function(){
+		$('.jKeyDelOne').click(function(){	// 키패드 ←버튼 눌렀을 때 동작
 			var keyNum1 = $("#keynum1").text();
 			var keyNum2 = $("#keynum2").text();
 			var keyNum3 = $("#keynum3").text();
@@ -53,7 +54,7 @@ $(document).ready(function(){
 			if (keyNum4 != "")    {	$("#keynum4").text("");
 			} else if (keyNum3 != "") {	$("#keynum3").text("");
 			} else if (keyNum2 != "") {	$("#keynum2").text("");
-			} else if (keyNum1 != "") {	$("#keynum1").text("");
+			} else if (keyNum1 != "") {	$("#keynum1").text("");		
 			}
 
 			$(".jDefaultText").show();
@@ -70,8 +71,7 @@ $(document).ready(function(){
 		});
 
 	
-		$('.jKeyDelAll').click(function(){
-
+		$('.jKeyDelAll').click(function(){	// 키패드 X 버튼 눌렀을 때 동작
 			$("#keynum1").text("");
 			$("#keynum2").text("");
 			$("#keynum3").text("");
@@ -92,111 +92,111 @@ $(document).ready(function(){
 			$("div").text(title);
 		});
 
-		$('.jComeIn').click(function(){		StudentAtt(1);		});
+		$('.jComeIn').click(function(){		StudentAtt(1);		});	// 등원버튼 눌렀
 
-		$('.jComeOut').click(function(){	StudentAtt(2);		});
-	});
-//여기까지 준비단계 함수//
+		$('.jComeOut').click(function(){	StudentAtt(2);		});	// 귀가버튼 눌렀
+});	//여기까지 준비단계 함수//
 
-	function StudentAtt(atype)
-	{
-		var sid = $("#sid").val();
-		var studentnum = $("#studentnum").val();
-		var studentname = $("#studentname").val();
-		var keypadnum = $("#keypadnum").val();
-		var strSfCode = $("strSfCode").val();
-		var strRfKind = $("#strRfKind").val();
 
-		var keyNum1 = $("#keynum1").text();
-		var keyNum2 = $("#keynum2").text();
-		var keyNum3 = $("#keynum3").text();
-		var keyNum4 = $("#keynum4").text();
+function StudentAtt(atype){		//등원버튼 눌렀을 때 처리함수
+	var sid = $("#sid").val();
+	var studentnum = $("#studentnum").val();
+	var studentname = $("#studentname").val();
+	var keypadnum = $("#keypadnum").val();
+	var strSfCode = $("strSfCode").val();
+	var strRfKind = $("#strRfKind").val();
 
-		var keyNum = "";
-		keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
-		if (keyNum.length != 4)	{
-			alert("출결번호 4자리를 정확히 선택하세요.");
-			return false;
-		} else {
-			$("#strRfCardNum").val(keyNum);			//DB에 출결처리
-			var strParam="strBrCode=JE41";			//학원코드
-			strParam=strParam + "&strRfKind=E";		//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
-			strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
-			strParam=strParam + "&strInDTime=";		//카드읽힌시간:입력하지 않음
-			strParam=strParam + "&strUserType=0";	//사용범위(0:원생+직원, 1:원생, 2:직원)
-			strParam=strParam + "&strTimeType=A";	//반시간표타입"
-			strParam=strParam + "&strLecCountType=3";//회차적용타입
-			strParam=strParam + "&strLecCountAutoYN=Y";//회차차감의 출석연동여부(Y/N)
-			strParam=strParam + "&smsallowyn=Y";		//SMS 미납으로 SMS 사용할 수 있는지 여부
-			strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
-			strParam=strParam + "&strAcamName=";						//학원명
+	var keyNum1 = $("#keynum1").text();
+	var keyNum2 = $("#keynum2").text();
+	var keyNum3 = $("#keynum3").text();
+	var keyNum4 = $("#keynum4").text();
+
+	var keyNum = "";
+	keyNum = keyNum1+keyNum2+keyNum3+keyNum4;
+	if (keyNum.length != 4)	{
+		alert("출결번호 4자리를 정확히 선택하세요.");
+		return false;
+	} else {
+		$("#strRfCardNum").val(keyNum);			//DB에 출결처리
+		var strParam="strBrCode=JE41";			//학원코드
+		strParam=strParam + "&strRfKind=E";		//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
+		strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
+		strParam=strParam + "&strInDTime=";		//카드읽힌시간:입력하지 않음
+		strParam=strParam + "&strUserType=0";	//사용범위(0:원생+직원, 1:원생, 2:직원)
+		strParam=strParam + "&strTimeType=A";	//반시간표타입"
+		strParam=strParam + "&strLecCountType=3";//회차적용타입
+		strParam=strParam + "&strLecCountAutoYN=Y";//회차차감의 출석연동여부(Y/N)
+		strParam=strParam + "&smsallowyn=Y";		//SMS 미납으로 SMS 사용할 수 있는지 여부
+		strParam=strParam + "&strAcamTel=01098406638";	//학원번호(전송자번호)
+		strParam=strParam + "&strAcamName=";						//학원명
 //여기 아작스
 //등원 귀가처리 눌렀을 때 
-	$.ajax({
-            type: "GET",
-            url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
-            data: strParam,
-            dataType: "JSONP",      //
-	    	headers: { 'Access-Control-Allow-Origin': '*' },
-            crossDomain: true,
-	    	success:function(pstrResult){
-                $("#proc_result").html(pstrResult);
+		$.ajax({
+		    	type: "GET",
+		    	url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+		    	data: strParam,
+		    	dataType: "JSONP",      //
+			headers: { 'Access-Control-Allow-Origin': '*' },
+		    	crossDomain: true,
+			
+			success:function(pstrResult){
+				$("#proc_result").html(pstrResult);
 
-                if (pstrResult.length > 1) {
-                    playAudio(1);
-                    var arrResult=$("#proc_result").text().split("returnval_");		//등원생 정보를 arrResult배열에 넣기
-                    if (arrResult.length > 1) {
-                        if (arrResult[1] == "0:1") { //출석처리 성공
+				if (pstrResult.length > 1) {
+				    playAudio(1);
+				    var arrResult=$("#proc_result").text().split("returnval_");		//등원생 정보를 arrResult배열에 넣기
+				    if (arrResult.length > 1) {
+					if (arrResult[1] == "0:1") { //출석처리 성공
 //returnval_0:1<br>		'출결처리성공여부	//returnval_1:0110017<br>	'원생/직원코드
 //returnval_2:박서준<br> '원생/직원명		//returnval_3:<br>		'원생/직원사진
 //returnval_4:20211214225342<br> '출결일시 [0:7]->연월일 [8:13]->시분초	//returnval_5:<br>'미납여부
 //returnval_6:영어C_12달(-432천원장기할인)(잔여회차:104)(종료예정일:11/30),*영어E_3개월_M4-1 12,영어A_추가3회_사본(잔여회차:-1)(종료예정일:11/30)<br>	'수강반리스트
 //returnval_7:0<br>	'원생의 현재 포인트
 //returnval_8:하원하였습니다<br>
-                            if (11 > 2 ) {
-                                doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
-                            } else {
-				//$(".jStudentName").text(arrResult[3].substr(2, 20));	//처리전에 이미 이름을 보여줌
-                                $(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
-                                $(".jStudentName").show();
+					    if (11 > 2 ) {
+						doingtimer(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val())
+					    } else {
+						//$(".jStudentName").text(arrResult[3].substr(2, 20));	//처리전에 이미 이름을 보여줌
+						$(".jStudentName").text(arrResult[3].substr(2, 20)+" "+$("#attdproctext").val());
+						$(".jStudentName").show();
 
-                                //출석처리후 번호 Clear
-                                $("#keynum4").text("");
-                                $("#keynum3").text("");
-                                $("#keynum2").text("");
-                                $("#keynum1").text("");
+						//출석처리후 번호 Clear
+						$("#keynum4").text("");
+						$("#keynum3").text("");
+						$("#keynum2").text("");
+						$("#keynum1").text("");
 
-                                $("#attdproctext").val("");
-                            }
-                        } else { //if (arrResult[1] == "0:-1") { //출석처리 성공
-                            //response.write "returnval_0:-1<br>"
-                            //response.write "returnval_E:에러메시지<br>"
-                            //alert(arrResult[2].substr(2, 100));
-                            if (1 == 1) {
-                                doingtimer(arrResult[2].substr(2, 100))
-                            } else {
-                                $(".jDefaultText").text(arrResult[2].substr(2, 100));
-                                $(".jDefaultText").show();
-                                $(".jStudentName").text("");
-                                $(".jStudentName").show();
-                            }
-                        }
-                    }
-                }
-            },
+						$("#attdproctext").val("");
+					    }
 
-        error:function(pstrResult){	 //2017-11-08:arrowroot	//alert(pstrResult)
-                if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {	alert("선생님의 출근시간 입력상태를\n확인하십시요.");
-                } else {
-                    alert(pstrResult)
-                }
-            },
+					} else { //if (arrResult[1] == "0:-1") { //출석처리 성공
+					    //response.write "returnval_0:-1<br>"
+					    //response.write "returnval_E:에러메시지<br>"
+					    //alert(arrResult[2].substr(2, 100));
+					    if (1 == 1) {
+						doingtimer(arrResult[2].substr(2, 100))
+					    } else {
+						$(".jDefaultText").text(arrResult[2].substr(2, 100));
+						$(".jDefaultText").show();
+						$(".jStudentName").text("");
+						$(".jStudentName").show();
+					    }
+					}
+				    }
+				}
+		    	},	// success:function(pstrResult 끝
 
-		complete: function (pstrResult) {        	alert("complete="+pstrResult)        }
-        });
-	}
-};
+			error:function(pstrResult){	 //2017-11-08:arrowroot	//alert(pstrResult)
+				if ( $(".jStudentName").text().indexOf("선생님" ,0) != -1 ) {	alert("선생님의 출근시간 입력상태를\n확인하십시요.");
+				} else {
+				    alert(pstrResult)
+				}
+			},
 
+			complete: function (pstrResult) {        	alert("complete="+pstrResult)        }
+        	});	//AJAX 끝
+	}	//키번호 네자리가 맞을 때
+};	//출석처리 버튼 기능 끝
 
 //자바스크립트 요일구하기|작성자 하이	//new Date().getDay()  일=0, 월=1, 화=2, 수=3, 목=4, 금=5, 토=6
 //function getTodayLabel() {
@@ -209,38 +209,20 @@ $(document).ready(function(){
 //console.log(getTodayLabel());
 //자바스크립트 요일구하기|작성자 하이
 
+function playAudio(){	// Check for audio element support.
 
-
-
-   function playAudio()
-	{
-		// Check for audio element support.
-		if (window.HTMLAudioElement) {
-			try {
-				var oAudio = document.getElementById("myaudio");
-
-				// Tests the paused attribute and set state.
-				if (oAudio.paused) {
-					oAudio.play();
-				}
-				else {
-					oAudio.pause();
-				}
-			}
-			catch (e) {
-				// Fail silently but show in F12 developer tools console
-				 if(window.console && console.error("Error:" + e));
-			}
+	if (window.HTMLAudioElement) {
+		try {
+			var oAudio = document.getElementById("myaudio");
+			// Tests the paused attribute and set state.
+			if (oAudio.paused) {	oAudio.play();	}
+			else {			oAudio.pause();	}
+		} catch (e) {
+			// Fail silently but show in F12 developer tools console
+			 if(window.console && console.error("Error:" + e));
 		}
 	}
-
-
-
-
-
-
-
-
+}
 
 
 
@@ -254,7 +236,6 @@ function CheckStudent(keypadnum){
 	var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
 //여기부터 아작스  //DB에서 출결번호 존재여부 체크
-
 // 	$.ajax({
 // 	    	strURL: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,	// - 학원사랑에 처리 페이지
 //            	type : "GET",
@@ -268,55 +249,50 @@ function CheckStudent(keypadnum){
 		url  : strURL,	// - 학원사랑에 처리 페이지
 		type :"GET",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"text",
+		dataType: "HTML",
 		crossOrigin: true,
 		headers: { 'Access-Control-Allow-Origin': '*' },
 		
 		success : function(xhr, pstrVal) {
-			
-			var jStr = pstrVal.text;
-			alert( jStr);
-			 console.log(jStr);
-			
-			
-			alert("success");
-			if(xhr.status == 200)	    	 {	alert("200이자나");	};
-			if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
-			
-			    console.log(xhr.responseText);
+				var jStr = pstrVal.text;
+				alert( jStr);
+				console.log(jStr);
+				alert("success");
+				if(xhr.status == 200)	    	 {	alert("200이자나");	};
+				if(xhr.status != 200)	    	 {	alert("석세스고 200아닌데");	};
+			    	console.log(xhr.responseText);
 		    
-		    $("div").text("되는데");	
-		    
-		    if (pstrVal.length > 0) {
-			    var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
-			    if (arrVal.length >= 4) {	//arrVal.length가 4이상이라는 것은 S|원생코드|원생명|등원 익
-				    $("#studentnum").val(arrVal[1]);
-				    $("#studentname").val(arrVal[2]);
-				    if (arrVal[0] == "T") {
-					    $(".jStudentName").text(arrVal[2]+" 선생님");
-					    $("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
-				    } else {
-					    $(".jStudentName").text(arrVal[2]+" 학생");
-					    $("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
-				    }
-			   	    $("#keypadnum").val(keypadnum);
-			    }
-
-		    $(".jDefaultText").hide();
-		    $(".jStudentName").show();
+				$("div").text("되는데");
+			
+			    	if (pstrVal.length > 0) {
+			    		var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
+					if (arrVal.length >= 4) {	//arrVal.length가 4이상이라는 것은 S|원생코드|원생명|등원 익
+				    		$("#studentnum").val(arrVal[1]);
+				    		$("#studentname").val(arrVal[2]);
+				    		if (arrVal[0] == "T") {
+							$(".jStudentName").text(arrVal[2]+" 선생님");
+							$("#attdproctext").val("선생님이 "+arrVal[3] + " 하였습니다."); //홍길동 선생님이 출근 하였습니다.
+					    	} else {
+							$(".jStudentName").text(arrVal[2]+" 학생");
+							$("#attdproctext").val("학생이 "+arrVal[3] + " 하였습니다."); //홍길동 학생이 등원 하였습니다.
+					    	}
+					    	$("#keypadnum").val(keypadnum);
+			    		}
+					$(".jDefaultText").hide();
+					$(".jStudentName").show();
 			    
-	//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
-		    if (G.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
-		    if (B.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
-		    if (O.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
-		    if (W.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
+					//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
+					if (G.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
+					if (B.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
+					if (O.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
+					if (W.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'White')}; //이거 내가 쓴거};
 
-		    } else {
-                    $(".jStudentName").text("존재하지 않은 출결번호");
-                    $(".jDefaultText").hide();
-                    $(".jStudentName").show();
-                	}
-           },
+			    	} else {
+					$(".jStudentName").text("존재하지 않은 출결번호");
+					$(".jDefaultText").hide();
+					$(".jStudentName").show();
+				}
+		   },	//success : function(xhr, pstrVal)
 
 		error:function(xhr, data){	
 			var jStr = data.text;
@@ -327,8 +303,6 @@ function CheckStudent(keypadnum){
 			if(xhr.status != 200)	{	alert(data);	};
 			console.log(data);		
 			alert("이름만띄우는함수 오류");	
-                	}
-    });
-	
-//DB에서 출결번호 존재여부 체크
-}
+                }
+    });		// AJAX 끝
+}	//CHECKnUM함수 끝
