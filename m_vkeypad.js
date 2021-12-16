@@ -257,7 +257,7 @@ function CheckStudent(keypadnum){
 		
 // 		success : function(xhr, pstrVal) {
 	$.ajax({
-		headers: { 'Access-Control-Allow-Origin': '*' },
+		headers: { 'Access-Control-Allow-Origin': 'http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad' },
 		header : "http://www2n.hakwonsarang.co.kr",
 		//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
 		crossOrigin: true,
