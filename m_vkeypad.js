@@ -259,12 +259,11 @@ function CheckStudent(keypadnum){
 	$.ajax({
 		headers: { 'Access-Control-Allow-Origin': 'http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad' },
 		header : "http://www2n.hakwonsarang.co.kr",
-		//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
 		crossOrigin: true,
 		url  : strURL,	// - 학원사랑에 처리 페이지
-		type :"post",
+		type :"POST",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"html",
+		dataType: "text",
 		
 		error:function(status){												
 			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
