@@ -206,7 +206,7 @@ function CheckStudent(keypadnum){
 		dataType:"JSONP",
 
 			error:function(pstrVal){	
-				alert("CheckStudent함수 오류"+pstrVal);		
+				alert("CheckStudent함수 오류"+pstrVal.text);		
 				
 			},
 			
