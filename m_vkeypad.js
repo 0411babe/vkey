@@ -245,7 +245,6 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 		dataType:"html",
 			   
 		error:function(){												
-			alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
 			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
 	    	},
 		
