@@ -6,7 +6,7 @@ for (var word in mobileKeyWords) {
 		//location.href = "http://www2n.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/m_vkeypad.asp?acamcode=JE41";
 		break;
 	}
-};
+}
 
 var G = new Array('조운겸', '김태율', '서강호', '송주안', '김나연', '이예준한라', '홍윤제', '오지아', '김시은', '강다현', '문현지', '이지우', '박정우', '현가민', '이준상', '김연재', '서강민', '좌승혁', '우연수', '함윤지', '우희수', '이주아', '조세종');
 var B = new Array('김다율', '김다정', '박소율', '고규림', '김다희', '이준빈', '방지우', '전성우', '고윤재', '김사랑', '송서현', '윤건웅', '김유민', '이영서　', '좌민호', '김지온', '이승준', '황재윤　', '채율찬', '성주현');
@@ -18,7 +18,7 @@ $(document).ready(function(){
 	
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
-		$('.jAttHelp').click(function(){});
+		//$('.jAttHelp').click(function(){});
 
 		$('.jKeyNum').click(function(){		//키패드 숫자 눌렀을 때 동작
 			var clickKeyNum = $(this).attr("keynum");
@@ -133,7 +133,7 @@ function StudentAtt(atype){		//등원버튼 눌렀을 때 처리함수
 		
 //AJAX 끝
 	}	//키번호 네자리가 맞을 때
-};	//출석처리 버튼 기능 끝
+}	//출석처리 버튼 기능 끝
 
 function playAudio(){	// Check for audio element support.
 
