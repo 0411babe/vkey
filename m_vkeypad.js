@@ -1,4 +1,3 @@
-
 var arr_M0 = new Array("박하준", "박서준")
 var arr_M1 = new Array("박하준")
 var arr_M2 = new Array("이서우")
@@ -52,6 +51,9 @@ var isTimer = 10;
 
 			if (keyNum.length == 4) {
 				CheckStudent(keyNum);		//ajax로 출석번호가 학원에 있는지 호출한다		
+				alert($("#studentname").val());
+				alert($(".jStudentName").val());
+				alert($(".jStudentName").text());
 			}
 		});
 
@@ -104,14 +106,20 @@ var isTimer = 10;
 		});
 
 		$('.jComeIn').click(function(){		//등원시 처리
-			StudentAtt(1);
+			//selfDiagnosis(1);
+            StudentAtt(1);
+            alert(keynum);
 		});
 
 		$('.jComeOut').click(function(){	//하원시 처리
-			StudentAtt(2);
+			//selfDiagnosis(2);
+            StudentAtt(2);
 		});
 	});
     
+   /*   //2020-10-08 KHAN 방역관리 자가진단 입력
+
+// eemd
 function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 	{
 		var sid = $("#sid").val();
@@ -121,6 +129,9 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 		var strSfCode = $("strSfCode").val();
 		var strRfKind = $("#strRfKind").val();
 
+        alert(strSfCode);
+        alert(strRfKind);
+		
 		if (strSfCode == "" || strRfKind == "")		//출결키패드 사용학원여부 체크
 		{
 			alert("로그인 후에 사용 하세요.");
@@ -143,7 +154,10 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 		} else {	
 			
 			$("#strRfCardNum").val(keyNum);
+
 			//DB에 출결처리
+			//document.frm.action = "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp";	// - 학원사랑에 처리 페이지
+			//document.frm.target = "ifrm";			//document.frm.submit();
 			var strParam="strBrCode=JE41";					//학원코드
 			strParam=strParam + "&strRfKind=E";			//출결기기종류(C:카드, F:지문, K:키패드 V:가상키패드)
 			strParam=strParam + "&strRfCardNum="+keyNum;				//키패드에서 입력한 번호
@@ -157,41 +171,242 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 			strParam=strParam + "&strAcamName=";						//학원명
 				
 			console.log(strParam);
-//등원생 확인 팝업창 열기
+			alert(strParam);
+			/* 'http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?
+				strBrCode=JE41&
+				strRfKind=E&
+				strRfCardNum=7917&
+				strUserType=0&
+				strTimeType=A&
+			 strLecCountType=3&
+			 strLecCountAutoYN=Y&
+			 smsallowyn=Y&
+			 strAcamTel=01098406638 		*/
+            //등원생 확인 팝업창 열기
  
 //출석-귀가 버튼 눌렀을 때 동작
+	$.ajax({
+			headers: { "Access-Control-Allow-Origin": "http://www2.hakwonsarang.co.kr", //헤더를 이렇게 바꾸니까 되느 듯
+					   "Access-Control-Allow-Headers": '*'		 					 },
+			Origin : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+			crossOrigin:true,
+			type: "POST",
+			url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
+			data: strParam,
+			dataType: "html",
+			
+
+            success:function(pstrResult){
+                   //출석시 띵동소리내기		playAudio();
+	               $("#proc_result").html(pstrResult);
+            
+					if (pstrResult.length > 1) {
+						var arrResult=$("#proc_result").text().split("returnval_");
+                        //alert(arrResult);
+						if (arrResult.length > 1) {
+							if (arrResult[1] == "0:1") {
+								$(".jDefaultText").text("");
+								$(".jDefaultText").show();
+
+								//처리전에 이미 이름을 보여주었다.
+								$(".jStudentName").text(arrResult[3].substr(2, 20));
+								$(".jStudentName").show();
+
+								//출석처리후 번호 Clear
+								$("#keynum1").text("");
+								$("#keynum2").text("");
+								$("#keynum3").text("");
+								$("#keynum4").text("");
+
+								var strStData=arrResult[3].substr(2, 20)		//이름
+								strStData=strStData+arrResult[7].substr(2, 20)	//수강반
+								strStData=strStData+arrResult[5].substr(2, 20)	//체크일시
+
+								var strDttm=arrResult[5].substr(2, 20)
+								var strFmtDttm=strDttm;
+								var strFmtYmd, strFmtHns
+								if (strDttm.length == 14) { //YYYYMMDDHHNNSS
+									strFmtYmd= strDttm.substring(0, 4)+"."+strDttm.substring(4, 6)+"."+strDttm.substring(6, 8);
+									strFmtHns= strDttm.substring(8, 10)+":"+strDttm.substring(10, 12)+":"+strDttm.substring(12, 14);
+									strFmtDttm=strFmtYmd+" "+strFmtHns;
+								}
+
+								var objRsltTbl=document.getElementById("tblList")
+								var curTr=objRsltTbl.insertRow(1);
+
+								var curTd1=curTr.insertCell(0);
+									curTd1.className="attdlist";
+									curTd1.innerHTML=strFmtDttm;
+								var curTd2=curTr.insertCell(1);
+									curTd2.className="attdlist";
+									curTd2.innerHTML=arrResult[3].substr(2, 20);
+								var curTd3=curTr.insertCell(2);
+									curTd3.className="attdlist";
+									curTd3.innerHTML=arrResult[7].substr(2, 20);
+//출석처리 성공 시
+							} else { 
+								$(".jDefaultText").text(arrResult[2].substr(2, 100));
+								$(".jDefaultText").show();
+								$(".jStudentName").text("");
+								$(".jStudentName").show();							
+							}
+						}
+					}
+				},
+				
+			error:function(xhr,status,error){
+				alert("출석실패");
+			console.log("code:"+xhr.status+"\n"+"message:"+xhr.response+"\n"+"error:"+error);
+			}
+			});
 
 		}
 	}
 
 
 //출결번호체크
-function CheckStudent(keypadnum){
-
-$(".jStudentName").text("");
-$("#studentnum").val("");
-$("#studentname").val("");
-$("#keypadnum").val("");
-
-var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
-
-//DB에서 출결번호 존재여부 체크
-$.ajax({
-		headers: { 'Access-Control-Allow-Origin': '*' },
-		header :'Allow-Control-Allow-Origin: *',
-		header : "http://www2n.hakwonsarang.co.kr",
-		crossOrigin: true,
-		url  : strURL,	// - 학원사랑에 처리 페이지
-		type :"post",
-		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"html",
-			   
-		error:function(){												
-			alert("오류가 발생하였습니다. ajax 하긴하고 에러왔냐");
-		},
+	function CheckStudent(keypadnum){   
 	
-		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를 |으로 나눠서 
-                   alert("접속성공!!ㅁ");
-		}
-	});
+		$(".jStudentName").text("");
+		$("#studentnum").val("");
+		$("#studentname").val("");
+		$("#keypadnum").val("");
+		//var strURL=                                                       "./getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+        var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+
+		//DB에서 출결번호 존재여부 체크
+		$.ajax({
+				headers: { 'Access-Control-Allow-Origin': '*' },
+				header : "http://www2n.hakwonsarang.co.kr",
+				//header : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp",
+				crossOrigin: true,
+				url  : strURL,	// - 학원사랑에 처리 페이지
+				type :"post",
+				async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+				dataType:"html",
+			   
+				error:function(){												
+					alert("code:"+request.status+"\n"+"message:"+request.responseText+"\n"+"error:"+error);
+				    alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
+			    },
+		   		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
+				
+                   	if (pstrVal.length > 0) {
+					
+						var arrVal=pstrVal.split("|"); ///S|원생코드|원생명|등원-귀가
+								if (arrVal.length >= 3) { 
+									$("#studentnum").val(arrVal[1]);   // #studentnum에 학생코드
+									$("#studentname").val(arrVal[2]);  // #studentname에 이름
+									
+									if (arrVal[0] == "T") {			$(".jStudentName").text(arrVal[2]+" 선생님");
+									} else {
+										
+										if (arr_M0.indexOf(arrVal[2])>= 0)	{$(".jStudentName").text(arrVal[2]+" A 자리") }; //이거 내가 쓴거						
+										if (arr_M1.indexOf(arrVal[2])>= 0)	{$(".jStudentName").text(arrVal[2]+" B 자리") }; //이거 내가 쓴거};		
+										if (arr_M2.indexOf(arrVal[2])>= 0)	{$(".jStudentName").text(arrVal[2]+" C 자리") }; //이거 내가 쓴거};
+										//$(".jStudentName").text(arrVal[2]+" 학생");  }
+									}
+										$("#keypadnum").val(keypadnum);  
+								}
+
+							$(".jDefaultText").hide();		//이름 들어오는 자리 / 출결번호를 선택하세요.
+							$(".jStudentName").show();		//이름 들어오는 자리
+
+			//출석 성공시 arrVal[2] == 리스트에 있는 값으로 백그라운드 바꾸기
+							if (arr_M0.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Green')}; //이거 내가 쓴거
+							if (arr_M1.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Blue')}; //이거 내가 쓴거};		
+							if (arr_M2.indexOf(arrVal[2])>= 0)	{$('.key_box').css("background-Color", 'Orange')}; //이거 내가 쓴거};
+
+					} else {
+							$(".jStudentName").text("존재하지 않은 출결번호");
+							$(".jDefaultText").hide();
+							$(".jStudentName").show();
+					}
+			   		}
+		});
+		
+	}
+
+
+	//로그인하기
+	$.ajax({
+               headers: { 'Access-Control-Allow-Origin': '*' },
+               crossOrigin: true,
+			   //url  : "http://www6.hakwonsarang.co.kr/mmsc/login_proc.asp?txtbr_code=JE41&txtmb_id=je41admin&txtmb_pw=tnejrfh41!" 
+			   url  : "http://www6.hakwonsarang.co.kr/mmsc/student/st07pop_attdStList.asp",
+			   type :"post",
+			   async: "true",		//순서가 중요할 때는 동기식으로 바꿔준다.
+			   dataType: "html",
+               contentType: 'application/x-www-form-urlencoded; charset=utf-8',
+            
+			   error:function(){
+                   	alert("오류...등원생 확인 호출하기 통신 실패");
+			     },
+			   success:function(data){               // |으로 나눠서 
+                   //alert("리스트 접근 완료하지만 한글은 깨짐")//(data);
+				    var refine = $("#aa").html(data).find('tr');
+                  	$("#aa").html(refine);
+
+			     }
+			});   
+
+
+
+function readTextFile(file)			//csv파일 읽기
+{
+    var rawFile = new XMLHttpRequest();
+    rawFile.open("GET", file, false);
+    rawFile.onreadystatechange = function ()
+    {
+        if(rawFile.readyState === 4)
+        {
+            if(rawFile.status === 200 || rawFile.status == 0)
+            {
+                var allText = rawFile.responseText;
+                alert(allText);
+				console.log(allText);
+            }
+        }
+    }
+    rawFile.send();
 }
+readTextFile("file:///C:/Users/Dustin/Documents/tong/1.txt");
+	
+		
+
+	$(function(){			//csv파일 읽기
+		var fileName = "file:///C:/Users/Dustin/Documents/tong/1.txt";	//로컬파일 읽어야 하는데
+		//var fileName = "https://drive.google.com/file/d/1pGEGOu8AQCJt3BLM-rXkgheD_6_rbjjT/view?usp=sharing/1.txt";	
+
+		$('#btn1').click(function(){
+			//텍스트 파일 읽어오기	//지금은 서버에서 데이터를 생성해서 리턴을 못하기 때문에 파일을 만들어서 읽지만 나중에는 파일 이름을 적지 않고 URL을 기재해서 데이터를 읽어올 것이다.
+			$('#disp').load(fileName);
+		});
+		$('#btn2').click(function(){
+			// html 파일 가져오기
+			$('#disp').load("https://drive.google.com/file/d/1pGEGOu8AQCJt3BLM-rXkgheD_6_rbjjT/view?usp=sharing/1.txt");
+		});
+	});
+
+
+	$.ajax({
+    		url: "C:/Users/Dustin/Documents/tong/1.txt",
+      		success: function(data) {
+				  alert(data);
+        				var array1 = data.split(",");
+        				var array2 = new Array();
+				    
+						for (var i = 0; i < array1.length; i++) {
+            				array2.push(array1[i].split(","));
+            					for (var j = 0; j < array2[i].length; j++) {
+                					$('ul').append('<li>'+array2[i][j]+'</li>');
+            }               
+            $('ul').append('<li><hr></li>');
+        		}
+      		},
+			  error:function(data){
+                   	alert("오류...csv호출하기 통신 실패");
+			     }
+
+    });
+	
