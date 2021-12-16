@@ -1,3 +1,14 @@
+const express = require('express');
+const jwt = require('jsonwebtoken');
+const cors = require('cors');
+const router = express.Router();
+router.use(cors());
+
+
+
+
+
+
 var isTimer = 0;
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
