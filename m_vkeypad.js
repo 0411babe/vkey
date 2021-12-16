@@ -168,13 +168,18 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 		url  : "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum,
 		type :"post",
 		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		dataType:"html",
+		dataType:"text",
 	   
-		error:function(){
+		error:function(request,status,error){
 			alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");	
-			alert(XMLHttpRequest.responsetext);
+			//alert(XMLHttpRequest.responsetext);
+			alert("code = "+ request.status + " message = " + request.responseText + " error = " + error); // 실패 시 처리
 		},
 		
+		complete : function(data) {
+                 //  실패했어도 완료가 되었을 때 처리
+	        },
+
    		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를   // |으로 나눠서 
 		
            	if (pstrVal.length > 0) {
