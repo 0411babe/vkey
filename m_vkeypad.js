@@ -52,9 +52,6 @@ var isTimer = 10;
 
 			if (keyNum.length == 4) {
 				CheckStudent(keyNum);		//ajax로 출석번호가 학원에 있는지 호출한다		
-				alert($("#studentname").val());
-				alert($(".jStudentName").val());
-				alert($(".jStudentName").text());
 			}
 		});
 
