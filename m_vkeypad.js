@@ -253,7 +253,7 @@ var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStName
 
 //DB에서 출결번호 존재여부 체크
 $.ajax({
-		/headers: { 'Access-Control-Allow-Origin': '*' },
+		headers: { 'Access-Control-Allow-Origin': '*' },
 		header :'Allow-Control-Allow-Origin: *',
 		header : "http://www2n.hakwonsarang.co.kr",
 		crossOrigin: true,
