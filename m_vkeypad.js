@@ -5,10 +5,6 @@ const router = express.Router();
 router.use(cors());
 
 
-
-
-
-
 var isTimer = 0;
 
 var mobileKeyWords = new Array('iPhone', 'iPad', 'BlackBerry', 'Android', 'Windows CE', 'LG', 'MOT', 'SAMSUNG', 'SonyEricsson');
@@ -211,18 +207,20 @@ function CheckStudent(keypadnum){
 
     //DB에서 출결번호 존재여부 체크
     $.ajax({
-            type :"GET",
-	url  : strURL,	// - 학원사랑에 처리 페이지
-            async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+		type :"GET",
+		url  : strURL,	// - 학원사랑에 처리 페이지
+		async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
 		dataType:"JSONP",
 
-			error:function(pstrVal){	
-				alert("CheckStudent함수 오류"+pstrVal.text);		
-				
-			},
-			
-			success:function(pstrVal) {
-					alert(pstrVal);
+		error:function(pstrVal){	
+			var tt = pstrVal.text();
+			console.log(tt);
+			alert("CheckStudent함수 오류"+pstrVal.text);		
+		},
+		
+		success:function(pstrVal) {
+					
+			alert(pstrVal);
             
 					if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///'''S|원생코드|원생명|등원
