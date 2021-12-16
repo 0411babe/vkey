@@ -203,7 +203,7 @@ function CheckStudent(keypadnum){
             type :"GET",
 	url  : strURL,	// - 학원사랑에 처리 페이지
             async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			dataType:"JSONP",
+		dataType:"JSONP",
 
 			error:function(pstrVal){	
 				alert("CheckStudent함수 오류"+pstrVal);		
@@ -233,11 +233,15 @@ function CheckStudent(keypadnum){
 					$(".jStudentName").show();
 
 					} else {
-                    $(".jStudentName").text("존재하지 않은 출결번호");
-                    $(".jDefaultText").hide();
-                    $(".jStudentName").show();
-                	}
-           }
+				    $(".jStudentName").text("존재하지 않은 출결번호");
+				    $(".jDefaultText").hide();
+				    $(".jStudentName").show();
+					}
+           		},
+	    complate :function(pstrVal){	
+				alert("끝났으"+pstrVal);		
+				
+			},
     });
 	
 	
