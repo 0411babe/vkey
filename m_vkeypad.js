@@ -107,14 +107,11 @@ var isTimer = 10;
 		});
 
 		$('.jComeIn').click(function(){		//등원시 처리
-			//selfDiagnosis(1);
-            StudentAtt(1);
-            alert(keynum);
+			StudentAtt(1);
 		});
 
 		$('.jComeOut').click(function(){	//하원시 처리
-			//selfDiagnosis(2);
-            StudentAtt(2);
+			StudentAtt(2);
 		});
 	});
     
@@ -127,9 +124,6 @@ function StudentAtt(atype)		//StudentAtt(1) 등원   StudentAtt(2) 하원
 		var strSfCode = $("strSfCode").val();
 		var strRfKind = $("#strRfKind").val();
 
-        alert(strSfCode);
-        alert(strRfKind);
-		
 		if (strSfCode == "" || strRfKind == "")		//출결키패드 사용학원여부 체크
 		{
 			alert("로그인 후에 사용 하세요.");
@@ -254,7 +248,7 @@ $(".jStudentName").text("");
 $("#studentnum").val("");
 $("#studentname").val("");
 $("#keypadnum").val("");
-//var strURL=                                                       "./getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
+
 var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 
 //DB에서 출결번호 존재여부 체크
@@ -269,12 +263,11 @@ $.ajax({
 		dataType:"html",
 			   
 		error:function(){												
-			    alert("오류가 발생하였습니다. ajax에서 오류 나네 기다료 왜 안되노");
-	                    alert(error);
+			alert("오류가 발생하였습니다. ajax 하긴하고 에러왔냐");
 		},
 	
 		success:function(pstrVal) {     //접속 성공하면, 받은 데이터 'S|원생코드|원생명'를 |으로 나눠서 
-                   //alert("접속성공!!ㅁ");
+                   alert("접속성공!!ㅁ");
                    if (pstrVal.length > 0) {
 						var arrVal=pstrVal.split("|"); ///S|원생코드|원생명|등원-귀가
 
