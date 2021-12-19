@@ -2,7 +2,8 @@ var isTimer = 0;
 
 var timerInterval
 
-	$(document).ready(function(){
+	
+$(document).ready(function(){
 
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
@@ -104,7 +105,6 @@ var timerInterval
 			selfDiagnosis(2);
 		});
 
-		//document.getElementById("myaudio").load();
 		$("#myaudio")[0].load();
 	});
 
@@ -117,14 +117,6 @@ var timerInterval
 
 		var strSfCode = $("strSfCode").val();
 		var strRfKind = $("#strRfKind").val();
-
-		//출결키패드 사용학원여부 체크
-		if (strSfCode == "" || strRfKind == "")
-		{
-			// 학원사랑에 맞게 하세요.
-			alert("로그인 후에 사용 하세요.");
-			return false;
-		}
 
 		var keyNum1 = $("#keynum1").text();
 		var keyNum2 = $("#keynum2").text();
@@ -159,7 +151,7 @@ var timerInterval
 
 			$.ajax({
 				type: "POST",
-				url: "",
+				url: "http://www2.hakwonsarang.co.kr/mmsc/h2cspage/rfpage/rf_page1.asp?",
 				data: strParam,
 				dataType: "html",
 				success:function(pstrResult){
@@ -238,7 +230,7 @@ var timerInterval
 		$("#keypadnum").val("");
 		$("#attdproctext").val("");
 
-		var strURL="http:h2.hakwonsarang.co.kr/mmsc/h2cspage/VirtualKeypad/getStNameByRfCardNo.asp?strbrcode=H202&strRfKind=K&strRfCardNum="+keypadnum;
+		var strURL="http://www2.hakwonsarang.co.kr/mmsc/h2cspage/virtualkeypad/getStNameByRfCardNo.asp?strbrcode=JE41&strRfKind=E&strRfCardNum="+keypadnum;
 				//DB에서 출결번호 존재여부 체크
 		$.ajax({
 			   url  : strURL,	// - 학원사랑에 처리 페이지
