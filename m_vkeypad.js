@@ -1,8 +1,6 @@
-
-alert("js읽어옴");
-
 var isTimer = 0;
-	var timerInterval
+
+var timerInterval
 
 	$(document).ready(function(){
 
@@ -109,37 +107,6 @@ var isTimer = 0;
 		//document.getElementById("myaudio").load();
 		$("#myaudio")[0].load();
 	});
-
-//2020-10-08 KHAN 방역과리 자가진단 입력
-	var curAttType = "";
-	function selfDiagnosis(pAttType) {
-		curAttType = pAttType
-		var strURLPreventCheck = "./prevent.asp?cmd=checkPrevent&br_code=&mb_no="+$("#studentnum").val();
-		$.ajax({
-		   url:strURLPreventCheck,
-		   type:'post',
-		   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-		   dataType:'json',
-		   success:function(obj){
-				if (obj.returnCode == 1 && obj.bIsOpen == "Y"){
-					window.name = "keypad";
-					var strURL = 'http://pfapp.tongtongtong.co.kr/prevent/self_diagnosis.asp?deviceOS=MOBILE_WEB&bcode=&mbno='+$("#studentnum").val();
-					window.open(strURL, "SelfDiagnosis", "width=800,height=700,scrollbars=yes")
-				}else{
-					//console.log(obj.returnMessage);
-					StudentAtt(pAttType);
-				}
-			},
-			error:function(xhr,status,error){
-				console.log(xhr);
-				//alert("에러가 발생했습니다."+error);
-				//StudentAtt(pAttType);
-			}
-		});
-	}
-	function callbackSelfDiagnosis() {
-		StudentAtt(curAttType);
-	}
 
 	function StudentAtt(atype)
 	{
@@ -271,9 +238,8 @@ var isTimer = 0;
 		$("#keypadnum").val("");
 		$("#attdproctext").val("");
 
-		var strURL="./getStNameByRfCardNo.asp?strbrcode=&strRfKind=&strRfCardNum="+keypadnum;
-		//http:h2.hakwonsarang.co.kr/mmsc/h2cspage/VirtualKeypad/getStNameByRfCardNo.asp?strbrcode=H202&strRfKind=K&strRfCardNum=2345
-		//DB에서 출결번호 존재여부 체크
+		var strURL="http:h2.hakwonsarang.co.kr/mmsc/h2cspage/VirtualKeypad/getStNameByRfCardNo.asp?strbrcode=H202&strRfKind=K&strRfCardNum="+keypadnum;
+				//DB에서 출결번호 존재여부 체크
 		$.ajax({
 			   url  : strURL,	// - 학원사랑에 처리 페이지
 			   type :"post",
