@@ -8,12 +8,6 @@ $(document).ready(function(){
 		$(".jDefaultText").show();
 		$(".jStudentName").hide();
 
-		$('.jAttHelp').bind('touchstart', function(event){
-			var strHelpMsg = "원생의 출석처리가 안되는 경우";
-			strHelpMsg += "\nPC의 [학사관리>원생자료]에서\n[RF 카드번호]를 확인하세요.";
-			alert(strHelpMsg);
-		});
-
 		$('.jKeyNum').bind('touchstart', function(event){
 
 			CheckTimer();
@@ -97,12 +91,12 @@ $(document).ready(function(){
 
 		$('.jComeIn').click(function(){
 			CheckTimer();
-			selfDiagnosis(1);
+			StudentAtt(1);
 		});
 
 		$('.jComeOut').click(function(){
 			CheckTimer();
-			selfDiagnosis(2);
+			StudentAtt(2);
 		});
 
 		$("#myaudio")[0].load();
@@ -234,9 +228,9 @@ $(document).ready(function(){
 				//DB에서 출결번호 존재여부 체크
 		$.ajax({
 			   url  : strURL,	// - 학원사랑에 처리 페이지
-			   type :"post",
-			   async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
-			   dataType:"html",
+			   type :"GET",
+			   //async: false,		//순서가 중요할 때는 동기식으로 바꿔준다.
+			   dataType:"text",
 			   error:function(){
 					 //alert("오류가 발생하였습니다.");
 			   },
